@@ -1,0 +1,108 @@
+rules:
+  - id: SVC-003
+    title: Services must expose a metrics endpoint
+    description: Every governed service should expose a reachable metrics endpoint.
+    category: observability
+    severity: high
+    target: service
+    check_type: metrics_endpoint
+    enabled: true
+    params:
+      allowed_paths:
+        - /metrics
+        - /actuator/prometheus
+        - /actuator/metrics
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+
+  - id: OBS-001
+    title: Metrics endpoint must be Prometheus-compatible
+    description: Metrics endpoint should expose metrics in Prometheus text exposition format.
+    category: observability
+    severity: high
+    target: service
+    check_type: prometheus_metrics_compatibility
+    enabled: true
+    params:
+      allowed_paths:
+        - /metrics
+        - /actuator/prometheus
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+
+  - id: OBS-002
+    title: Metrics must include request count metric
+    description: Services should expose a metric that represents request throughput or request count.
+    category: observability
+    severity: medium
+    target: service
+    check_type: required_prometheus_metric_groups
+    enabled: true
+    params:
+      allowed_paths:
+        - /metrics
+        - /actuator/prometheus
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+      required_metric_groups:
+        request_count:
+          description: Metric representing request count or throughput.
+          patterns:
+            - ^http_server_requests_seconds_count$
+            - ^http_requests_total$
+            - ^http_request_total$
+            - ^requests_total$
+            - ^grpc_server_handled_total$
+
+  - id: OBS-003
+    title: Metrics must include request duration metric
+    description: Services should expose a metric that represents request duration or latency.
+    category: observability
+    severity: medium
+    target: service
+    check_type: required_prometheus_metric_groups
+    enabled: true
+    params:
+      allowed_paths:
+        - /metrics
+        - /actuator/prometheus
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+      required_metric_groups:
+        request_duration:
+          description: Metric representing request duration or latency.
+          patterns:
+            - ^http_server_requests_seconds$
+            - ^http_server_requests_seconds_sum$
+            - ^http_request_duration_seconds$
+            - ^http_request_duration_seconds_sum$
+            - ^request_duration_seconds$
+
+  - id: OBS-004
+    title: Metrics must include error or failure metric
+    description: Services should expose a metric that allows error or failure rate calculation.
+    category: observability
+    severity: medium
+    target: service
+    check_type: required_prometheus_metric_groups
+    enabled: true
+    params:
+      allowed_paths:
+        - /metrics
+        - /actuator/prometheus
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+      required_metric_groups:
+        error_metric:
+          description: Metric representing error or failure count.
+          patterns:
+            - ^http_server_requests_seconds_count$
+            - ^http_requests_total$
+            - ^errors_total$
+            - ^request_errors_total$
+            - ^failures_total$

@@ -1,0 +1,41 @@
+scenario_id: CASE-SPRING-PETCLINIC-STATIC-GOVERNANCE
+name: Spring PetClinic static governance scenario
+description: Evaluates Spring PetClinic Microservices without requiring running service endpoints.
+
+filter_criteria:
+  execution_mode: static
+  categories:
+    - reliability
+    - architecture
+    - dependency
+    - deployment
+    - security
+
+expected:
+  findings:
+    - rule_id: REL-001
+    - rule_id: REL-002
+    - rule_id: REL-003
+    - rule_id: REL-004
+    - rule_id: REL-005
+    - rule_id: ARCH-001
+    - rule_id: ARCH-002
+    - rule_id: ARCH-003
+    - rule_id: DEPEN-001
+    - rule_id: DEPEN-002
+    - rule_id: DEPEN-003
+    - rule_id: DEP-001
+    - rule_id: DEP-002
+    - rule_id: DEP-003
+    - rule_id: DEP-004
+    - rule_id: DEP-005
+    - rule_id: DEP-006
+    - rule_id: DEP-007
+    - rule_id: DEP-008
+    - rule_id: SEC-001
+    - rule_id: SEC-002
+    - rule_id: SEC-003
+
+metadata:
+  case_study: spring-petclinic-microservices
+  execution_mode: static

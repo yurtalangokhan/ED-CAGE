@@ -1,0 +1,77 @@
+rules:
+  - id: ARCH-001
+    title: ADR directory must exist
+    description: Architecture Decision Records should be maintained to capture significant architectural decisions.
+    category: architecture
+    severity: medium
+    target: repository
+    check_type: repository_required_paths
+    enabled: true
+    params:
+      required_paths:
+        - path: docs/adr
+          type: directory
+
+  - id: ARCH-002
+    title: Quality attribute scenarios must be documented
+    description: Quality attribute scenarios should be documented to support architecture evaluation and governance.
+    category: architecture
+    severity: high
+    target: repository
+    check_type: repository_required_paths
+    enabled: true
+    params:
+      required_paths:
+        - path: docs/quality-attributes/scenarios.yaml
+          type: file
+
+  - id: ARCH-003
+    title: Critical services must be declared
+    description: Critical services should be explicitly declared for risk-based architecture governance.
+    category: architecture
+    severity: high
+    target: architecture-catalog
+    check_type: architecture_catalog_policy
+    enabled: true
+    params:
+      policy: require_critical_services
+      architecture_catalog_path: configs/architecture/service-architecture.yaml
+
+  - id: DEPEN-001
+    title: Service dependencies must be explicitly declared
+    description: Each service should explicitly declare its dependencies, even when the dependency list is empty.
+    category: dependency
+    severity: high
+    target: architecture-catalog
+    check_type: architecture_catalog_policy
+    enabled: true
+    params:
+      policy: require_declared_dependencies
+      architecture_catalog_path: configs/architecture/service-architecture.yaml
+
+  - id: DEPEN-002
+    title: Circular service dependencies must not exist
+    description: Service dependency graph should not contain circular dependencies.
+    category: dependency
+    severity: critical
+    target: architecture-catalog
+    check_type: architecture_catalog_policy
+    enabled: true
+    params:
+      policy: disallow_circular_dependencies
+      architecture_catalog_path: configs/architecture/service-architecture.yaml
+
+  - id: DEPEN-003
+    title: External dependencies must define owner and SLA metadata
+    description: External dependencies should define owner and SLA metadata for operational and contractual governance.
+    category: dependency
+    severity: high
+    target: architecture-catalog
+    check_type: architecture_catalog_policy
+    enabled: true
+    params:
+      policy: require_external_dependency_metadata
+      architecture_catalog_path: configs/architecture/service-architecture.yaml
+      required_metadata:
+        - owner
+        - sla

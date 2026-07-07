@@ -1,0 +1,108 @@
+rules:
+  - id: API-001
+    title: OpenAPI document must define API metadata
+    description: OpenAPI documents should define info.title and info.version.
+    category: api
+    severity: medium
+    target: service
+    check_type: openapi_document_policy
+    enabled: true
+    params:
+      policy: require_info_metadata
+      allowed_paths:
+        - /openapi.json
+        - /swagger.json
+        - /v3/api-docs
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+
+  - id: API-002
+    title: OpenAPI operations must define operationId
+    description: Every OpenAPI operation should define an operationId for client generation, tracing and contract governance.
+    category: api
+    severity: medium
+    target: service
+    check_type: openapi_document_policy
+    enabled: true
+    params:
+      policy: require_operation_id
+      allowed_paths:
+        - /openapi.json
+        - /swagger.json
+        - /v3/api-docs
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+
+  - id: API-003
+    title: OpenAPI operations must define success responses
+    description: Every OpenAPI operation should define at least one 2xx success response.
+    category: api
+    severity: medium
+    target: service
+    check_type: openapi_document_policy
+    enabled: true
+    params:
+      policy: require_success_responses
+      allowed_paths:
+        - /openapi.json
+        - /swagger.json
+        - /v3/api-docs
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+
+  - id: API-004
+    title: OpenAPI operations must define error responses
+    description: Every OpenAPI operation should define at least one 4xx or 5xx error response.
+    category: api
+    severity: medium
+    target: service
+    check_type: openapi_document_policy
+    enabled: true
+    params:
+      policy: require_error_responses
+      allowed_paths:
+        - /openapi.json
+        - /swagger.json
+        - /v3/api-docs
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+
+  - id: API-005
+    title: OpenAPI operations should define request and response schemas
+    description: OpenAPI operations should define request and response schemas where applicable.
+    category: api
+    severity: medium
+    target: service
+    check_type: openapi_document_policy
+    enabled: true
+    params:
+      policy: require_operation_schemas
+      allowed_paths:
+        - /openapi.json
+        - /swagger.json
+        - /v3/api-docs
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3
+
+  - id: API-006
+    title: API security scheme should be defined
+    description: OpenAPI documents should define at least one security scheme and security requirement.
+    category: api
+    severity: high
+    target: service
+    check_type: openapi_document_policy
+    enabled: true
+    params:
+      policy: require_security_scheme
+      allowed_paths:
+        - /openapi.json
+        - /swagger.json
+        - /v3/api-docs
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3

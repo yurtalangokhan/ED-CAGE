@@ -1,0 +1,64 @@
+services:
+  - name: frontend
+    base_url: http://127.0.0.1:8080
+    health_endpoints:
+      - /_healthz
+      - /health
+    openapi_paths:
+      - /openapi.json
+      - /swagger.json
+    metrics_paths:
+      - /metrics
+    tags:
+      - boutique
+      - frontend
+      - critical
+    metadata:
+      owner: frontend-team
+      criticality: high
+
+  - name: productcatalogservice
+    base_url: http://127.0.0.1:3550
+    health_endpoints:
+      - /health
+    openapi_paths:
+      - /openapi.json
+    metrics_paths:
+      - /metrics
+    tags:
+      - boutique
+      - catalog
+    metadata:
+      owner: catalog-team
+      criticality: high
+
+  - name: cartservice
+    base_url: http://127.0.0.1:7070
+    health_endpoints:
+      - /health
+    openapi_paths:
+      - /openapi.json
+    metrics_paths:
+      - /metrics
+    tags:
+      - boutique
+      - cart
+    metadata:
+      owner: cart-team
+      criticality: high
+
+  - name: checkoutservice
+    base_url: http://127.0.0.1:5050
+    health_endpoints:
+      - /health
+    openapi_paths:
+      - /openapi.json
+    metrics_paths:
+      - /metrics
+    tags:
+      - boutique
+      - checkout
+      - critical
+    metadata:
+      owner: checkout-team
+      criticality: high

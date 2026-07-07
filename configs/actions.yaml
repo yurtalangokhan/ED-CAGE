@@ -1,0 +1,491 @@
+actions:
+  - id: ACTION-SVC-001-HEALTH-ENDPOINT
+    rule_id: SVC-001
+    status: failed
+    title: Add a reachable health endpoint
+    action_type: remediation
+    priority: high
+    recommendation: Expose at least one reachable health, readiness or liveness endpoint for the service.
+    implementation_hint: Use /health, /ready, /live or /actuator/health. The endpoint should return HTTP 200 or 204 when the service is healthy.
+    tags:
+      - service
+      - healthcheck
+      - runtime-governance
+
+  - id: ACTION-REPO-001-README
+    rule_id: REPO-001
+    status: failed
+    title: Add README documentation
+    action_type: documentation
+    priority: medium
+    recommendation: Add a README.md file to describe the project purpose, setup instructions, usage and governance expectations.
+    implementation_hint: Create README.md at the repository root.
+    tags:
+      - repository
+      - documentation
+
+  - id: ACTION-REPO-002-PYPROJECT
+    rule_id: REPO-002
+    status: failed
+    title: Add Python project metadata
+    action_type: configuration
+    priority: medium
+    recommendation: Add pyproject.toml to define project metadata, dependencies and tool configuration.
+    implementation_hint: Create pyproject.toml at the repository root and define project dependencies, scripts and development tooling.
+    tags:
+      - repository
+      - python
+      - packaging
+
+  - id: ACTION-CHECK-EXECUTION-ERROR
+    status: error
+    title: Investigate governance check execution error
+    action_type: investigation
+    priority: high
+    recommendation: Investigate the failing governance check implementation, configuration or external dependency.
+    implementation_hint: Review the finding message, raw evidence, normalized evidence and stack-related error details if available.
+    tags:
+      - governance-engine
+      - error-handling
+
+  - id: ACTION-SVC-002-OPENAPI-SPEC
+    rule_id: SVC-002
+    status: failed
+    title: Expose an OpenAPI specification
+    action_type: documentation
+    priority: medium
+    recommendation: Expose a reachable OpenAPI or Swagger specification endpoint for the service.
+    implementation_hint: Provide /openapi.json, /swagger.json or /v3/api-docs. The response should be valid JSON and include either an openapi or swagger version field.
+    tags:
+      - service
+      - api-governance
+      - openapi
+
+  - id: ACTION-SVC-003-METRICS-ENDPOINT
+    rule_id: SVC-003
+    status: failed
+    title: Expose a metrics endpoint
+    action_type: remediation
+    priority: high
+    recommendation: Expose a reachable metrics endpoint for the service.
+    implementation_hint: Provide /metrics or /actuator/prometheus and return HTTP 200 with non-empty metrics content.
+    tags:
+      - service
+      - observability
+      - metrics
+
+  - id: ACTION-OBS-001-PROMETHEUS-COMPATIBILITY
+    rule_id: OBS-001
+    status: failed
+    title: Expose Prometheus-compatible metrics
+    action_type: remediation
+    priority: high
+    recommendation: Expose metrics in Prometheus text exposition format.
+    implementation_hint: Use Micrometer Prometheus registry, OpenTelemetry Collector Prometheus exporter, or native Prometheus client libraries.
+    tags:
+      - observability
+      - prometheus
+      - metrics
+
+  - id: ACTION-OBS-002-REQUEST-COUNT-METRIC
+    rule_id: OBS-002
+    status: failed
+    title: Add request count metric
+    action_type: remediation
+    priority: medium
+    recommendation: Expose a request count or throughput metric for the service.
+    implementation_hint: Provide a metric such as http_requests_total, http_server_requests_seconds_count or equivalent.
+    tags:
+      - observability
+      - throughput
+      - metrics
+
+  - id: ACTION-OBS-003-REQUEST-DURATION-METRIC
+    rule_id: OBS-003
+    status: failed
+    title: Add request duration metric
+    action_type: remediation
+    priority: medium
+    recommendation: Expose a request duration or latency metric for the service.
+    implementation_hint: Provide a metric such as http_request_duration_seconds, http_server_requests_seconds or equivalent.
+    tags:
+      - observability
+      - latency
+      - performance
+
+  - id: ACTION-OBS-004-ERROR-METRIC
+    rule_id: OBS-004
+    status: failed
+    title: Add error or failure metric
+    action_type: remediation
+    priority: medium
+    recommendation: Expose a metric that enables error or failure rate calculation.
+    implementation_hint: Provide a metric such as errors_total or expose request count metrics with status/code labels that include 5xx responses.
+    tags:
+      - observability
+      - reliability
+      - error-rate
+
+  - id: ACTION-DEP-001-KUBERNETES-MANIFESTS
+    rule_id: DEP-001
+    status: failed
+    title: Add Kubernetes deployment manifests
+    action_type: configuration
+    priority: medium
+    recommendation: Add Kubernetes manifests for governed workloads.
+    implementation_hint: Provide YAML manifests under k8s, kubernetes, deploy, deployments, manifests or configure manifest_paths in the rule parameters.
+    tags:
+      - deployment
+      - kubernetes
+
+  - id: ACTION-DEP-002-IMAGE-TAG
+    rule_id: DEP-002
+    status: failed
+    title: Use immutable or explicit container image tags
+    action_type: remediation
+    priority: high
+    recommendation: Replace latest or implicit container image tags with explicit version tags or immutable digests.
+    implementation_hint: Use tags such as service-name:1.2.3 or image digests such as image@sha256:...
+    tags:
+      - deployment
+      - container
+      - image-policy
+
+  - id: ACTION-DEP-003-RESOURCE-REQUESTS
+    rule_id: DEP-003
+    status: failed
+    title: Define container resource requests
+    action_type: remediation
+    priority: high
+    recommendation: Define CPU and memory requests for each Kubernetes workload container.
+    implementation_hint: Add resources.requests.cpu and resources.requests.memory under each container.
+    tags:
+      - deployment
+      - kubernetes
+      - performance
+
+  - id: ACTION-DEP-004-RESOURCE-LIMITS
+    rule_id: DEP-004
+    status: failed
+    title: Define container resource limits
+    action_type: remediation
+    priority: high
+    recommendation: Define CPU and memory limits for each Kubernetes workload container.
+    implementation_hint: Add resources.limits.cpu and resources.limits.memory under each container.
+    tags:
+      - deployment
+      - kubernetes
+      - performance
+
+  - id: ACTION-DEP-005-READINESS-PROBE
+    rule_id: DEP-005
+    status: failed
+    title: Add readiness probes
+    action_type: remediation
+    priority: high
+    recommendation: Define readinessProbe for each long-running Kubernetes workload container.
+    implementation_hint: Use HTTP, TCP or exec readinessProbe depending on the workload type.
+    tags:
+      - deployment
+      - kubernetes
+      - reliability
+
+  - id: ACTION-DEP-006-LIVENESS-PROBE
+    rule_id: DEP-006
+    status: failed
+    title: Add liveness probes
+    action_type: remediation
+    priority: high
+    recommendation: Define livenessProbe for each long-running Kubernetes workload container.
+    implementation_hint: Use HTTP, TCP or exec livenessProbe depending on the workload type.
+    tags:
+      - deployment
+      - kubernetes
+      - reliability
+
+  - id: ACTION-DEP-007-DISALLOW-PRIVILEGED
+    rule_id: DEP-007
+    status: failed
+    title: Disable privileged containers
+    action_type: remediation
+    priority: critical
+    recommendation: Ensure Kubernetes containers do not run with privileged mode enabled.
+    implementation_hint: Set securityContext.privileged to false or remove privileged mode entirely.
+    tags:
+      - security
+      - kubernetes
+      - hardening
+
+  - id: ACTION-DEP-008-RUN-AS-NON-ROOT
+    rule_id: DEP-008
+    status: failed
+    title: Run containers as non-root
+    action_type: remediation
+    priority: high
+    recommendation: Configure Kubernetes workloads to run as non-root users.
+    implementation_hint: Set securityContext.runAsNonRoot true and define a non-zero runAsUser at pod or container level.
+    tags:
+      - security
+      - kubernetes
+      - hardening,
+
+  - id: ACTION-API-001-INFO-METADATA
+    rule_id: API-001
+    status: failed
+    title: Add OpenAPI metadata
+    action_type: documentation
+    priority: medium
+    recommendation: Define info.title and info.version in the OpenAPI document.
+    implementation_hint: Add the info object with title and version fields to the OpenAPI specification.
+    tags:
+      - api
+      - openapi
+      - contract
+
+  - id: ACTION-API-002-OPERATION-ID
+    rule_id: API-002
+    status: failed
+    title: Add operationId to OpenAPI operations
+    action_type: documentation
+    priority: medium
+    recommendation: Define operationId for every OpenAPI operation.
+    implementation_hint: Add stable and unique operationId values such as getOrder, createPayment or listUsers.
+    tags:
+      - api
+      - openapi
+      - client-generation
+
+  - id: ACTION-API-003-SUCCESS-RESPONSES
+    rule_id: API-003
+    status: failed
+    title: Add success responses to OpenAPI operations
+    action_type: documentation
+    priority: medium
+    recommendation: Define at least one 2xx success response for every OpenAPI operation.
+    implementation_hint: Add response codes such as 200, 201, 202 or 204 with descriptions and schemas where applicable.
+    tags:
+      - api
+      - openapi
+      - responses
+
+  - id: ACTION-API-004-ERROR-RESPONSES
+    rule_id: API-004
+    status: failed
+    title: Add error responses to OpenAPI operations
+    action_type: documentation
+    priority: medium
+    recommendation: Define 4xx or 5xx error responses for every OpenAPI operation.
+    implementation_hint: Add response codes such as 400, 401, 403, 404 and 500 with standard error schema.
+    tags:
+      - api
+      - openapi
+      - error-handling
+
+  - id: ACTION-API-005-SCHEMAS
+    rule_id: API-005
+    status: failed
+    title: Add request and response schemas
+    action_type: documentation
+    priority: medium
+    recommendation: Define request and response schemas for OpenAPI operations where applicable.
+    implementation_hint: Use components.schemas and reference them from requestBody and responses.content.*.schema.
+    tags:
+      - api
+      - openapi
+      - schema
+
+  - id: ACTION-API-006-SECURITY-SCHEME
+    rule_id: API-006
+    status: failed
+    title: Define OpenAPI security scheme
+    action_type: documentation
+    priority: high
+    recommendation: Define securitySchemes and security requirements in the OpenAPI document.
+    implementation_hint: Add components.securitySchemes and global or operation-level security requirements.
+    tags:
+      - api
+      - security
+      - openapi
+
+  - id: ACTION-SEC-001-REMOVE-COMMITTED-SECRETS
+    rule_id: SEC-001
+    status: failed
+    title: Remove committed secrets
+    action_type: remediation
+    priority: critical
+    recommendation: Remove detected secrets from the repository and rotate affected credentials.
+    implementation_hint: Move secrets to a secret management mechanism and purge leaked secrets from version history where necessary.
+    tags:
+      - security
+      - secrets
+      - repository
+
+  - id: ACTION-SEC-002-INGRESS-TLS
+    rule_id: SEC-002
+    status: failed
+    title: Enable TLS for Kubernetes Ingress
+    action_type: remediation
+    priority: high
+    recommendation: Configure TLS for externally exposed Kubernetes Ingress resources.
+    implementation_hint: Add spec.tls with hosts and secretName, and ensure every Ingress rule host is covered by TLS configuration.
+    tags:
+      - security
+      - kubernetes
+      - ingress
+      - tls
+
+  - id: ACTION-SEC-003-RESTRICT-SERVICE-EXPOSURE
+    rule_id: SEC-003
+    status: failed
+    title: Restrict external Kubernetes service exposure
+    action_type: remediation
+    priority: high
+    recommendation: Avoid NodePort and LoadBalancer service types unless explicitly approved.
+    implementation_hint: Prefer ClusterIP for internal services and expose traffic through a controlled Ingress or gateway layer.
+    tags:
+      - security
+      - kubernetes
+      - network-exposure
+
+  - id: ACTION-REL-001-MULTIPLE-REPLICAS
+    rule_id: REL-001
+    status: failed
+    title: Define multiple replicas for critical workloads
+    action_type: remediation
+    priority: high
+    recommendation: Configure critical Kubernetes workloads with at least two replicas.
+    implementation_hint: Set spec.replicas to 2 or more for Deployment and StatefulSet workloads where horizontal replication is applicable.
+    tags:
+      - reliability
+      - kubernetes
+      - availability
+
+  - id: ACTION-REL-002-TIMEOUT-POLICY
+    rule_id: REL-002
+    status: failed
+    title: Define timeout policy
+    action_type: remediation
+    priority: high
+    recommendation: Define explicit timeout policies for service-to-service communication.
+    implementation_hint: Configure connect/read/response timeout or Resilience4j TimeLimiter timeoutDuration depending on the technology stack.
+    tags:
+      - reliability
+      - timeout
+      - resilience
+
+  - id: ACTION-REL-003-RETRY-POLICY
+    rule_id: REL-003
+    status: failed
+    title: Define retry policy
+    action_type: remediation
+    priority: medium
+    recommendation: Define retry policies for transient failures.
+    implementation_hint: Configure retry only for idempotent or safe operations and combine it with bounded attempts and backoff.
+    tags:
+      - reliability
+      - retry
+      - resilience
+
+  - id: ACTION-REL-004-CIRCUIT-BREAKER-POLICY
+    rule_id: REL-004
+    status: failed
+    title: Define circuit breaker policy
+    action_type: remediation
+    priority: high
+    recommendation: Define circuit breaker policies for external or unstable dependencies.
+    implementation_hint: Use Resilience4j CircuitBreaker or equivalent technology and define thresholds, sliding window and open-state duration.
+    tags:
+      - reliability
+      - circuit-breaker
+      - resilience
+
+  - id: ACTION-REL-005-BOUNDED-RETRY
+    rule_id: REL-005
+    status: failed
+    title: Bound retry attempts and backoff
+    action_type: remediation
+    priority: high
+    recommendation: Ensure retry policies define maximum attempts and wait/backoff duration.
+    implementation_hint: Configure maxAttempts and waitDuration/backoff to prevent retry storms and cascading failures.
+    tags:
+      - reliability
+      - retry
+      - backoff
+  
+  - id: ACTION-ARCH-001-ADR-DIRECTORY
+    rule_id: ARCH-001
+    status: failed
+    title: Add Architecture Decision Records directory
+    action_type: documentation
+    priority: medium
+    recommendation: Create an ADR directory and document significant architecture decisions.
+    implementation_hint: Add docs/adr and create ADR files using a consistent template including status, context, decision and consequences.
+    tags:
+      - architecture
+      - adr
+      - documentation
+
+  - id: ACTION-ARCH-002-QUALITY-SCENARIOS
+    rule_id: ARCH-002
+    status: failed
+    title: Document quality attribute scenarios
+    action_type: documentation
+    priority: high
+    recommendation: Document quality attribute scenarios for architecture evaluation and governance.
+    implementation_hint: Add docs/quality-attributes/scenarios.yaml and define scenarios for availability, performance, security, modifiability and observability.
+    tags:
+      - architecture
+      - quality-attributes
+      - scenarios
+
+  - id: ACTION-ARCH-003-CRITICAL-SERVICES
+    rule_id: ARCH-003
+    status: failed
+    title: Declare critical services
+    action_type: documentation
+    priority: high
+    recommendation: Explicitly declare critical services in the architecture catalog.
+    implementation_hint: Add critical_services or service criticality metadata to configs/architecture/service-architecture.yaml.
+    tags:
+      - architecture
+      - criticality
+      - service-catalog
+
+  - id: ACTION-DEPEN-001-DECLARE-DEPENDENCIES
+    rule_id: DEPEN-001
+    status: failed
+    title: Declare service dependencies
+    action_type: documentation
+    priority: high
+    recommendation: Explicitly declare dependencies for every service, even when a service has no dependencies.
+    implementation_hint: "Add dependencies: [] or a dependency list for every service in the architecture catalog."
+    tags:
+      - dependency
+      - architecture-catalog
+      - service-map
+
+  - id: ACTION-DEPEN-002-REMOVE-CIRCULAR-DEPENDENCIES
+    rule_id: DEPEN-002
+    status: failed
+    title: Remove circular service dependencies
+    action_type: remediation
+    priority: critical
+    recommendation: Refactor service interactions to eliminate circular dependencies.
+    implementation_hint: Introduce an orchestration layer, domain event, shared abstraction or dependency inversion where appropriate.
+    tags:
+      - dependency
+      - architecture
+      - circular-dependency
+
+  - id: ACTION-DEPEN-003-EXTERNAL-DEPENDENCY-METADATA
+    rule_id: DEPEN-003
+    status: failed
+    title: Add external dependency metadata
+    action_type: documentation
+    priority: high
+    recommendation: Define owner and SLA metadata for external dependencies.
+    implementation_hint: Add owner and sla fields for every external dependency in the architecture catalog.
+    tags:
+      - dependency
+      - external-system
+      - sla

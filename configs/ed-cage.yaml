@@ -1,0 +1,16 @@
+project_name: ed-cage
+repository_path: .
+rules_path: configs/rules
+services_path: configs/services.yaml
+actions_path: configs/actions.yaml
+scenarios_path: configs/scenarios
+output_path: outputs
+evidence_registry_path: outputs/evidence/evidence-registry.jsonl
+
+governance_gate:
+  minimum_score: 80
+  fail_on_error: true
+  fail_on_critical: true
+  fail_on_high: true
+  fail_on_medium: false
+  fail_on_any_failure: false

@@ -1,0 +1,22 @@
+project_name: train-ticket-runtime
+repository_path: case-studies/train-ticket
+rules_path: configs/rules
+services_path: configs/cases/service-catalogs/train-ticket-services.yaml
+actions_path: configs/actions.yaml
+scenarios_path: configs/scenarios/case-studies
+output_path: outputs/case-studies/train-ticket/runtime
+evidence_registry_path: outputs/case-studies/train-ticket/runtime/evidence/evidence-registry.jsonl
+architecture_catalog_path: configs/cases/architecture-catalogs/train-ticket-service-architecture.yaml
+
+governance_gate:
+  minimum_score: 65
+  fail_on_error: true
+  fail_on_critical: true
+  fail_on_high: false
+  fail_on_medium: false
+  fail_on_any_failure: false
+
+metadata:
+  case_study: train-ticket
+  execution_mode: runtime
+  case_focus: runtime-service-api-observability

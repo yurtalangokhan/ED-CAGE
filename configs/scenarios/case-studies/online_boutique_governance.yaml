@@ -1,0 +1,35 @@
+scenario_id: CASE-ONLINE-BOUTIQUE-GOVERNANCE
+name: Online Boutique governance scenario
+description: Evaluates Online Boutique with Kubernetes deployment, security and observability governance rules.
+
+filter_criteria:
+  categories:
+    - deployment
+    - security
+    - observability
+
+expected:
+  findings:
+    - rule_id: DEP-001
+    - rule_id: DEP-002
+    - rule_id: DEP-003
+    - rule_id: DEP-004
+    - rule_id: DEP-005
+    - rule_id: DEP-006
+    - rule_id: DEP-007
+    - rule_id: DEP-008
+    - rule_id: SEC-001
+    - rule_id: SEC-002
+    - rule_id: SEC-003
+    - rule_id: SVC-003
+    - rule_id: OBS-001
+    - rule_id: OBS-002
+    - rule_id: OBS-003
+    - rule_id: OBS-004
+
+metadata:
+  case_study: online-boutique
+  evaluation_focus:
+    - Kubernetes deployment governance
+    - security baseline governance
+    - observability governance

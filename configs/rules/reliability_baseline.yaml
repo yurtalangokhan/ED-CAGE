@@ -1,0 +1,201 @@
+rules:
+  - id: REL-001
+    title: Critical Kubernetes workloads should define multiple replicas
+    description: Critical long-running Kubernetes workloads should define at least two replicas for basic availability.
+    category: reliability
+    severity: high
+    target: kubernetes
+    check_type: kubernetes_replica_policy
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      required_for_kinds:
+        - Deployment
+        - StatefulSet
+      minimum_replicas: 2
+      critical_workload_names: []
+
+  - id: REL-002
+    title: Services should define timeout policy
+    description: Service communication should define explicit timeout policies to prevent unbounded waiting and cascading failures.
+    category: reliability
+    severity: high
+    target: repository
+    check_type: repository_configuration_patterns
+    enabled: true
+    params:
+      include_paths:
+        - .
+        - examples/reliability
+      exclude_paths:
+        - .git
+        - .venv
+        - venv
+        - env
+        - __pycache__
+        - .pytest_cache
+        - .mypy_cache
+        - .ruff_cache
+        - outputs
+        - dist
+        - build
+        - node_modules
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+        - "*.properties"
+        - "*.conf"
+        - "*.json"
+        - "*.xml"
+      max_file_size_bytes: 1048576
+      required_pattern_groups:
+        timeout_policy:
+          description: Timeout configuration for service calls.
+          patterns:
+            - "(?i)timeout"
+            - "(?i)connectTimeout"
+            - "(?i)readTimeout"
+            - "(?i)responseTimeout"
+            - "(?i)timeoutDuration"
+            - "(?i)timeLimiter"
+
+  - id: REL-003
+    title: Services should define retry policy
+    description: Service communication should define retry policies for transient failures.
+    category: reliability
+    severity: medium
+    target: repository
+    check_type: repository_configuration_patterns
+    enabled: true
+    params:
+      include_paths:
+        - .
+        - examples/reliability
+      exclude_paths:
+        - .git
+        - .venv
+        - venv
+        - env
+        - __pycache__
+        - .pytest_cache
+        - .mypy_cache
+        - .ruff_cache
+        - outputs
+        - dist
+        - build
+        - node_modules
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+        - "*.properties"
+        - "*.conf"
+        - "*.json"
+        - "*.xml"
+      max_file_size_bytes: 1048576
+      required_pattern_groups:
+        retry_policy:
+          description: Retry configuration for transient failures.
+          patterns:
+            - "(?i)retry"
+            - "(?i)retries"
+            - "(?i)resilience4j\\.retry"
+            - "(?i)spring\\.retry"
+
+  - id: REL-004
+    title: Services should define circuit breaker policy
+    description: Service communication should define circuit breaker policies to isolate failing dependencies.
+    category: reliability
+    severity: high
+    target: repository
+    check_type: repository_configuration_patterns
+    enabled: true
+    params:
+      include_paths:
+        - .
+        - examples/reliability
+      exclude_paths:
+        - .git
+        - .venv
+        - venv
+        - env
+        - __pycache__
+        - .pytest_cache
+        - .mypy_cache
+        - .ruff_cache
+        - outputs
+        - dist
+        - build
+        - node_modules
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+        - "*.properties"
+        - "*.conf"
+        - "*.json"
+        - "*.xml"
+      max_file_size_bytes: 1048576
+      required_pattern_groups:
+        circuit_breaker_policy:
+          description: Circuit breaker configuration for dependency isolation.
+          patterns:
+            - "(?i)circuitbreaker"
+            - "(?i)circuitBreaker"
+            - "(?i)resilience4j\\.circuitbreaker"
+            - "(?i)CircuitBreaker"
+
+  - id: REL-005
+    title: Retry policy must be bounded
+    description: Retry policies should define maximum attempts and backoff/wait duration to avoid retry storms.
+    category: reliability
+    severity: high
+    target: repository
+    check_type: repository_configuration_patterns
+    enabled: true
+    params:
+      include_paths:
+        - .
+        - examples/reliability
+      exclude_paths:
+        - .git
+        - .venv
+        - venv
+        - env
+        - __pycache__
+        - .pytest_cache
+        - .mypy_cache
+        - .ruff_cache
+        - outputs
+        - dist
+        - build
+        - node_modules
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+        - "*.properties"
+        - "*.conf"
+        - "*.json"
+        - "*.xml"
+      max_file_size_bytes: 1048576
+      required_pattern_groups:
+        retry_attempt_bound:
+          description: Maximum retry attempt configuration.
+          patterns:
+            - "(?i)maxAttempts"
+            - "(?i)maxRetryAttempts"
+            - "(?i)maximumAttempts"
+        retry_backoff:
+          description: Retry wait duration or backoff configuration.
+          patterns:
+            - "(?i)waitDuration"
+            - "(?i)backoff"
+            - "(?i)backOff"
+            - "(?i)interval"

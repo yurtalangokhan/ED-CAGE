@@ -1,0 +1,19 @@
+scenario_id: SCN-REPO-BASELINE
+name: Repository baseline governance scenario
+description: Verifies that repository-level governance rules pass for the ED-CAGE project itself.
+
+filter_criteria:
+  categories:
+    - repository
+
+expected:
+  gate_passed: true
+  minimum_score: 100
+  maximum_score: 100
+  finding_count: 2
+  action_count: 0
+  findings:
+    - rule_id: REPO-001
+      status: passed
+    - rule_id: REPO-002
+      status: passed

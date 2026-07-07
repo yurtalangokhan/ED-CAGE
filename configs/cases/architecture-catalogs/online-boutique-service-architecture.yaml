@@ -1,0 +1,141 @@
+critical_services:
+  - frontend
+  - checkoutservice
+  - cartservice
+  - productcatalogservice
+
+services:
+  - name: frontend
+    owner: frontend-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: productcatalogservice
+        dependency_type: service
+        external: false
+        owner: catalog-team
+        sla: internal
+      - name: cartservice
+        dependency_type: service
+        external: false
+        owner: cart-team
+        sla: internal
+      - name: recommendationservice
+        dependency_type: service
+        external: false
+        owner: recommendation-team
+        sla: internal
+      - name: currencyservice
+        dependency_type: service
+        external: false
+        owner: platform-team
+        sla: internal
+
+  - name: checkoutservice
+    owner: checkout-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: cartservice
+        dependency_type: service
+        external: false
+        owner: cart-team
+        sla: internal
+      - name: productcatalogservice
+        dependency_type: service
+        external: false
+        owner: catalog-team
+        sla: internal
+      - name: currencyservice
+        dependency_type: service
+        external: false
+        owner: platform-team
+        sla: internal
+      - name: paymentservice
+        dependency_type: service
+        external: false
+        owner: payment-team
+        sla: internal
+      - name: shippingservice
+        dependency_type: service
+        external: false
+        owner: shipping-team
+        sla: internal
+      - name: emailservice
+        dependency_type: service
+        external: false
+        owner: communication-team
+        sla: internal
+
+  - name: cartservice
+    owner: cart-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: redis-cart
+        dependency_type: cache
+        external: false
+        owner: platform-team
+        sla: internal
+
+  - name: productcatalogservice
+    owner: catalog-team
+    criticality: high
+    lifecycle: production
+    dependencies: []
+
+  - name: currencyservice
+    owner: platform-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: ecb-currency-feed
+        dependency_type: external-api
+        external: true
+        owner: vendor-management-team
+        sla: 99.5
+
+  - name: paymentservice
+    owner: payment-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: payment-provider
+        dependency_type: external-api
+        external: true
+        owner: vendor-management-team
+        sla: 99.9
+
+  - name: shippingservice
+    owner: shipping-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: shipping-provider
+        dependency_type: external-api
+        external: true
+        owner: vendor-management-team
+        sla: 99.5
+
+  - name: recommendationservice
+    owner: recommendation-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: productcatalogservice
+        dependency_type: service
+        external: false
+        owner: catalog-team
+        sla: internal
+
+  - name: emailservice
+    owner: communication-team
+    criticality: medium
+    lifecycle: production
+    dependencies: []
+
+  - name: adservice
+    owner: ads-team
+    criticality: low
+    lifecycle: production
+    dependencies: []

@@ -1,0 +1,19 @@
+rules:
+  - id: SVC-001
+    title: Services must expose a health endpoint
+    description: Every governed service should expose at least one reachable health, readiness or liveness endpoint.
+    category: service
+    severity: high
+    target: service
+    check_type: http_health_endpoint
+    enabled: true
+    params:
+      allowed_paths:
+        - /health
+        - /ready
+        - /live
+        - /actuator/health
+      expected_status_codes:
+        - 200
+        - 204
+      timeout_seconds: 3

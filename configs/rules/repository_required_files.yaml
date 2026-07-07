@@ -1,0 +1,24 @@
+rules:
+  - id: REPO-001
+    title: Repository must contain README
+    description: Every governed software project should include a README file.
+    category: repository
+    severity: medium
+    target: repository
+    check_type: required_files
+    enabled: true
+    params:
+      files:
+        - README.md
+
+  - id: REPO-002
+    title: Repository must contain pyproject
+    description: Python projects should define packaging and dependency metadata using pyproject.toml.
+    category: repository
+    severity: medium
+    target: repository
+    check_type: required_files
+    enabled: true
+    params:
+      files:
+        - pyproject.toml

@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mock-service
+  labels:
+    app: mock-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mock-service
+  template:
+    metadata:
+      labels:
+        app: mock-service
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+      containers:
+        - name: mock-service
+          image: mock-service:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20
+          securityContext:
+            privileged: false
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            runAsUser: 10001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mock-service
+  labels:
+    app: mock-service
+spec:
+  type: ClusterIP
+  selector:
+    app: mock-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mock-service
+  labels:
+    app: mock-service
+spec:
+  tls:
+    - hosts:
+        - mock-service.local
+      secretName: mock-service-tls
+  rules:
+    - host: mock-service.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mock-service
+                port:
+                  number: 80

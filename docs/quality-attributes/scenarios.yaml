@@ -1,0 +1,27 @@
+scenarios:
+  - id: QA-AVAILABILITY-001
+    quality_attribute: availability
+    source: service consumer
+    stimulus: mock-service instance becomes unhealthy
+    environment: normal operation
+    artifact: mock-service deployment
+    response: traffic is routed only to ready instances
+    response_measure: unhealthy instance is removed from serving traffic within 30 seconds
+
+  - id: QA-PERFORMANCE-001
+    quality_attribute: performance
+    source: external client
+    stimulus: request rate increases
+    environment: peak load
+    artifact: mock-service
+    response: service remains responsive within defined resource boundaries
+    response_measure: p95 latency remains below the defined SLO threshold
+
+  - id: QA-OBSERVABILITY-001
+    quality_attribute: observability
+    source: operator
+    stimulus: service error rate increases
+    environment: production-like operation
+    artifact: monitoring stack
+    response: error metric and trace evidence are available
+    response_measure: error condition can be detected from metrics and traces

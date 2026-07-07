@@ -1,0 +1,17 @@
+rules:
+  - id: SVC-002
+    title: Services must expose an OpenAPI specification
+    description: Every governed service should expose a reachable OpenAPI or Swagger specification endpoint.
+    category: service
+    severity: medium
+    target: service
+    check_type: openapi_spec
+    enabled: true
+    params:
+      allowed_paths:
+        - /openapi.json
+        - /swagger.json
+        - /v3/api-docs
+      expected_status_codes:
+        - 200
+      timeout_seconds: 3

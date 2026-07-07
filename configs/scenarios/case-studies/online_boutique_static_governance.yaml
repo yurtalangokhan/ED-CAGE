@@ -1,0 +1,41 @@
+scenario_id: CASE-ONLINE-BOUTIQUE-STATIC-GOVERNANCE
+name: Online Boutique static governance scenario
+description: Evaluates Online Boutique using static Kubernetes, security and architecture governance rules.
+
+filter_criteria:
+  execution_mode: static
+  categories:
+    - deployment
+    - security
+    - reliability
+    - architecture
+    - dependency
+
+expected:
+  findings:
+    - rule_id: DEP-001
+    - rule_id: DEP-002
+    - rule_id: DEP-003
+    - rule_id: DEP-004
+    - rule_id: DEP-005
+    - rule_id: DEP-006
+    - rule_id: DEP-007
+    - rule_id: DEP-008
+    - rule_id: SEC-001
+    - rule_id: SEC-002
+    - rule_id: SEC-003
+    - rule_id: REL-001
+    - rule_id: REL-002
+    - rule_id: REL-003
+    - rule_id: REL-004
+    - rule_id: REL-005
+    - rule_id: ARCH-001
+    - rule_id: ARCH-002
+    - rule_id: ARCH-003
+    - rule_id: DEPEN-001
+    - rule_id: DEPEN-002
+    - rule_id: DEPEN-003
+
+metadata:
+  case_study: online-boutique
+  execution_mode: static

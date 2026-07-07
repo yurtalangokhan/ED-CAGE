@@ -1,0 +1,70 @@
+critical_services:
+  - api-gateway
+  - customers-service
+
+services:
+  - name: api-gateway
+    owner: architecture-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: customers-service
+        dependency_type: service
+        external: false
+        owner: customer-team
+        sla: internal
+      - name: visits-service
+        dependency_type: service
+        external: false
+        owner: visits-team
+        sla: internal
+      - name: vets-service
+        dependency_type: service
+        external: false
+        owner: vets-team
+        sla: internal
+
+  - name: customers-service
+    owner: customer-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: customers-db
+        dependency_type: database
+        external: false
+        owner: data-team
+        sla: internal
+
+  - name: visits-service
+    owner: visits-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: visits-db
+        dependency_type: database
+        external: false
+        owner: data-team
+        sla: internal
+
+  - name: vets-service
+    owner: vets-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: vets-db
+        dependency_type: database
+        external: false
+        owner: data-team
+        sla: internal
+
+  - name: config-server
+    owner: platform-team
+    criticality: medium
+    lifecycle: production
+    dependencies: []
+
+  - name: discovery-server
+    owner: platform-team
+    criticality: high
+    lifecycle: production
+    dependencies: []

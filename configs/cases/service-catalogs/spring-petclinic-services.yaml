@@ -1,0 +1,72 @@
+services:
+  - name: api-gateway
+    base_url: http://127.0.0.1:8080
+    health_endpoints:
+      - /actuator/health
+    openapi_paths:
+      - /v3/api-docs
+      - /openapi.json
+    metrics_paths:
+      - /actuator/prometheus
+      - /metrics
+    tags:
+      - spring
+      - gateway
+      - petclinic
+    metadata:
+      owner: architecture-team
+      criticality: high
+
+  - name: customers-service
+    base_url: http://127.0.0.1:8081
+    health_endpoints:
+      - /actuator/health
+    openapi_paths:
+      - /v3/api-docs
+      - /openapi.json
+    metrics_paths:
+      - /actuator/prometheus
+      - /metrics
+    tags:
+      - spring
+      - domain-service
+      - petclinic
+    metadata:
+      owner: architecture-team
+      criticality: high
+
+  - name: visits-service
+    base_url: http://127.0.0.1:8082
+    health_endpoints:
+      - /actuator/health
+    openapi_paths:
+      - /v3/api-docs
+      - /openapi.json
+    metrics_paths:
+      - /actuator/prometheus
+      - /metrics
+    tags:
+      - spring
+      - domain-service
+      - petclinic
+    metadata:
+      owner: architecture-team
+      criticality: medium
+
+  - name: vets-service
+    base_url: http://127.0.0.1:8083
+    health_endpoints:
+      - /actuator/health
+    openapi_paths:
+      - /v3/api-docs
+      - /openapi.json
+    metrics_paths:
+      - /actuator/prometheus
+      - /metrics
+    tags:
+      - spring
+      - domain-service
+      - petclinic
+    metadata:
+      owner: architecture-team
+      criticality: medium

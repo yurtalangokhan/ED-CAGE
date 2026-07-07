@@ -1,0 +1,52 @@
+scenario_id: CASE-TRAIN-TICKET-GOVERNANCE
+name: Train Ticket governance scenario
+description: Evaluates Train Ticket with large-scale dependency, architecture, reliability, deployment, security and observability governance rules.
+
+filter_criteria:
+  categories:
+    - architecture
+    - dependency
+    - reliability
+    - deployment
+    - security
+    - observability
+
+expected:
+  findings:
+    - rule_id: ARCH-001
+    - rule_id: ARCH-002
+    - rule_id: ARCH-003
+    - rule_id: DEPEN-001
+    - rule_id: DEPEN-002
+    - rule_id: DEPEN-003
+    - rule_id: REL-001
+    - rule_id: REL-002
+    - rule_id: REL-003
+    - rule_id: REL-004
+    - rule_id: REL-005
+    - rule_id: DEP-001
+    - rule_id: DEP-002
+    - rule_id: DEP-003
+    - rule_id: DEP-004
+    - rule_id: DEP-005
+    - rule_id: DEP-006
+    - rule_id: DEP-007
+    - rule_id: DEP-008
+    - rule_id: SEC-001
+    - rule_id: SEC-002
+    - rule_id: SEC-003
+    - rule_id: SVC-003
+    - rule_id: OBS-001
+    - rule_id: OBS-002
+    - rule_id: OBS-003
+    - rule_id: OBS-004
+
+metadata:
+  case_study: train-ticket
+  evaluation_focus:
+    - architecture documentation governance
+    - service dependency governance
+    - reliability governance
+    - deployment governance
+    - security governance
+    - observability governance

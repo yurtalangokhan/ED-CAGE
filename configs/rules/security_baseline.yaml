@@ -1,0 +1,83 @@
+rules:
+  - id: SEC-001
+    title: Repository must not contain obvious secrets
+    description: Governed repositories should not contain obvious committed secrets such as private keys, access keys or long-lived tokens.
+    category: security
+    severity: critical
+    target: repository
+    check_type: repository_secret_patterns
+    enabled: true
+    params:
+      include_paths:
+        - .
+      exclude_paths:
+        - .git
+        - .venv
+        - venv
+        - env
+        - __pycache__
+        - .pytest_cache
+        - .mypy_cache
+        - .ruff_cache
+        - outputs
+        - dist
+        - build
+        - node_modules
+        - tests
+      file_patterns:
+        - "*"
+      max_file_size_bytes: 1048576
+      secret_patterns:
+        - name: private_key
+          regex: "-----BEGIN [A-Z ]*PRIVATE KEY-----"
+        - name: aws_access_key_id
+          regex: "AKIA[0-9A-Z]{16}"
+        - name: github_token
+          regex: "gh[pousr]_[A-Za-z0-9_]{20,}"
+        - name: generic_secret_assignment
+          regex: "(?i)(password|passwd|pwd|secret|token|api[_-]?key)\\s*[:=]\\s*['\\\"]?[A-Za-z0-9_\\-]{16,}"
+
+  - id: SEC-002
+    title: Kubernetes Ingress must use TLS
+    description: Externally exposed Kubernetes Ingress resources should define TLS configuration.
+    category: security
+    severity: high
+    target: kubernetes
+    check_type: kubernetes_ingress_tls
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      require_tls_hosts_cover_rules: true
+
+  - id: SEC-003
+    title: Kubernetes external service exposure must be restricted
+    description: Kubernetes Services should not use NodePort or LoadBalancer exposure unless explicitly allowed.
+    category: security
+    severity: high
+    target: kubernetes
+    check_type: kubernetes_service_exposure_policy
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      disallowed_service_types:
+        - NodePort
+        - LoadBalancer
+      allowed_external_service_names: []

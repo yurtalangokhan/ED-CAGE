@@ -1,0 +1,30 @@
+scenario_id: CASE-SPRING-PETCLINIC-RUNTIME-GOVERNANCE
+name: Spring PetClinic runtime governance scenario
+description: Evaluates Spring PetClinic runtime endpoints, API contracts and observability endpoints. Services must be running.
+
+filter_criteria:
+  execution_mode: runtime
+  categories:
+    - service
+    - api
+    - observability
+
+expected:
+  findings:
+    - rule_id: SVC-001
+    - rule_id: SVC-002
+    - rule_id: SVC-003
+    - rule_id: API-001
+    - rule_id: API-002
+    - rule_id: API-003
+    - rule_id: API-004
+    - rule_id: API-005
+    - rule_id: API-006
+    - rule_id: OBS-001
+    - rule_id: OBS-002
+    - rule_id: OBS-003
+    - rule_id: OBS-004
+
+metadata:
+  case_study: spring-petclinic-microservices
+  execution_mode: runtime

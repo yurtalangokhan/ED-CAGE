@@ -1,0 +1,26 @@
+resilience4j:
+  timelimiter:
+    instances:
+      mock-service:
+        timeoutDuration: 2s
+        cancelRunningFuture: true
+
+  retry:
+    instances:
+      mock-service:
+        maxAttempts: 3
+        waitDuration: 500ms
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+
+  circuitbreaker:
+    instances:
+      mock-service:
+        failureRateThreshold: 50
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 2s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        waitDurationInOpenState: 30s

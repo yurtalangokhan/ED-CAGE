@@ -1,0 +1,136 @@
+critical_services:
+  - ts-ui-dashboard
+  - ts-travel-service
+  - ts-order-service
+  - ts-ticketinfo-service
+  - ts-payment-service
+
+services:
+  - name: ts-ui-dashboard
+    owner: architecture-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: ts-travel-service
+        dependency_type: service
+        external: false
+        owner: travel-team
+        sla: internal
+      - name: ts-order-service
+        dependency_type: service
+        external: false
+        owner: order-team
+        sla: internal
+      - name: ts-user-service
+        dependency_type: service
+        external: false
+        owner: user-team
+        sla: internal
+
+  - name: ts-travel-service
+    owner: travel-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: ts-route-service
+        dependency_type: service
+        external: false
+        owner: route-team
+        sla: internal
+      - name: ts-train-service
+        dependency_type: service
+        external: false
+        owner: train-team
+        sla: internal
+      - name: ts-seat-service
+        dependency_type: service
+        external: false
+        owner: seat-team
+        sla: internal
+
+  - name: ts-order-service
+    owner: order-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: ts-payment-service
+        dependency_type: service
+        external: false
+        owner: payment-team
+        sla: internal
+      - name: ts-ticketinfo-service
+        dependency_type: service
+        external: false
+        owner: ticket-team
+        sla: internal
+      - name: order-db
+        dependency_type: database
+        external: false
+        owner: data-team
+        sla: internal
+
+  - name: ts-ticketinfo-service
+    owner: ticket-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: ts-order-service
+        dependency_type: service
+        external: false
+        owner: order-team
+        sla: internal
+
+  - name: ts-payment-service
+    owner: payment-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: payment-provider
+        dependency_type: external-api
+        external: true
+        owner: vendor-management-team
+        sla: 99.9
+
+  - name: ts-route-service
+    owner: route-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: route-db
+        dependency_type: database
+        external: false
+        owner: data-team
+        sla: internal
+
+  - name: ts-train-service
+    owner: train-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: train-db
+        dependency_type: database
+        external: false
+        owner: data-team
+        sla: internal
+
+  - name: ts-seat-service
+    owner: seat-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: seat-db
+        dependency_type: database
+        external: false
+        owner: data-team
+        sla: internal
+
+  - name: ts-user-service
+    owner: user-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: user-db
+        dependency_type: database
+        external: false
+        owner: data-team
+        sla: internal

@@ -1,0 +1,42 @@
+critical_services:
+  - mock-service
+
+services:
+  - name: mock-service
+    owner: architecture-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: mock-database
+        dependency_type: database
+        external: false
+        owner: data-team
+        sla: internal
+      - name: mock-cache
+        dependency_type: cache
+        external: false
+        owner: platform-team
+        sla: internal
+      - name: external-payment-gateway
+        dependency_type: external-api
+        external: true
+        owner: vendor-management-team
+        sla: 99.9
+        contract: https://example.com/contracts/payment-gateway
+
+  - name: mock-reporting-service
+    owner: reporting-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: mock-service
+        dependency_type: service
+        external: false
+        owner: architecture-team
+        sla: internal
+
+  # - name: mock-reporting-service
+  #   dependency_type: service
+  #   external: false
+  #   owner: reporting-team
+  #   sla: internal

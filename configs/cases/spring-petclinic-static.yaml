@@ -1,0 +1,22 @@
+project_name: spring-petclinic-microservices-static
+repository_path: case-studies/spring-petclinic-microservices
+rules_path: configs/rules
+services_path: configs/cases/service-catalogs/spring-petclinic-services.yaml
+actions_path: configs/actions.yaml
+scenarios_path: configs/scenarios/case-studies
+output_path: outputs/case-studies/spring-petclinic-microservices/static
+evidence_registry_path: outputs/case-studies/spring-petclinic-microservices/static/evidence/evidence-registry.jsonl
+architecture_catalog_path: configs/cases/architecture-catalogs/spring-petclinic-service-architecture.yaml
+
+governance_gate:
+  minimum_score: 70
+  fail_on_error: true
+  fail_on_critical: true
+  fail_on_high: false
+  fail_on_medium: false
+  fail_on_any_failure: false
+
+metadata:
+  case_study: spring-petclinic-microservices
+  execution_mode: static
+  case_focus: static-architecture-dependency-reliability-deployment-security

@@ -1,0 +1,15 @@
+services:
+  - name: mock-service
+    base_url: http://127.0.0.1:8080
+    health_endpoints:
+      - /health
+      - /ready
+    openapi_paths:
+      - /openapi.json
+    metrics_paths:
+      - /metrics
+    tags:
+      - local
+      - demo
+    metadata:
+      owner: architecture-team

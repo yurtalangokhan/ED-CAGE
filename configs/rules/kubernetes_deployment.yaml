@@ -1,0 +1,195 @@
+rules:
+  - id: DEP-001
+    title: Kubernetes manifests must exist
+    description: Governed projects should contain Kubernetes manifest files for deployment governance.
+    category: deployment
+    severity: medium
+    target: kubernetes
+    check_type: kubernetes_manifests_exist
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      minimum_manifest_count: 1
+
+  - id: DEP-002
+    title: Container image must not use latest tag
+    description: Kubernetes workloads should use immutable or explicitly versioned container images.
+    category: deployment
+    severity: high
+    target: kubernetes
+    check_type: kubernetes_image_policy
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      disallow_latest_tag: true
+      require_explicit_tag: true
+
+  - id: DEP-003
+    title: Container must define resource requests
+    description: Kubernetes workload containers should define CPU and memory requests.
+    category: deployment
+    severity: high
+    target: kubernetes
+    check_type: kubernetes_resource_policy
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      required_resource_section: requests
+      required_resources:
+        - cpu
+        - memory
+
+  - id: DEP-004
+    title: Container must define resource limits
+    description: Kubernetes workload containers should define CPU and memory limits.
+    category: deployment
+    severity: high
+    target: kubernetes
+    check_type: kubernetes_resource_policy
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      required_resource_section: limits
+      required_resources:
+        - cpu
+        - memory
+
+  - id: DEP-005
+    title: Deployment must define readinessProbe
+    description: Kubernetes long-running workloads should define readiness probes.
+    category: deployment
+    severity: high
+    target: kubernetes
+    check_type: kubernetes_probe
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      probe_type: readinessProbe
+      required_for_kinds:
+        - Deployment
+        - StatefulSet
+        - DaemonSet
+
+  - id: DEP-006
+    title: Deployment must define livenessProbe
+    description: Kubernetes long-running workloads should define liveness probes.
+    category: deployment
+    severity: high
+    target: kubernetes
+    check_type: kubernetes_probe
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      probe_type: livenessProbe
+      required_for_kinds:
+        - Deployment
+        - StatefulSet
+        - DaemonSet
+
+  - id: DEP-007
+    title: Pod must not run as privileged
+    description: Kubernetes workload containers must not run in privileged mode.
+    category: security
+    severity: critical
+    target: kubernetes
+    check_type: kubernetes_security_context
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      policy: disallow_privileged
+      required_for_kinds:
+        - Deployment
+        - StatefulSet
+        - DaemonSet
+        - Job
+        - CronJob
+
+  - id: DEP-008
+    title: Container should not run as root
+    description: Kubernetes workload containers should explicitly run as non-root.
+    category: security
+    severity: high
+    target: kubernetes
+    check_type: kubernetes_security_context
+    enabled: true
+    params:
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+      file_patterns:
+        - "*.yaml"
+        - "*.yml"
+      policy: require_run_as_non_root
+      required_for_kinds:
+        - Deployment
+        - StatefulSet
+        - DaemonSet
+        - Job
+        - CronJob
