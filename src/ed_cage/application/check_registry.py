@@ -1,4 +1,6 @@
-from ed_cage.checks.deployment.kubernetes_image_policy_check import KubernetesImagePolicyCheck
+from ed_cage.checks.deployment.kubernetes_image_policy_check import (
+    KubernetesImagePolicyCheck,
+)
 from ed_cage.checks.deployment.kubernetes_manifests_exist_check import (
     KubernetesManifestsExistCheck,
 )
@@ -21,7 +23,9 @@ from ed_cage.checks.service.http_health_endpoint_check import HttpHealthEndpoint
 from ed_cage.checks.service.openapi_spec_check import OpenApiSpecCheck
 from ed_cage.ports.check import GovernanceCheck
 from ed_cage.checks.api.openapi_document_policy_check import OpenApiDocumentPolicyCheck
-from ed_cage.checks.security.kubernetes_ingress_tls_check import KubernetesIngressTlsCheck
+from ed_cage.checks.security.kubernetes_ingress_tls_check import (
+    KubernetesIngressTlsCheck,
+)
 from ed_cage.checks.security.kubernetes_service_exposure_policy_check import (
     KubernetesServiceExposurePolicyCheck,
 )
@@ -43,6 +47,15 @@ from ed_cage.checks.architecture.repository_required_paths_check import (
 
 from ed_cage.application.tool_adapter_registry import ToolAdapterRegistry
 from ed_cage.checks.tools.external_tool_check import ExternalToolCheck
+from ed_cage.checks.deployment.docker_compose_file_exists_check import (
+    DockerComposeFileExistsCheck,
+)
+from ed_cage.checks.reliability.docker_compose_healthcheck_policy_check import (
+    DockerComposeHealthcheckPolicyCheck,
+)
+from ed_cage.checks.security.docker_compose_security_policy_check import (
+    DockerComposeSecurityPolicyCheck,
+)
 
 
 class CheckRegistry:
@@ -73,8 +86,10 @@ class CheckRegistry:
                 RepositoryConfigurationPatternsCheck(),
                 RepositoryRequiredPathsCheck(),
                 ArchitectureCatalogPolicyCheck(),
+                DockerComposeFileExistsCheck(),
+                DockerComposeHealthcheckPolicyCheck(),
+                DockerComposeSecurityPolicyCheck(),
                 ExternalToolCheck(ToolAdapterRegistry.default()),
-              
             ]
         )
 

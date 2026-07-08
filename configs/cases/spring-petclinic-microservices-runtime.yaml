@@ -1,14 +1,15 @@
 project_name: spring-petclinic-microservices-runtime
 repository_path: case-studies/spring-petclinic-microservices
 rules_path: configs/rules
-services_path: configs/cases/service-catalogs/spring-petclinic-services.yaml
+services_path: configs/cases/service-catalogs/spring-petclinic-microservices-services.yaml
 actions_path: configs/actions.yaml
 scenarios_path: configs/scenarios/case-studies
 output_path: outputs/case-studies/spring-petclinic-microservices/runtime
 evidence_registry_path: outputs/case-studies/spring-petclinic-microservices/runtime/evidence/evidence-registry.jsonl
-architecture_catalog_path: configs/cases/architecture-catalogs/spring-petclinic-service-architecture.yaml
+architecture_catalog_path: configs/cases/architecture-catalogs/spring-petclinic-microservices-service-architecture.yaml
 kubernetes_manifest_paths:
   - case-studies/online-boutique/helm-chart/templates
+execution_mode: runtime
 governance_gate:
   minimum_score: 70
   fail_on_error: true

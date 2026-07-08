@@ -3,7 +3,8 @@ from pathlib import Path
 import yaml
 from pydantic import BaseModel, Field
 
-from ed_cage.domain.models import GovernanceGatePolicy
+from ed_cage.domain.models import GovernanceGatePolicy, ScoringConfig
+from ed_cage.domain.enums import ExecutionMode
 
 
 class AppSettings(BaseModel):
@@ -24,6 +25,11 @@ class ProjectConfig(BaseModel):
     governance_gate: GovernanceGatePolicy = Field(default_factory=GovernanceGatePolicy)
     metadata: dict[str, str] = Field(default_factory=dict)
     kubernetes_manifest_paths: list[Path] = Field(default_factory=list)
+    disabled_rule_ids: list[str] = Field(default_factory=list)
+    execution_mode: ExecutionMode = ExecutionMode.MIXED
+    scoring: ScoringConfig = Field(default_factory=ScoringConfig)
+    
+    
 
 
 def load_project_config(config_path: Path) -> ProjectConfig:

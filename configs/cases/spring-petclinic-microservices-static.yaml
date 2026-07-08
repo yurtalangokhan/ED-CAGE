@@ -7,7 +7,7 @@ scenarios_path: configs/scenarios/case-studies
 output_path: outputs/case-studies/spring-petclinic-microservices/static
 evidence_registry_path: outputs/case-studies/spring-petclinic-microservices/static/evidence/evidence-registry.jsonl
 architecture_catalog_path: configs/cases/architecture-catalogs/spring-petclinic-microservices-service-architecture.yaml
-
+execution_mode: static
 governance_gate:
   minimum_score: 70
   fail_on_error: true

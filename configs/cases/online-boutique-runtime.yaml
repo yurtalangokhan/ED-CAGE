@@ -7,7 +7,7 @@ scenarios_path: configs/scenarios/case-studies
 output_path: outputs/case-studies/online-boutique/runtime
 evidence_registry_path: outputs/case-studies/online-boutique/runtime/evidence/evidence-registry.jsonl
 architecture_catalog_path: configs/cases/architecture-catalogs/online-boutique-service-architecture.yaml
-
+execution_mode: runtime
 governance_gate:
   minimum_score: 70
   fail_on_error: true

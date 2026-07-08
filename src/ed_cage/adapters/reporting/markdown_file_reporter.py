@@ -4,7 +4,7 @@ from pathlib import Path
 
 from ed_cage.domain.enums import CheckStatus, Severity
 from ed_cage.domain.models import GovernanceFinding, GovernanceRunResult
-
+from ed_cage.adapters.reporting.json_safety import to_json_safe
 
 class MarkdownFileReporter:
     def __init__(
@@ -188,7 +188,7 @@ class MarkdownFileReporter:
             lines.append(f"- Message: {evidence.message}")
             lines.append("")
             lines.append("```json")
-            lines.append(json.dumps(evidence.data, ensure_ascii=False, indent=2))
+            lines.append(json.dumps(to_json_safe(evidence.data), ensure_ascii=False, indent=2))
             lines.append("```")
             lines.append("")
 

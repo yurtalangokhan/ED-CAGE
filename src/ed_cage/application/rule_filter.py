@@ -20,7 +20,11 @@ class GovernanceRuleFilter:
         if criteria is None:
             return rules
 
-        return [rule for rule in rules if self._matches(rule, criteria)]
+        return [
+            rule
+            for rule in rules
+            if self._matches(rule, criteria)
+        ]
 
     def _matches(
         self,
@@ -30,9 +34,13 @@ class GovernanceRuleFilter:
         if not self._matches_execution_mode(rule, criteria.execution_mode):
             return False
 
+        if self._is_disabled_rule(rule, criteria):
+            return False
+
         if criteria.rule_ids:
             accepted_rule_ids = {
-                self._normalize_rule_id(rule_id) for rule_id in criteria.rule_ids
+                self._normalize_rule_id(rule_id)
+                for rule_id in criteria.rule_ids
             }
 
             if self._normalize_rule_id(rule.id) not in accepted_rule_ids:
@@ -40,7 +48,8 @@ class GovernanceRuleFilter:
 
         if criteria.categories:
             accepted_categories = {
-                self._normalize_text(category) for category in criteria.categories
+                self._normalize_text(category)
+                for category in criteria.categories
             }
 
             if self._normalize_text(rule.category) not in accepted_categories:
@@ -54,7 +63,8 @@ class GovernanceRuleFilter:
 
         if criteria.check_types:
             accepted_check_types = {
-                self._normalize_text(check_type) for check_type in criteria.check_types
+                self._normalize_text(check_type)
+                for check_type in criteria.check_types
             }
 
             if self._normalize_text(rule.check_type) not in accepted_check_types:
@@ -62,13 +72,30 @@ class GovernanceRuleFilter:
 
         if criteria.targets:
             accepted_targets = {
-                self._normalize_text(target) for target in criteria.targets
+                self._normalize_text(target)
+                for target in criteria.targets
             }
 
             if self._normalize_text(rule.target) not in accepted_targets:
                 return False
 
         return True
+
+    def _is_disabled_rule(
+        self,
+        rule: GovernanceRule,
+        criteria: RuleFilterCriteria,
+    ) -> bool:
+        if not criteria.disabled_rule_ids:
+            return False
+
+        disabled_rule_ids = {
+            self._normalize_rule_id(rule_id)
+            for rule_id in criteria.disabled_rule_ids
+            if rule_id.strip()
+        }
+
+        return self._normalize_rule_id(rule.id) in disabled_rule_ids
 
     def _matches_execution_mode(
         self,

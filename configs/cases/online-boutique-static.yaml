@@ -8,7 +8,8 @@ output_path: outputs/case-studies/online-boutique/static
 evidence_registry_path: outputs/case-studies/online-boutique/static/evidence/evidence-registry.jsonl
 architecture_catalog_path: configs/cases/architecture-catalogs/online-boutique-service-architecture.yaml
 kubernetes_manifest_paths:
-  - case-studies/online-boutique/helm-chart/templates
+  - case-studies/online-boutique/release
+execution_mode: static
 governance_gate:
   minimum_score: 70
   fail_on_error: true
@@ -21,3 +22,8 @@ metadata:
   case_study: online-boutique
   execution_mode: static
   case_focus: static-kubernetes-deployment-security-reliability-architecture-dependency
+
+disabled_rule_ids:
+  - CMP-001
+  - CMP-002
+  - CMP-003

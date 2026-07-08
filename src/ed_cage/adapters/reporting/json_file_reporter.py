@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from ed_cage.domain.models import GovernanceRunResult
-
+from ed_cage.adapters.reporting.json_safety import to_json_safe
 
 class JsonFileReporter:
     def __init__(
@@ -21,6 +21,6 @@ class JsonFileReporter:
         report_data = result.model_dump(mode="json")
 
         report_file.write_text(
-            json.dumps(report_data, ensure_ascii=False, indent=2),
+            json.dumps( to_json_safe(report_data), ensure_ascii=False, indent=2, default=str),
             encoding="utf-8",
         )

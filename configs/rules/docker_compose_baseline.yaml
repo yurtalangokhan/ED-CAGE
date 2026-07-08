@@ -1,0 +1,54 @@
+rules:
+  - id: CMP-001
+    title: Docker Compose file must exist
+    description: Repository should provide a Docker Compose file when Docker Compose is used as the deployment artifact.
+    category: deployment
+    severity: high
+    target: docker-compose
+    check_type: docker_compose_file_exists
+    enabled: true
+    params:
+      compose_files:
+        - docker-compose.yml
+        - docker-compose.yaml
+        - compose.yml
+        - compose.yaml
+
+  - id: CMP-002
+    title: Docker Compose services should define healthchecks
+    description: Docker Compose services should define healthchecks to support runtime readiness and operational observability.
+    category: reliability
+    severity: high
+    target: docker-compose
+    check_type: docker_compose_healthcheck_policy
+    enabled: true
+    params:
+      compose_files:
+        - docker-compose.yml
+        - docker-compose.yaml
+        - compose.yml
+        - compose.yaml
+      ignored_services:
+        - grafana
+        - prometheus
+        - tracing-server
+        - admin-server
+
+  - id: CMP-003
+    title: Docker Compose services must avoid privileged or host-level isolation
+    description: Docker Compose services should not run as privileged containers or use host network, host PID, host IPC, or dangerous Linux capabilities.
+    category: security
+    severity: high
+    target: docker-compose
+    check_type: docker_compose_security_policy
+    enabled: true
+    params:
+      compose_files:
+        - docker-compose.yml
+        - docker-compose.yaml
+        - compose.yml
+        - compose.yaml
+      disallowed_capabilities:
+        - ALL
+        - SYS_ADMIN
+        - NET_ADMIN

@@ -38,6 +38,7 @@ class RuleFilterCriteria(BaseModel):
     severities: list[Severity] = Field(default_factory=list)
     check_types: list[str] = Field(default_factory=list)
     targets: list[str] = Field(default_factory=list)
+    disabled_rule_ids: list[str] = Field(default_factory=list)
     execution_mode: ExecutionMode = ExecutionMode.MIXED
 
     @property
@@ -49,6 +50,7 @@ class RuleFilterCriteria(BaseModel):
                 self.severities,
                 self.check_types,
                 self.targets,
+                self.disabled_rule_ids,
                 self.execution_mode != ExecutionMode.MIXED,
             ]
         )
@@ -164,6 +166,76 @@ class GovernanceAction(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
 
 
+class MaturityBand(BaseModel):
+    name: str
+    min_score: float
+    max_score: float
+
+
+class ScoringConfig(BaseModel):
+    status_scores: dict[str, float] = Field(
+        default_factory=lambda: {
+            "passed": 1.0,
+            "warning": 0.5,
+            "failed": 0.0,
+            "error": 0.0,
+        }
+    )
+    category_weights: dict[str, float] = Field(
+        default_factory=lambda: {
+            "architecture": 1.2,
+            "dependency": 1.1,
+            "deployment": 1.1,
+            "reliability": 1.3,
+            "security": 1.3,
+            "observability": 1.2,
+            "repository": 0.7,
+            "api": 1.0,
+        }
+    )
+    maturity_bands: list[MaturityBand] = Field(
+        default_factory=lambda: [
+            MaturityBand(
+                name="Initial Governance",
+                min_score=0.0,
+                max_score=39.99,
+            ),
+            MaturityBand(
+                name="Emerging Governance",
+                min_score=40.0,
+                max_score=59.99,
+            ),
+            MaturityBand(
+                name="Managed Governance",
+                min_score=60.0,
+                max_score=74.99,
+            ),
+            MaturityBand(
+                name="Governed Architecture",
+                min_score=75.0,
+                max_score=89.99,
+            ),
+            MaturityBand(
+                name="Continuously Governed Architecture",
+                min_score=90.0,
+                max_score=100.0,
+            ),
+        ]
+    )
+
+
+class CategoryGovernanceScore(BaseModel):
+    category: str
+    score: float
+    weight: float
+    applicable_rule_count: int
+    passed_rule_count: int
+    warning_rule_count: int
+    failed_rule_count: int
+    error_rule_count: int
+    skipped_rule_count: int
+
+
 class GovernanceScore(BaseModel):
     score: float
     achieved_score: float
@@ -173,6 +245,14 @@ class GovernanceScore(BaseModel):
     skipped_findings: int
     status_summary: dict[str, int] = Field(default_factory=dict)
     severity_summary: dict[str, int] = Field(default_factory=dict)
+
+    maturity_band: str = "Unknown"
+    category_scores: dict[str, float] = Field(default_factory=dict)
+    category_weights: dict[str, float] = Field(default_factory=dict)
+    category_details: list[CategoryGovernanceScore] = Field(default_factory=list)
+    applicable_rule_count: int = 0
+    not_applicable_rule_count: int = 0
+    weighted_score_explanation: dict[str, Any] = Field(default_factory=dict)
 
 
 class GovernanceGatePolicy(BaseModel):

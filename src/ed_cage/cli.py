@@ -63,6 +63,7 @@ def validate_config(
     typer.echo(f"Output path: {config.output_path}")
     typer.echo(f"Evidence registry path: {config.evidence_registry_path}")
     typer.echo(f"Minimum governance score: {config.governance_gate.minimum_score}")
+    typer.echo(f"Execution mode: {config.execution_mode.value}")
     typer.echo(f"Fail on error: {config.governance_gate.fail_on_error}")
     typer.echo(f"Fail on critical: {config.governance_gate.fail_on_critical}")
     typer.echo(f"Fail on high: {config.governance_gate.fail_on_high}")
@@ -70,11 +71,18 @@ def validate_config(
     typer.echo(f"Fail on any failure: {config.governance_gate.fail_on_any_failure}")
     if config.architecture_catalog_path is not None:
         typer.echo(f"Architecture catalog path: {config.architecture_catalog_path}")
-    
+
     if config.kubernetes_manifest_paths:
-     typer.echo("Kubernetes manifest paths:")
+        typer.echo("Kubernetes manifest paths:")
+    if config.disabled_rule_ids:
+        typer.echo("Disabled rule ids:")
+        for rule_id in config.disabled_rule_ids:
+            typer.echo(f" - {rule_id}")
+
     for manifest_path in config.kubernetes_manifest_paths:
         typer.echo(f"  - {manifest_path}")
+    
+
 
 @app.command()
 def scan(
@@ -271,9 +279,14 @@ def _execute_governance_run(
         checks=CheckRegistry.default().all_checks(),
     )
 
+    effective_filter_criteria = _merge_config_filter_criteria(
+        filter_criteria=filter_criteria,
+        config=config,
+    )
+
     result = runner.run(
         context=context,
-        filter_criteria=filter_criteria,
+        filter_criteria=effective_filter_criteria,
     )
 
     gate_result = GovernanceGateEvaluator().evaluate(
@@ -354,6 +367,78 @@ def _print_scenario_result(scenario_result: ScenarioRunResult) -> None:
     console.print()
 
 
+def _merge_config_filter_criteria(
+    filter_criteria: RuleFilterCriteria,
+    config: ProjectConfig,
+) -> RuleFilterCriteria:
+    merged_disabled_rule_ids = [
+        *filter_criteria.disabled_rule_ids,
+        *config.disabled_rule_ids,
+    ]
+
+    normalized_disabled_rule_ids: list[str] = []
+    seen: set[str] = set()
+
+    for rule_id in merged_disabled_rule_ids:
+        normalized_rule_id = rule_id.strip()
+
+        if not normalized_rule_id:
+            continue
+
+        dedup_key = normalized_rule_id.upper()
+
+        if dedup_key in seen:
+            continue
+
+        seen.add(dedup_key)
+        normalized_disabled_rule_ids.append(normalized_rule_id)
+
+    execution_mode = filter_criteria.execution_mode
+
+    if execution_mode == ExecutionMode.MIXED:
+        execution_mode = config.execution_mode
+
+    return filter_criteria.model_copy(
+        update={
+            "disabled_rule_ids": normalized_disabled_rule_ids,
+            "execution_mode": execution_mode,
+        }
+    )
+
+
+def _merge_config_disabled_rule_ids(
+    filter_criteria: RuleFilterCriteria,
+    disabled_rule_ids: list[str],
+) -> RuleFilterCriteria:
+    merged_disabled_rule_ids = [
+        *filter_criteria.disabled_rule_ids,
+        *disabled_rule_ids,
+    ]
+
+    normalized_disabled_rule_ids: list[str] = []
+    seen: set[str] = set()
+
+    for rule_id in merged_disabled_rule_ids:
+        normalized_rule_id = rule_id.strip()
+
+        if not normalized_rule_id:
+            continue
+
+        dedup_key = normalized_rule_id.upper()
+
+        if dedup_key in seen:
+            continue
+
+        seen.add(dedup_key)
+        normalized_disabled_rule_ids.append(normalized_rule_id)
+
+    return filter_criteria.model_copy(
+        update={
+            "disabled_rule_ids": normalized_disabled_rule_ids,
+        }
+    )
+
+
 def _parse_csv_option(value: str | None) -> list[str]:
     if value is None:
         return []
@@ -387,7 +472,8 @@ def _parse_execution_mode(value: str) -> ExecutionMode:
         raise typer.BadParameter(
             f"Invalid execution mode: {value}. Allowed values: {allowed_values}"
         ) from exc
-    
+
+
 @app.command("aggregate-evaluation")
 def aggregate_evaluation(
     reports_root: Path = typer.Option(
@@ -406,9 +492,7 @@ def aggregate_evaluation(
     )
 
     if aggregation_result["case_count"] == 0:
-        typer.echo(
-            f"No scenario-report.json files were found under: {reports_root}"
-        )
+        typer.echo(f"No scenario-report.json files were found under: {reports_root}")
         raise typer.Exit(code=1)
 
     json_file, markdown_file = EvaluationSummaryReporter(

@@ -4,39 +4,49 @@ from ed_cage.application.check_registry import CheckRegistry
 from ed_cage.domain.models import GovernanceFinding, GovernanceRule, ProjectContext
 
 
-def test_default_check_registry_contains_core_checks() -> None:
+EXPECTED_DEFAULT_CHECK_TYPES = {
+    "required_files",
+    "http_health_endpoint",
+    "openapi_spec",
+    "openapi_document_policy",
+    "metrics_endpoint",
+    "prometheus_metrics_compatibility",
+    "required_prometheus_metric_groups",
+    "docker_compose_file_exists",
+    "docker_compose_healthcheck_policy",
+    "docker_compose_security_policy",
+    "kubernetes_manifests_exist",
+    "kubernetes_image_policy",
+    "kubernetes_resource_policy",
+    "kubernetes_probe",
+    "kubernetes_security_context",
+    "repository_secret_patterns",
+    "kubernetes_ingress_tls",
+    "kubernetes_service_exposure_policy",
+    "kubernetes_replica_policy",
+    "repository_configuration_patterns",
+    "repository_required_paths",
+    "architecture_catalog_policy",
+    "external_tool",
+}
+
+
+def test_default_check_registry_contains_expected_check_types() -> None:
     registry = CheckRegistry.default()
 
-    check_types = registry.check_types()
+    check_types = set(registry.check_types())
 
-    assert "required_files" in check_types
-    assert "http_health_endpoint" in check_types
-    assert "openapi_spec" in check_types
-    assert "openapi_document_policy" in check_types
-    assert "metrics_endpoint" in check_types
-    assert "prometheus_metrics_compatibility" in check_types
-    assert "required_prometheus_metric_groups" in check_types
-    assert "kubernetes_manifests_exist" in check_types
-    assert "kubernetes_image_policy" in check_types
-    assert "kubernetes_resource_policy" in check_types
-    assert "kubernetes_probe" in check_types
-    assert "kubernetes_security_context" in check_types
-    assert "repository_secret_patterns" in check_types
-    assert "kubernetes_ingress_tls" in check_types
-    assert "kubernetes_service_exposure_policy" in check_types
-    assert "kubernetes_replica_policy" in check_types
-    assert "repository_configuration_patterns" in check_types
-    assert "repository_required_paths" in check_types
-    assert "architecture_catalog_policy" in check_types
-    assert "external_tool" in check_types
+    assert check_types == EXPECTED_DEFAULT_CHECK_TYPES
 
 
 def test_check_registry_returns_all_registered_checks() -> None:
     registry = CheckRegistry.default()
 
     checks = registry.all_checks()
+    check_types = {check.check_type for check in checks}
 
-    assert len(checks) == 20
+    assert check_types == EXPECTED_DEFAULT_CHECK_TYPES
+    assert len(checks) == len(EXPECTED_DEFAULT_CHECK_TYPES)
 
 
 def test_check_registry_rejects_duplicate_check_types() -> None:

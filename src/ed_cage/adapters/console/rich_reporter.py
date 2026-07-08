@@ -5,6 +5,7 @@ from rich.table import Table
 
 from ed_cage.domain.enums import CheckStatus
 from ed_cage.domain.models import GovernanceAction, GovernanceRunResult
+from ed_cage.adapters.reporting.json_safety import to_json_safe
 
 
 class RichConsoleReporter:
@@ -20,7 +21,9 @@ class RichConsoleReporter:
         self.console.print(f"Finished at: {result.finished_at.isoformat()}")
 
         if result.score is not None:
-            self.console.print(f"Governance score: [bold]{result.score.score:.2f} / 100[/bold]")
+            self.console.print(
+                f"Governance score: [bold]{result.score.score:.2f} / 100[/bold]"
+            )
 
         if result.gate_result is not None:
             self._print_gate_result(result)
@@ -63,7 +66,11 @@ class RichConsoleReporter:
                     self.console.print(f"Source: {evidence.source}")
                     self.console.print(f"Message: {evidence.message}")
                     self.console.print_json(
-                        json.dumps(evidence.data, ensure_ascii=False, indent=2)
+                        json.dumps(
+                            to_json_safe(evidence.data),
+                            ensure_ascii=False,
+                            indent=2,
+                        )
                     )
 
         self.console.print()

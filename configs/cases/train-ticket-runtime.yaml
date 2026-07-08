@@ -7,7 +7,7 @@ scenarios_path: configs/scenarios/case-studies
 output_path: outputs/case-studies/train-ticket/runtime
 evidence_registry_path: outputs/case-studies/train-ticket/runtime/evidence/evidence-registry.jsonl
 architecture_catalog_path: configs/cases/architecture-catalogs/train-ticket-service-architecture.yaml
-
+execution_mode: runtime
 governance_gate:
   minimum_score: 65
   fail_on_error: true

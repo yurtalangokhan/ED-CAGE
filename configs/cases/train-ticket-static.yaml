@@ -7,7 +7,9 @@ scenarios_path: configs/scenarios/case-studies
 output_path: outputs/case-studies/train-ticket/static
 evidence_registry_path: outputs/case-studies/train-ticket/static/evidence/evidence-registry.jsonl
 architecture_catalog_path: configs/cases/architecture-catalogs/train-ticket-service-architecture.yaml
-
+kubernetes_manifest_paths:
+  - case-studies\train-ticket\deployment\kubernetes-manifests
+execution_mode: static
 governance_gate:
   minimum_score: 65
   fail_on_error: true

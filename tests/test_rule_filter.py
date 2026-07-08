@@ -3,35 +3,6 @@ from ed_cage.domain.enums import ExecutionMode, Severity
 from ed_cage.domain.models import GovernanceRule, RuleFilterCriteria
 
 
-def _build_rules() -> list[GovernanceRule]:
-    return [
-        GovernanceRule(
-            id="REPO-001",
-            title="Repository must contain README",
-            category="repository",
-            severity=Severity.MEDIUM,
-            target="repository",
-            check_type="required_files",
-        ),
-        GovernanceRule(
-            id="REPO-002",
-            title="Repository must contain pyproject",
-            category="repository",
-            severity=Severity.MEDIUM,
-            target="repository",
-            check_type="required_files",
-        ),
-        GovernanceRule(
-            id="SVC-001",
-            title="Services must expose a health endpoint",
-            category="service",
-            severity=Severity.HIGH,
-            target="service",
-            check_type="http_health_endpoint",
-        ),
-    ]
-
-
 def test_rule_filter_returns_all_rules_when_no_criteria_are_defined() -> None:
     rules = _build_rules()
 
@@ -127,6 +98,7 @@ def test_rule_filter_applies_and_between_different_criteria() -> None:
 
     assert filtered_rules == []
 
+
 def test_rule_filter_filters_security_category() -> None:
     rules = [
         _build_rule(
@@ -164,6 +136,7 @@ def test_rule_filter_filters_security_category() -> None:
         "SEC-001",
     ]
 
+
 def test_rule_filter_filters_reliability_category() -> None:
     rules = [
         _build_rule(
@@ -197,6 +170,8 @@ def test_rule_filter_filters_reliability_category() -> None:
         "REL-001",
         "REL-002",
     ]
+
+
 def test_rule_filter_static_mode_excludes_runtime_checks() -> None:
     rules = [
         _build_rule(
@@ -294,9 +269,100 @@ def test_rule_filter_mixed_mode_includes_static_and_runtime_checks() -> None:
         "SVC-001",
         "REL-001",
     ]
-    
+
+
+def test_rule_filter_excludes_disabled_rule_ids() -> None:
+    rules = [
+        _build_rule("DEP-001"),
+        _build_rule("DEP-002"),
+        _build_rule("SEC-001"),
+    ]
+
+    filtered_rules = GovernanceRuleFilter().apply(
+        rules=rules,
+        criteria=RuleFilterCriteria(
+            disabled_rule_ids=[
+                "DEP-001",
+                "DEP-002",
+            ],
+        ),
+    )
+
+    assert [rule.id for rule in filtered_rules] == ["SEC-001"]
+
+
+def test_rule_filter_disabled_rule_ids_are_case_insensitive() -> None:
+    rules = [
+        _build_rule("DEP-001"),
+        _build_rule("SEC-001"),
+    ]
+
+    filtered_rules = GovernanceRuleFilter().apply(
+        rules=rules,
+        criteria=RuleFilterCriteria(
+            disabled_rule_ids=[
+                "dep-001",
+            ],
+        ),
+    )
+
+    assert [rule.id for rule in filtered_rules] == ["SEC-001"]
+
+
+def test_rule_filter_disabled_rule_ids_override_requested_rule_ids() -> None:
+    rules = [
+        _build_rule("DEP-001"),
+        _build_rule("SEC-001"),
+    ]
+
+    filtered_rules = GovernanceRuleFilter().apply(
+        rules=rules,
+        criteria=RuleFilterCriteria(
+            rule_ids=[
+                "DEP-001",
+                "SEC-001",
+            ],
+            disabled_rule_ids=[
+                "DEP-001",
+            ],
+        ),
+    )
+
+    assert [rule.id for rule in filtered_rules] == ["SEC-001"]
+
+
+def _build_rules() -> list[GovernanceRule]:
+    return [
+        _build_rule(
+            rule_id="REPO-001",
+            title="Repository must contain README",
+            category="repository",
+            severity=Severity.MEDIUM,
+            target="repository",
+            check_type="required_files",
+        ),
+        _build_rule(
+            rule_id="REPO-002",
+            title="Repository must contain pyproject",
+            category="repository",
+            severity=Severity.MEDIUM,
+            target="repository",
+            check_type="required_files",
+        ),
+        _build_rule(
+            rule_id="SVC-001",
+            title="Services must expose a health endpoint",
+            category="service",
+            severity=Severity.HIGH,
+            target="service",
+            check_type="http_health_endpoint",
+        ),
+    ]
+
+
 def _build_rule(
     rule_id: str,
+    title: str | None = None,
     category: str = "repository",
     check_type: str = "required_files",
     severity: Severity = Severity.MEDIUM,
@@ -304,7 +370,7 @@ def _build_rule(
 ) -> GovernanceRule:
     return GovernanceRule(
         id=rule_id,
-        title=f"{rule_id} test rule",
+        title=title or f"{rule_id} test rule",
         description=f"{rule_id} test description",
         category=category,
         severity=severity,
