@@ -1,0 +1,30 @@
+rules:
+  - id: TOOL-TRIVY-001
+    title: Repository should pass Trivy filesystem security baseline
+    description: Repository should be scanned by Trivy for IaC misconfigurations and exposed secrets.
+    category: security
+    severity: critical
+    target: repository
+    check_type: external_tool
+    enabled: true
+    params:
+      tool: trivy
+      scan_type: filesystem
+      target_path: examples/kubernetes
+      scanners:
+        - misconfig
+      skip_dirs:
+        - .git
+        - .venv
+        - venv
+        - env
+        - __pycache__
+        - .pytest_cache
+        - .mypy_cache
+        - .ruff_cache
+        - outputs
+        - case-studies
+        - node_modules
+        - dist
+        - build
+      timeout_seconds: 180

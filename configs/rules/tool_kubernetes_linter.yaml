@@ -1,0 +1,20 @@
+rules:
+  - id: TOOL-K8S-001
+    title: Kubernetes manifests should pass KubeLinter governance baseline
+    description: Kubernetes manifests should be evaluated by KubeLinter to detect production readiness and security best-practice violations.
+    category: deployment
+    severity: high
+    target: kubernetes
+    check_type: external_tool
+    enabled: true
+    params:
+      tool: kube_linter
+      manifest_paths:
+        - k8s
+        - kubernetes
+        - deploy
+        - deployments
+        - manifests
+        - examples/kubernetes
+        - release
+      timeout_seconds: 120

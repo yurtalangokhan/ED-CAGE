@@ -1,0 +1,15 @@
+rules:
+  - id: TOOL-OPA-001
+    title: Architecture catalog must satisfy OPA policy-as-code baseline
+    description: Architecture catalog must comply with the Rego-based policy-as-code baseline.
+    category: architecture
+    severity: high
+    target: architecture-catalog
+    check_type: external_tool
+    enabled: true
+    params:
+      tool: opa
+      input_type: architecture_catalog
+      policy_path: configs/policies/architecture_catalog.rego
+      query: data.ed_cage.architecture.deny
+      timeout_seconds: 30

@@ -7,8 +7,6 @@ from ed_cage.checks.common.applicability import build_skipped_finding
 from ed_cage.checks.common.kubernetes_utils import (
     get_all_containers,
     get_container_name,
-    get_file_patterns,
-    get_manifest_paths,
     get_pod_spec,
 )
 from ed_cage.domain.enums import CheckStatus
@@ -18,6 +16,10 @@ from ed_cage.domain.models import (
     GovernanceRule,
     ProjectContext,
 )
+from ed_cage.checks.common.kubernetes_manifest_paths import (
+    resolve_kubernetes_manifest_paths,
+)
+from ed_cage.checks.common.kubernetes_utils import get_file_patterns
 
 
 class KubernetesResourcePolicyCheck:
@@ -28,7 +30,11 @@ class KubernetesResourcePolicyCheck:
     def evaluate(
         self, rule: GovernanceRule, context: ProjectContext
     ) -> GovernanceFinding:
-        manifest_paths = get_manifest_paths(rule.params)
+        manifest_paths = resolve_kubernetes_manifest_paths(
+            rule=rule,
+            context=context,
+            existing_only=True,
+        )
         file_patterns = get_file_patterns(rule.params)
         policy = str(rule.params.get("policy", "require_requests")).strip().lower()
 

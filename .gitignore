@@ -15,3 +15,7 @@ outputs/
 # External case-study repositories
 case-studies/*
 !case-studies/.gitkeep
+
+# External tool temporary outputs
+outputs/tools/
+.trivy-cache/

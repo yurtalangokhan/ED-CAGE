@@ -6,7 +6,8 @@ actions_path: configs/actions.yaml
 scenarios_path: configs/scenarios
 output_path: outputs
 evidence_registry_path: outputs/evidence/evidence-registry.jsonl
-
+kubernetes_manifest_paths:
+  - examples/kubernetes
 governance_gate:
   minimum_score: 80
   fail_on_error: true

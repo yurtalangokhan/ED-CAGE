@@ -33,3 +33,10 @@ class ExecutionMode(StrEnum):
     STATIC = "static"
     RUNTIME = "runtime"
     MIXED = "mixed"
+
+class ToolExecutionStatus(StrEnum):
+    SUCCESS = "success"
+    FAILED = "failed"
+    SKIPPED = "skipped"
+    ERROR = "error"
+    UNAVAILABLE = "unavailable"

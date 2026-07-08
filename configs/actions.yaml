@@ -489,3 +489,46 @@ actions:
       - dependency
       - external-system
       - sla
+
+  - id: ACTION-TOOL-OPA-001
+    rule_id: TOOL-OPA-001
+    status: failed
+    title: Fix architecture catalog policy-as-code violations
+    action_type: remediation
+    priority: high
+    recommendation: Update the architecture catalog so that it satisfies the OPA/Rego governance policy baseline.
+    implementation_hint: Ensure that critical services are declared, service owner and criticality metadata are present, dependencies are explicitly defined, external dependencies include owner and SLA metadata, and direct circular dependencies are removed.
+    tags:
+      - opa
+      - rego
+      - policy-as-code
+      - architecture-governance
+
+  - id: ACTION-TOOL-K8S-001
+    rule_id: TOOL-K8S-001
+    status: failed
+    title: Fix KubeLinter Kubernetes governance violations
+    action_type: remediation
+    priority: high
+    recommendation: Review KubeLinter findings and update Kubernetes manifests according to production readiness and security best practices.
+    implementation_hint: Inspect the KubeLinter finding code, affected resource, file path and remediation message. Common fixes include adding probes, setting resource requests/limits, using non-root containers and reducing unnecessary privileges.
+    tags:
+      - kube-linter
+      - kubernetes
+      - deployment-governance
+      - security-governance
+
+  - id: ACTION-TOOL-TRIVY-001
+    rule_id: TOOL-TRIVY-001
+    status: failed
+    title: Fix Trivy filesystem security findings
+    action_type: remediation
+    priority: critical
+    recommendation: Review Trivy findings and remediate detected misconfigurations or potential secrets.
+    implementation_hint: Inspect the finding category, severity, affected target and remediation guidance. For secrets, remove the exposed value and rotate the credential if it was real. For misconfigurations, update the relevant IaC, Kubernetes, Docker or configuration file.
+    tags:
+      - trivy
+      - security
+      - secret-scanning
+      - misconfiguration
+      - filesystem-scan

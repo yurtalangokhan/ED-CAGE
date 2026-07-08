@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import pytest
 from ed_cage.config import load_project_config
 
 
@@ -9,6 +9,7 @@ def test_load_project_config() -> None:
     assert config.project_name == "ed-cage"
     assert config.repository_path.exists()
     assert config.rules_path.exists()
+
 
 def test_load_project_config_resolves_architecture_catalog_path(tmp_path: Path) -> None:
     config_file = tmp_path / "ed-cage.yaml"
@@ -34,3 +35,35 @@ architecture_catalog_path: configs/cases/architecture-catalogs/test-service-arch
     assert config.architecture_catalog_path.as_posix().endswith(
         "configs/cases/architecture-catalogs/test-service-architecture.yaml"
     )
+
+    def test_config_resolves_kubernetes_manifest_paths(
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        monkeypatch.chdir(tmp_path)
+
+        config_dir = tmp_path / "configs"
+        config_dir.mkdir()
+
+        config_path = config_dir / "ed-cage.yaml"
+        config_path.write_text(
+            """
+    project_name: test-project
+    repository_path: .
+    rules_path: configs/rules
+    output_path: outputs/governance-report.json
+    evidence_registry_path: outputs/evidence/evidence-registry.jsonl
+    kubernetes_manifest_paths:
+    - examples/kubernetes
+    """,
+            encoding="utf-8",
+        )
+
+        config = load_project_config(config_path)
+
+        assert len(config.kubernetes_manifest_paths) == 1
+        assert (
+            config.kubernetes_manifest_paths[0]
+            .as_posix()
+            .endswith("examples/kubernetes")
+        )

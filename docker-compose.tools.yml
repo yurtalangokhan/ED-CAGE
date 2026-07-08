@@ -1,0 +1,33 @@
+name: ed-cage-tools
+
+services:
+  opa:
+    image: ${OPA_IMAGE:-openpolicyagent/opa:latest}
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command:
+      - version
+
+  kube-linter:
+    image: ${KUBE_LINTER_IMAGE:-stackrox/kube-linter:latest-alpine}
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    command:
+      - lint
+      - --help
+
+  trivy:
+    image: ${TRIVY_IMAGE:-aquasec/trivy:latest}
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - trivy-cache:/root/.cache/trivy
+    environment:
+      TRIVY_CACHE_DIR: /root/.cache/trivy
+    command:
+      - --version
+
+volumes:
+  trivy-cache:

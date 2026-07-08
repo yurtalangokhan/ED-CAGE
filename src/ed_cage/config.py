@@ -23,6 +23,7 @@ class ProjectConfig(BaseModel):
     architecture_catalog_path: Path | None = None
     governance_gate: GovernanceGatePolicy = Field(default_factory=GovernanceGatePolicy)
     metadata: dict[str, str] = Field(default_factory=dict)
+    kubernetes_manifest_paths: list[Path] = Field(default_factory=list)
 
 
 def load_project_config(config_path: Path) -> ProjectConfig:
@@ -31,9 +32,7 @@ def load_project_config(config_path: Path) -> ProjectConfig:
     if not resolved_config_path.exists():
         raise FileNotFoundError(f"Config file does not exist: {resolved_config_path}")
 
-    raw_config = yaml.safe_load(
-        resolved_config_path.read_text(encoding="utf-8")
-    ) or {}
+    raw_config = yaml.safe_load(resolved_config_path.read_text(encoding="utf-8")) or {}
 
     if not isinstance(raw_config, dict):
         raise ValueError("Project config root must be a YAML object.")
@@ -41,6 +40,10 @@ def load_project_config(config_path: Path) -> ProjectConfig:
     config = ProjectConfig(**raw_config)
     project_root = Path.cwd().resolve()
 
+    raw_config["kubernetes_manifest_paths"] = _resolve_path_list(
+        project_root=project_root,
+        raw_paths=raw_config.get("kubernetes_manifest_paths"),
+    )
     resolved_values = {
         "repository_path": _resolve_project_path(project_root, config.repository_path),
         "rules_path": _resolve_project_path(project_root, config.rules_path),
@@ -68,3 +71,31 @@ def _resolve_project_path(project_root: Path, path: Path) -> Path:
         return path.resolve()
 
     return (project_root / path).resolve()
+
+
+def _resolve_path_list(
+    project_root: Path,
+    raw_paths: object,
+) -> list[Path]:
+    if raw_paths is None:
+        return []
+
+    if not isinstance(raw_paths, list):
+        raise ValueError("Expected a list of paths.")
+
+    resolved_paths: list[Path] = []
+
+    for raw_path in raw_paths:
+        path_text = str(raw_path).strip()
+
+        if not path_text:
+            continue
+
+        path = Path(path_text)
+
+        if path.is_absolute():
+            resolved_paths.append(path.resolve())
+        else:
+            resolved_paths.append((project_root / path).resolve())
+
+    return resolved_paths

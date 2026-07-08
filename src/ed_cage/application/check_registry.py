@@ -41,6 +41,9 @@ from ed_cage.checks.architecture.repository_required_paths_check import (
     RepositoryRequiredPathsCheck,
 )
 
+from ed_cage.application.tool_adapter_registry import ToolAdapterRegistry
+from ed_cage.checks.tools.external_tool_check import ExternalToolCheck
+
 
 class CheckRegistry:
     def __init__(self, checks: list[GovernanceCheck]) -> None:
@@ -70,6 +73,7 @@ class CheckRegistry:
                 RepositoryConfigurationPatternsCheck(),
                 RepositoryRequiredPathsCheck(),
                 ArchitectureCatalogPolicyCheck(),
+                ExternalToolCheck(ToolAdapterRegistry.default()),
               
             ]
         )

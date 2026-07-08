@@ -1,9 +1,19 @@
 from typing import Any
 
-from ed_cage.adapters.filesystem.kubernetes_manifest_loader import KubernetesManifestLoader
-from ed_cage.checks.common.kubernetes_utils import get_file_patterns, get_manifest_paths
+from ed_cage.adapters.filesystem.kubernetes_manifest_loader import (
+    KubernetesManifestLoader,
+)
 from ed_cage.domain.enums import CheckStatus
-from ed_cage.domain.models import Evidence, GovernanceFinding, GovernanceRule, ProjectContext
+from ed_cage.domain.models import (
+    Evidence,
+    GovernanceFinding,
+    GovernanceRule,
+    ProjectContext,
+)
+from ed_cage.checks.common.kubernetes_manifest_paths import (
+    resolve_kubernetes_manifest_paths,
+)
+from ed_cage.checks.common.kubernetes_utils import get_file_patterns
 
 
 class KubernetesServiceExposurePolicyCheck:
@@ -11,8 +21,14 @@ class KubernetesServiceExposurePolicyCheck:
     def check_type(self) -> str:
         return "kubernetes_service_exposure_policy"
 
-    def evaluate(self, rule: GovernanceRule, context: ProjectContext) -> GovernanceFinding:
-        manifest_paths = get_manifest_paths(rule.params)
+    def evaluate(
+        self, rule: GovernanceRule, context: ProjectContext
+    ) -> GovernanceFinding:
+        manifest_paths = resolve_kubernetes_manifest_paths(
+            rule=rule,
+            context=context,
+            existing_only=True,
+        )
         file_patterns = get_file_patterns(rule.params)
         disallowed_service_types = self._get_string_set_param(
             params=rule.params,

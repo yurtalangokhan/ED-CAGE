@@ -11,6 +11,7 @@ from ed_cage.domain.enums import (
     GovernanceActionType,
     ExecutionMode,
     Severity,
+    ToolExecutionStatus,
 )
 
 
@@ -88,6 +89,18 @@ class Evidence(BaseModel):
     message: str
     data: dict[str, Any] = Field(default_factory=dict)
 
+class ToolExecutionResult(BaseModel):
+    tool_name: str
+    status: ToolExecutionStatus
+    message: str
+    command: list[str] = Field(default_factory=list)
+    exit_code: int | None = None
+    stdout: str = ""
+    stderr: str = ""
+    resource: str | None = None
+    findings: list[dict[str, Any]] = Field(default_factory=list)
+    summary: dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)
 
 class NormalizedEvidence(BaseModel):
     rule_id: str
@@ -257,6 +270,9 @@ class ProjectContext(BaseModel):
     architecture_catalog_path: Path | None = None
     services: list[ServiceDefinition] = Field(default_factory=list)
     metadata: dict[str, Any] = Field(default_factory=dict)
+    kubernetes_manifest_paths: list[Path] = Field(default_factory=list)
+
+
 
 
 class GovernanceRunResult(BaseModel):
@@ -272,3 +288,4 @@ class GovernanceRunResult(BaseModel):
     @property
     def has_failures(self) -> bool:
         return any(f.status in {CheckStatus.FAILED, CheckStatus.ERROR} for f in self.findings)
+    

@@ -28,6 +28,7 @@ def test_default_check_registry_contains_core_checks() -> None:
     assert "repository_configuration_patterns" in check_types
     assert "repository_required_paths" in check_types
     assert "architecture_catalog_policy" in check_types
+    assert "external_tool" in check_types
 
 
 def test_check_registry_returns_all_registered_checks() -> None:
@@ -35,7 +36,7 @@ def test_check_registry_returns_all_registered_checks() -> None:
 
     checks = registry.all_checks()
 
-    assert len(checks) == 19
+    assert len(checks) == 20
 
 
 def test_check_registry_rejects_duplicate_check_types() -> None:

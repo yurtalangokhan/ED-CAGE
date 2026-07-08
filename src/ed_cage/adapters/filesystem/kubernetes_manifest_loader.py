@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 import yaml
 
@@ -37,12 +37,12 @@ class KubernetesManifestLoadResult:
 
 class KubernetesManifestLoader:
     def __init__(self, repository_path: Path) -> None:
-        self.repository_path = repository_path
+        self.repository_path = repository_path.resolve()
 
     def load(
         self,
-        manifest_paths: list[str],
-        file_patterns: list[str],
+        manifest_paths: Sequence[str | Path],
+        file_patterns: Sequence[str],
     ) -> KubernetesManifestLoadResult:
         searched_paths = [self._resolve_path(path) for path in manifest_paths]
         candidate_files = self._collect_candidate_files(
@@ -78,18 +78,18 @@ class KubernetesManifestLoader:
             candidate_files=candidate_files,
         )
 
-    def _resolve_path(self, path: str) -> Path:
+    def _resolve_path(self, path: str | Path) -> Path:
         raw_path = Path(path)
 
         if raw_path.is_absolute():
-            return raw_path
+            return raw_path.resolve()
 
-        return self.repository_path / raw_path
+        return (self.repository_path / raw_path).resolve()
 
     def _collect_candidate_files(
         self,
-        searched_paths: list[Path],
-        file_patterns: list[str],
+        searched_paths: Sequence[Path],
+        file_patterns: Sequence[str],
     ) -> list[Path]:
         candidate_files: list[Path] = []
         seen: set[Path] = set()

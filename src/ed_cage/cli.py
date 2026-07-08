@@ -70,7 +70,11 @@ def validate_config(
     typer.echo(f"Fail on any failure: {config.governance_gate.fail_on_any_failure}")
     if config.architecture_catalog_path is not None:
         typer.echo(f"Architecture catalog path: {config.architecture_catalog_path}")
-
+    
+    if config.kubernetes_manifest_paths:
+     typer.echo("Kubernetes manifest paths:")
+    for manifest_path in config.kubernetes_manifest_paths:
+        typer.echo(f"  - {manifest_path}")
 
 @app.command()
 def scan(
@@ -257,6 +261,7 @@ def _execute_governance_run(
         services=services,
         metadata=config.metadata,
         architecture_catalog_path=config.architecture_catalog_path,
+        kubernetes_manifest_paths=config.kubernetes_manifest_paths,
     )
 
     rule_provider = YamlRuleProvider(config.rules_path)
