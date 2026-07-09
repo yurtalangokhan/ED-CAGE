@@ -74,8 +74,8 @@ def test_governance_gate_fails_when_score_is_below_threshold() -> None:
     )
 
     assert gate_result.passed is False
-    assert gate_result.actual_score == 37.5
-    assert "Governance score 37.50 is below minimum score 80.00." in gate_result.reasons
+    assert gate_result.actual_score == 50.0
+    assert "Governance score 50.00 is below minimum score 80.00." in gate_result.reasons
 
 
 def test_governance_gate_fails_on_high_finding_when_policy_requires_it() -> None:

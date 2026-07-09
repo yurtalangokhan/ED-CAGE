@@ -22,8 +22,19 @@ class RichConsoleReporter:
 
         if result.score is not None:
             self.console.print(
-                f"Governance score: [bold]{result.score.score:.2f} / 100[/bold]"
+                f"Governance maturity: " f"[bold]{result.score.maturity_band}[/bold]"
             )
+            self.console.print(
+                f"Category-weighted score: "
+                f"[bold]{result.score.score:.2f} / 100[/bold]"
+            )
+            self.console.print(
+                f"Applicable rules: {result.score.applicable_rule_count}"
+            )
+            self.console.print(
+                f"Not applicable rules: {result.score.not_applicable_rule_count}"
+            )
+            self._print_category_scores(result)
 
         if result.gate_result is not None:
             self._print_gate_result(result)
@@ -75,15 +86,42 @@ class RichConsoleReporter:
 
         self.console.print()
 
-        if result.gate_result is not None:
-            if result.gate_result.passed:
-                self.console.print("[bold green]Governance gate: PASSED[/bold green]")
-            else:
-                self.console.print("[bold red]Governance gate: FAILED[/bold red]")
+        if result.score is not None:
+            self.console.print(
+                f"[bold]Governance maturity result: "
+                f"{result.score.maturity_band}[/bold]"
+            )
         elif result.has_failures:
             self.console.print("[bold red]Governance result: FAILED[/bold red]")
         else:
             self.console.print("[bold green]Governance result: PASSED[/bold green]")
+
+    def _print_category_scores(self, result: GovernanceRunResult) -> None:
+        if result.score is None or not result.score.category_details:
+            return
+
+        table = Table(title="Category Scores")
+        table.add_column("Category", style="bold")
+        table.add_column("Score")
+        table.add_column("Weight")
+        table.add_column("Applicable")
+        table.add_column("Passed")
+        table.add_column("Failed")
+        table.add_column("Error")
+
+        for category_detail in result.score.category_details:
+            table.add_row(
+                category_detail.category,
+                f"{category_detail.score:.2f}",
+                f"{category_detail.weight:.2f}",
+                str(category_detail.applicable_rule_count),
+                str(category_detail.passed_rule_count),
+                str(category_detail.failed_rule_count),
+                str(category_detail.error_rule_count),
+            )
+
+        self.console.print()
+        self.console.print(table)
 
     def _print_actions(self, actions: list[GovernanceAction]) -> None:
         if not actions:

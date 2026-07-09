@@ -365,3 +365,65 @@ spec:
 
     assert result.status == ToolExecutionStatus.SUCCESS
     assert str(context_manifest_dir.resolve()) in result.summary["target_paths"]
+
+
+def test_kube_linter_adapter_skips_when_lint_execution_is_not_evaluable(
+    tmp_path: Path,
+) -> None:
+    _create_manifest_dir(tmp_path)
+
+    adapter = KubeLinterToolAdapter(
+        runner=FakeLocalKubeLinterRunner(
+            lint_stdout="",
+            lint_exit_code=2,
+        )
+    )
+
+    result = adapter.collect(
+        rule=_build_rule(["manifests"]),
+        context=_build_context(tmp_path),
+    )
+
+    assert result.status == ToolExecutionStatus.SKIPPED
+    assert result.summary["reason"] == "kube_linter_execution_not_evaluable"
+    assert result.summary["original_exit_code"] == 2
+
+
+class FakeTimedOutKubeLinterRunner:
+    def run(
+        self,
+        command: list[str],
+        cwd: Path | None = None,
+        timeout_seconds: int = 60,
+    ) -> CommandLineExecutionResult:
+        if command == ["kube-linter", "lint", "--help"]:
+            return CommandLineExecutionResult(
+                command=command,
+                exit_code=0,
+                stdout="help",
+                stderr="",
+            )
+
+        return CommandLineExecutionResult(
+            command=command,
+            exit_code=None,
+            stdout="",
+            stderr="timeout",
+            timed_out=True,
+        )
+
+
+def test_kube_linter_adapter_skips_when_lint_execution_times_out(
+    tmp_path: Path,
+) -> None:
+    _create_manifest_dir(tmp_path)
+
+    adapter = KubeLinterToolAdapter(runner=FakeTimedOutKubeLinterRunner())
+
+    result = adapter.collect(
+        rule=_build_rule(["manifests"]),
+        context=_build_context(tmp_path),
+    )
+
+    assert result.status == ToolExecutionStatus.SKIPPED
+    assert result.summary["reason"] == "kube_linter_execution_timeout"

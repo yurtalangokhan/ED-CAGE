@@ -36,18 +36,19 @@ architecture_catalog_path: configs/cases/architecture-catalogs/test-service-arch
         "configs/cases/architecture-catalogs/test-service-architecture.yaml"
     )
 
-    def test_config_resolves_kubernetes_manifest_paths(
-        tmp_path: Path,
-        monkeypatch: pytest.MonkeyPatch,
-    ) -> None:
-        monkeypatch.chdir(tmp_path)
 
-        config_dir = tmp_path / "configs"
-        config_dir.mkdir()
+def test_config_resolves_kubernetes_manifest_paths(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.chdir(tmp_path)
 
-        config_path = config_dir / "ed-cage.yaml"
-        config_path.write_text(
-            """
+    config_dir = tmp_path / "configs"
+    config_dir.mkdir()
+
+    config_path = config_dir / "ed-cage.yaml"
+    config_path.write_text(
+        """
     project_name: test-project
     repository_path: .
     rules_path: configs/rules
@@ -56,14 +57,48 @@ architecture_catalog_path: configs/cases/architecture-catalogs/test-service-arch
     kubernetes_manifest_paths:
     - examples/kubernetes
     """,
-            encoding="utf-8",
-        )
+        encoding="utf-8",
+    )
 
-        config = load_project_config(config_path)
+    config = load_project_config(config_path)
 
-        assert len(config.kubernetes_manifest_paths) == 1
-        assert (
-            config.kubernetes_manifest_paths[0]
-            .as_posix()
-            .endswith("examples/kubernetes")
-        )
+    assert len(config.kubernetes_manifest_paths) == 1
+    assert (
+        config.kubernetes_manifest_paths[0].as_posix().endswith("examples/kubernetes")
+    )
+
+
+def test_load_project_config_reads_scoring_config(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.chdir(tmp_path)
+
+    config_dir = tmp_path / "configs"
+    config_dir.mkdir()
+
+    config_path = config_dir / "ed-cage.yaml"
+    config_path.write_text(
+        """
+project_name: test-project
+repository_path: .
+rules_path: configs/rules
+output_path: outputs
+evidence_registry_path: outputs/evidence/evidence-registry.jsonl
+scoring:
+  category_weights:
+    security: 2.5
+    reliability: 1.5
+  maturity_bands:
+    - name: Custom Governance
+      min_score: 0.0
+      max_score: 100.0
+""",
+        encoding="utf-8",
+    )
+
+    config = load_project_config(config_path)
+
+    assert config.scoring.category_weights["security"] == 2.5
+    assert config.scoring.category_weights["reliability"] == 1.5
+    assert config.scoring.maturity_bands[0].name == "Custom Governance"

@@ -1,34 +1,18 @@
-services:
-  - name: ts-ui-dashboard
-    base_url: http://127.0.0.1:8080
-    health_endpoints:
-      - /health
-      - /actuator/health
-    openapi_paths:
-      - /openapi.json
-      - /v3/api-docs
-    metrics_paths:
-      - /metrics
-      - /actuator/prometheus
-    tags:
-      - train-ticket
-      - ui
-      - gateway
-    metadata:
-      owner: architecture-team
-      criticality: high
-
+﻿services:
   - name: ts-travel-service
     base_url: http://127.0.0.1:12346
     health_endpoints:
-      - /health
       - /actuator/health
+      - /health
     openapi_paths:
-      - /openapi.json
+      - /v2/api-docs
       - /v3/api-docs
+      - /swagger.json
+      - /openapi.json
     metrics_paths:
-      - /metrics
       - /actuator/prometheus
+      - /actuator/metrics
+      - /metrics
     tags:
       - train-ticket
       - domain-service
@@ -40,14 +24,17 @@ services:
   - name: ts-order-service
     base_url: http://127.0.0.1:12031
     health_endpoints:
-      - /health
       - /actuator/health
+      - /health
     openapi_paths:
-      - /openapi.json
+      - /v2/api-docs
       - /v3/api-docs
+      - /swagger.json
+      - /openapi.json
     metrics_paths:
-      - /metrics
       - /actuator/prometheus
+      - /actuator/metrics
+      - /metrics
     tags:
       - train-ticket
       - domain-service

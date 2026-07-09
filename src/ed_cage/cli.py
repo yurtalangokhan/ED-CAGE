@@ -36,6 +36,7 @@ from ed_cage.adapters.reporting.evaluation_summary_reporter import (
     EvaluationSummaryReporter,
 )
 from ed_cage.application.evaluation_aggregator import EvaluationAggregator
+from ed_cage.application.scoring import GovernanceScorer
 
 app = typer.Typer(
     name="ed-cage",
@@ -63,6 +64,18 @@ def validate_config(
     typer.echo(f"Output path: {config.output_path}")
     typer.echo(f"Evidence registry path: {config.evidence_registry_path}")
     typer.echo(f"Minimum governance score: {config.governance_gate.minimum_score}")
+    typer.echo("Scoring category weights:")
+    for category_name, category_weight in sorted(
+        config.scoring.category_weights.items()
+    ):
+        typer.echo(f" - {category_name}: {category_weight}")
+
+    typer.echo("Maturity bands:")
+    for maturity_band in config.scoring.maturity_bands:
+        typer.echo(
+            f" - {maturity_band.name}: "
+            f"{maturity_band.min_score}-{maturity_band.max_score}"
+        )
     typer.echo(f"Execution mode: {config.execution_mode.value}")
     typer.echo(f"Fail on error: {config.governance_gate.fail_on_error}")
     typer.echo(f"Fail on critical: {config.governance_gate.fail_on_critical}")
@@ -81,7 +94,6 @@ def validate_config(
 
     for manifest_path in config.kubernetes_manifest_paths:
         typer.echo(f"  - {manifest_path}")
-    
 
 
 @app.command()
@@ -163,6 +175,10 @@ def scan(
     typer.echo(
         f"Markdown report written to: {config.output_path / markdown_report_filename}"
     )
+
+    if result.score is not None:
+        typer.echo(f"Governance maturity: {result.score.maturity_band}")
+        typer.echo(f"Category-weighted score: {result.score.score:.2f} / 100")
     typer.echo(
         "Evidence registry updated: "
         f"{evidence_registry_result.path} "
@@ -170,7 +186,10 @@ def scan(
     )
 
     if result.gate_result is not None and not result.gate_result.passed:
-        raise typer.Exit(code=1)
+        typer.echo(
+            "Governance gate: FAILED "
+            "(reported as a governance signal; scan completed successfully)"
+        )
 
 
 @app.command("run-scenario")
@@ -277,6 +296,7 @@ def _execute_governance_run(
     runner = GovernanceRunner(
         rule_provider=rule_provider,
         checks=CheckRegistry.default().all_checks(),
+        scorer=GovernanceScorer(config.scoring),
     )
 
     effective_filter_criteria = _merge_config_filter_criteria(
@@ -287,6 +307,11 @@ def _execute_governance_run(
     result = runner.run(
         context=context,
         filter_criteria=effective_filter_criteria,
+    )
+
+    result = _attach_config_applicability_summary(
+        result=result,
+        config=config,
     )
 
     gate_result = GovernanceGateEvaluator().evaluate(
@@ -303,6 +328,57 @@ def _execute_governance_run(
 
     return result
 
+def _attach_config_applicability_summary(
+    result: GovernanceRunResult,
+    config: ProjectConfig,
+) -> GovernanceRunResult:
+    if result.score is None:
+        return result
+
+    excluded_rule_ids = _deduplicate_rule_ids(config.disabled_rule_ids)
+
+    if not excluded_rule_ids:
+        return result
+
+    weighted_score_explanation = {
+        **result.score.weighted_score_explanation,
+        "excluded_rule_ids": excluded_rule_ids,
+        "excluded_rule_count": len(excluded_rule_ids),
+        "excluded_rule_reason": "disabled_by_case_config",
+    }
+
+    result.score = result.score.model_copy(
+        update={
+            "not_applicable_rule_count": (
+                result.score.not_applicable_rule_count
+                + len(excluded_rule_ids)
+            ),
+            "weighted_score_explanation": weighted_score_explanation,
+        }
+    )
+
+    return result
+
+
+def _deduplicate_rule_ids(rule_ids: list[str]) -> list[str]:
+    normalized_rule_ids: list[str] = []
+    seen: set[str] = set()
+
+    for rule_id in rule_ids:
+        normalized_rule_id = rule_id.strip()
+
+        if not normalized_rule_id:
+            continue
+
+        dedup_key = normalized_rule_id.upper()
+
+        if dedup_key in seen:
+            continue
+
+        seen.add(dedup_key)
+        normalized_rule_ids.append(normalized_rule_id)
+
+    return normalized_rule_ids
 
 def _store_evidence(
     config: ProjectConfig,

@@ -229,11 +229,11 @@ class CategoryGovernanceScore(BaseModel):
     score: float
     weight: float
     applicable_rule_count: int
-    passed_rule_count: int
-    warning_rule_count: int
-    failed_rule_count: int
-    error_rule_count: int
-    skipped_rule_count: int
+    passed_rule_count: int = 0
+    warning_rule_count: int = 0
+    failed_rule_count: int = 0
+    error_rule_count: int = 0
+    skipped_rule_count: int = 0
 
 
 class GovernanceScore(BaseModel):

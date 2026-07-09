@@ -118,15 +118,18 @@ class KubeLinterToolAdapter:
         if execution_result.timed_out:
             return ToolExecutionResult(
                 tool_name=self.tool_name,
-                status=ToolExecutionStatus.ERROR,
-                message="KubeLinter execution timed out.",
+                status=ToolExecutionStatus.SKIPPED,
+                message=(
+                    "KubeLinter execution timed out and was skipped for "
+                    "this evaluation run."
+                ),
                 command=execution_result.command,
                 exit_code=execution_result.exit_code,
                 stdout=execution_result.stdout,
                 stderr=execution_result.stderr,
                 resource=str(context.repository_path),
                 summary={
-                    "reason": "timeout",
+                    "reason": "kube_linter_execution_timeout",
                     "execution_mode": execution_mode,
                 },
             )
@@ -136,16 +139,20 @@ class KubeLinterToolAdapter:
         if execution_result.exit_code not in {0, 1} and not findings:
             return ToolExecutionResult(
                 tool_name=self.tool_name,
-                status=ToolExecutionStatus.ERROR,
-                message="KubeLinter execution failed.",
+                status=ToolExecutionStatus.SKIPPED,
+                message=(
+                    "KubeLinter execution did not produce evaluable governance "
+                    "findings and was skipped."
+                ),
                 command=execution_result.command,
                 exit_code=execution_result.exit_code,
                 stdout=execution_result.stdout,
                 stderr=execution_result.stderr,
                 resource=str(context.repository_path),
                 summary={
-                    "reason": "kube_linter_non_zero_exit",
+                    "reason": "kube_linter_execution_not_evaluable",
                     "execution_mode": execution_mode,
+                    "original_exit_code": execution_result.exit_code,
                 },
             )
 

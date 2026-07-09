@@ -23,11 +23,11 @@ class ProjectConfig(BaseModel):
     evidence_registry_path: Path = Path("outputs/evidence/evidence-registry.jsonl")
     architecture_catalog_path: Path | None = None
     governance_gate: GovernanceGatePolicy = Field(default_factory=GovernanceGatePolicy)
+    scoring: ScoringConfig = Field(default_factory=ScoringConfig)
     metadata: dict[str, str] = Field(default_factory=dict)
     kubernetes_manifest_paths: list[Path] = Field(default_factory=list)
     disabled_rule_ids: list[str] = Field(default_factory=list)
     execution_mode: ExecutionMode = ExecutionMode.MIXED
-    scoring: ScoringConfig = Field(default_factory=ScoringConfig)
     
     
 
