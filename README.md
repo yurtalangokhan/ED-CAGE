@@ -2,38 +2,36 @@
 
 **ED-CAGE** stands for **Event-Driven Continuous Architecture Governance Engine**.
 
-ED-CAGE is a Python-based framework for **continuous architecture governance and evaluation**. It evaluates software systems against architecture rules, governance policies, quality-attribute expectations, deployment practices, API documentation requirements, runtime service evidence, and engineering best practices.
+ED-CAGE is a Python-based framework for **evidence-driven continuous architecture governance and evaluation**. It evaluates software systems against architecture rules, repository conventions, deployment artifacts, security practices, API contract quality, runtime service evidence, and observability expectations.
 
-The framework is designed for evidence-driven governance: every scan produces machine-readable findings, normalized evidence, governance actions, score summaries, and maturity-band results.
+The framework produces machine-readable governance reports, normalized evidence records, category-weighted governance scores, maturity bands, and remediation-oriented governance actions.
 
 ---
 
-## Key Capabilities
+## Key Features
 
-- YAML-based governance rule definition
-- Static and runtime governance evaluation
+- YAML-based governance rules
+- Static, runtime, and mixed evaluation modes
 - Evidence-driven governance findings
 - Category-weighted governance scoring
-- Maturity-band based evaluation
+- Maturity-band interpretation
 - Rule filtering by ID, category, severity, target, and check type
 - Scenario-based governance evaluation
 - JSON and Markdown report generation
-- Evidence registry output in JSONL format
-- Governance action recommendation generation
-- Case-study batch evaluation scripts
-- Tool-adapter integration for policy and infrastructure evidence
+- JSONL evidence registry
+- Governance action recommendations
+- Case-study batch evaluation
+- External tool adapters for OPA, kube-linter, and Trivy
 
 ---
 
 ## Evaluation Modes
 
-ED-CAGE supports three execution modes:
-
-| Mode | Purpose |
+| Mode | Description |
 |---|---|
-| `static` | Evaluates repository, architecture catalog, dependency, deployment, security, Kubernetes, Docker Compose, and policy-as-code evidence. |
-| `runtime` | Evaluates running services through health endpoints, OpenAPI/Swagger documents, and metrics/observability endpoints. |
-| `mixed` | Runs both static and runtime applicable governance checks. |
+| `static` | Evaluates repository files, architecture catalog, dependencies, Docker Compose, Kubernetes manifests, security patterns, and external tool evidence. |
+| `runtime` | Evaluates running services through health endpoints, OpenAPI/Swagger documents, API policies, and metrics endpoints. |
+| `mixed` | Runs all applicable static and runtime checks. |
 
 ---
 
@@ -42,18 +40,19 @@ ED-CAGE supports three execution modes:
 ```text
 ED-CAGE/
 ├── src/ed_cage/                 # Framework source code
-├── configs/                     # Rules, actions, services, scenarios and case configs
+├── configs/
 │   ├── rules/                   # Governance rule definitions
-│   ├── cases/                   # Case-study specific configuration files
+│   ├── cases/                   # Case-study configuration files
+│   ├── policies/                # Policy-as-code assets
 │   └── scenarios/               # Scenario-based evaluation definitions
 ├── case-studies/                # Open-source systems used for evaluation
-├── scripts/                     # Batch evaluation and paper table generation scripts
+├── scripts/                     # Batch evaluation and table generation scripts
 ├── tests/                       # Unit tests
 ├── docs/                        # Supporting documentation
 ├── examples/                    # Example assets
 ├── outputs/                     # Generated reports and evidence registries
-├── docker-compose.tools.yml     # Optional external tool containers
-├── pyproject.toml               # Python package and development configuration
+├── docker-compose.tools.yml     # Optional external governance tools
+├── pyproject.toml
 └── README.md
 ```
 
@@ -65,28 +64,20 @@ ED-CAGE/
 
 - Python `3.11+`
 - Git
-- PowerShell, Bash, or another terminal
 - Python virtual environment
+- PowerShell, Bash, or another terminal
 
-### Optional External Tools
+### Optional
 
-Some static governance checks can use external tools through Docker:
-
-- Open Policy Agent (OPA)
+- Docker
+- Docker Compose
+- Kubernetes / kind / minikube
+- `kubectl`
+- OPA
 - kube-linter
 - Trivy
 
-These are configured through `docker-compose.tools.yml`.
-
-### Optional Runtime Dependencies
-
-Runtime evaluation requires the target system to be running locally or remotely and reachable from the machine running ED-CAGE.
-
-For Kubernetes-based case studies, you may also need:
-
-- Docker Desktop
-- Kubernetes / kind / minikube
-- `kubectl`
+OPA, kube-linter, and Trivy can be used through the provided `docker-compose.tools.yml`.
 
 ---
 
@@ -115,19 +106,19 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-Install ED-CAGE in editable mode:
+Install ED-CAGE:
 
 ```bash
 pip install -e .
 ```
 
-For development dependencies:
+Install development dependencies:
 
 ```bash
 pip install -e ".[dev]"
 ```
 
-Validate the CLI installation:
+Verify the CLI:
 
 ```bash
 ed-cage --help
@@ -135,23 +126,7 @@ ed-cage --help
 
 ---
 
-## Configuration
-
-ED-CAGE uses YAML configuration files. A project configuration defines the repository under evaluation, rule paths, service catalog, output location, governance gate, scoring settings, and execution mode.
-
-Example configuration fields:
-
-```yaml
-project_name: my-system
-repository_path: .
-rules_path: configs/rules
-services_path: configs/services.yaml
-actions_path: configs/actions.yaml
-scenarios_path: configs/scenarios
-output_path: outputs
-evidence_registry_path: outputs/evidence/evidence-registry.jsonl
-execution_mode: mixed
-```
+## Basic Usage
 
 Validate a configuration:
 
@@ -159,35 +134,31 @@ Validate a configuration:
 ed-cage validate-config --config configs/ed-cage.yaml
 ```
 
----
-
-## Running a Governance Scan
-
-Run a default scan:
+Run a governance scan:
 
 ```bash
 ed-cage scan --config configs/ed-cage.yaml
 ```
 
-Run with an explicit report filename:
+Run static checks only:
+
+```bash
+ed-cage scan --config configs/ed-cage.yaml --execution-mode static
+```
+
+Run runtime checks only:
+
+```bash
+ed-cage scan --config configs/ed-cage.yaml --execution-mode runtime
+```
+
+Run a scan with explicit output filenames:
 
 ```bash
 ed-cage scan \
   --config configs/ed-cage.yaml \
   --report-filename governance-report.json \
   --markdown-report-filename governance-report.md
-```
-
-Run only static checks:
-
-```bash
-ed-cage scan --config configs/ed-cage.yaml --execution-mode static
-```
-
-Run only runtime checks:
-
-```bash
-ed-cage scan --config configs/ed-cage.yaml --execution-mode runtime
 ```
 
 ---
@@ -209,13 +180,13 @@ ed-cage scan --config configs/ed-cage.yaml --rule-id REPO-001,SVC-001
 Run by category:
 
 ```bash
-ed-cage scan --config configs/ed-cage.yaml --category service
+ed-cage scan --config configs/ed-cage.yaml --category security
 ```
 
 Run by severity:
 
 ```bash
-ed-cage scan --config configs/ed-cage.yaml --severity high,medium
+ed-cage scan --config configs/ed-cage.yaml --severity high,critical
 ```
 
 Run by check type:
@@ -226,19 +197,100 @@ ed-cage scan --config configs/ed-cage.yaml --check-type http_health_endpoint
 
 ---
 
-## Scenario-Based Evaluation
+## Governance Rule Catalog
 
-Scenarios define focused governance evaluations and assertions.
+The default rule set covers repository, architecture, dependency, deployment, security, reliability, API, service, observability, and external tool checks.
 
-Run a scenario:
+| Area | Rule IDs | Purpose |
+|---|---|---|
+| Repository | `REPO-001`, `REPO-002` | Checks required project files such as `README.md` and `pyproject.toml`. |
+| Architecture | `ARCH-001` to `ARCH-003` | Checks ADRs, quality attribute scenarios, and critical service declarations. |
+| Dependency | `DEPEN-001` to `DEPEN-003` | Checks declared dependencies, circular dependencies, and external dependency metadata. |
+| Docker Compose | `CMP-001` to `CMP-003` | Checks Compose file existence, healthchecks, and container isolation/security risks. |
+| Kubernetes Deployment | `DEP-001` to `DEP-008` | Checks manifests, image tags, resource requests/limits, probes, privileged containers, and non-root execution. |
+| Reliability | `REL-001` to `REL-005` | Checks replica policy, timeout policy, retry policy, circuit breaker policy, and bounded retries. |
+| Security | `SEC-001` to `SEC-003` | Checks obvious secrets, Ingress TLS, and external service exposure. |
+| Service Runtime | `SVC-001` to `SVC-003` | Checks health endpoints, OpenAPI/Swagger availability, and metrics endpoint availability. |
+| API Contract | `API-001` to `API-006` | Checks API metadata, operation IDs, success/error responses, schemas, and security schemes. |
+| Observability | `OBS-001` to `OBS-004` | Checks Prometheus compatibility and required request/error/latency metric groups. |
+| External Tools | `TOOL-OPA-001`, `TOOL-K8S-001`, `TOOL-TRIVY-001` | Integrates OPA, kube-linter, and Trivy as evidence-producing governance tools. |
 
-```bash
-ed-cage run-scenario \
-  --config configs/ed-cage.yaml \
-  --scenario configs/scenarios/repository_baseline.yaml
+Detailed rule definitions are available under:
+
+```text
+configs/rules/
 ```
 
-Scenario runs generate normal governance reports and an additional scenario report.
+---
+
+## Reports and Evidence
+
+Each scan generates:
+
+```text
+governance-report.json
+governance-report.md
+evidence/evidence-registry.jsonl
+```
+
+The JSON report includes:
+
+- Run metadata
+- Findings
+- Normalized evidence
+- Rule status summaries
+- Severity summaries
+- Category-level scores
+- Overall governance score
+- Maturity band
+- Governance gate result
+- Recommended governance actions
+
+The Markdown report is intended for human review. The JSON report and JSONL evidence registry are intended for automation, traceability, and downstream analysis.
+
+---
+
+## Scoring and Maturity Bands
+
+ED-CAGE computes category-level scores and an overall governance score.
+
+Formula:
+
+```text
+sum(category_score * category_weight) / sum(category_weight)
+```
+
+Default maturity interpretation:
+
+| Score Range | Maturity Band |
+|---:|---|
+| 0-39.99 | Initial Governance |
+| 40-59.99 | Emerging Governance |
+| 60-74.99 | Managed Governance |
+| 75-89.99 | Governed Architecture |
+| 90-100 | Continuously Governed Architecture |
+
+Category weights and maturity bands are configurable per project or case study.
+
+---
+
+## External Tool Adapters
+
+ED-CAGE can normalize external tool results into governance findings.
+
+Start optional tool containers:
+
+```bash
+docker compose -f docker-compose.tools.yml up
+```
+
+| Tool | Governance Use |
+|---|---|
+| OPA | Policy-as-code checks for architecture catalog governance. |
+| kube-linter | Kubernetes manifest production-readiness and security checks. |
+| Trivy | Filesystem, IaC misconfiguration, and secret-related security evidence. |
+
+External tool findings appear in static governance reports when the related rules are applicable and enabled.
 
 ---
 
@@ -248,26 +300,26 @@ ED-CAGE includes case-study configurations for open-source microservice systems.
 
 ### Static Evaluation
 
-Run static evaluation for all configured case studies:
+Run all configured static case studies:
 
 ```bash
 python scripts/run_static_case_evaluations.py
 ```
 
-Run a specific static case:
+Run one static case:
 
 ```bash
 python scripts/run_static_case_evaluations.py \
   --config configs/cases/online-boutique-static.yaml
 ```
 
-Static outputs are written under:
+Static outputs are generated under:
 
 ```text
 outputs/case-studies/<case-study>/static/
 ```
 
-A summary is generated at:
+Summary files:
 
 ```text
 outputs/case-studies/static-evaluation-summary.json
@@ -282,20 +334,20 @@ Start the target system first. Then run:
 python scripts/run_runtime_case_evaluations.py
 ```
 
-Run a specific runtime case:
+Run one runtime case:
 
 ```bash
 python scripts/run_runtime_case_evaluations.py \
   --config configs/cases/train-ticket-runtime.yaml
 ```
 
-Runtime outputs are written under:
+Runtime outputs are generated under:
 
 ```text
 outputs/case-studies/<case-study>/runtime/
 ```
 
-A runtime summary is generated at:
+Summary files:
 
 ```text
 outputs/case-studies/runtime-evaluation-summary.json
@@ -304,81 +356,214 @@ outputs/case-studies/runtime-evaluation-summary.md
 
 ---
 
-## External Tool Adapters
+## Adding a New Case Study
 
-ED-CAGE can integrate external tools as governance evidence sources.
+To evaluate a new repository, create a case-specific configuration and, when needed, a service catalog and architecture catalog.
 
-Start optional tool containers:
+### 1. Add or reference the target repository
+
+Recommended layout:
+
+```text
+case-studies/<new-case-study>/
+```
+
+You may either clone the target repository under `case-studies/` or point `repository_path` to an external local path.
+
+### 2. Create a service catalog
+
+Create:
+
+```text
+configs/cases/service-catalogs/<new-case-study>-services.yaml
+```
+
+Example:
+
+```yaml
+services:
+  - name: orders-service
+    base_url: http://127.0.0.1:8081
+    health_endpoints:
+      - /actuator/health
+      - /health
+    openapi_paths:
+      - /v3/api-docs
+      - /v2/api-docs
+      - /swagger.json
+      - /openapi.json
+    metrics_paths:
+      - /actuator/prometheus
+      - /metrics
+    tags:
+      - domain-service
+      - orders
+    metadata:
+      owner: orders-team
+      criticality: high
+```
+
+Use runtime URLs that are reachable from the machine running ED-CAGE.
+
+### 3. Create an architecture catalog when dependency checks are needed
+
+Create:
+
+```text
+configs/cases/architecture-catalogs/<new-case-study>-service-architecture.yaml
+```
+
+Example:
+
+```yaml
+services:
+  - name: orders-service
+    criticality: high
+    dependencies:
+      - payments-service
+      - orders-db
+
+external_dependencies:
+  - name: payment-provider
+    owner: payments-team
+    sla: 99.9
+```
+
+Use this catalog for dependency and architecture governance rules such as critical service declaration, declared dependencies, circular dependency detection, and external dependency metadata.
+
+### 4. Create a static configuration
+
+Create:
+
+```text
+configs/cases/<new-case-study>-static.yaml
+```
+
+Minimum example:
+
+```yaml
+project_name: new-case-study-static
+repository_path: case-studies/<new-case-study>
+rules_path: configs/rules
+services_path: configs/cases/service-catalogs/<new-case-study>-services.yaml
+actions_path: configs/actions.yaml
+scenarios_path: configs/scenarios/case-studies
+output_path: outputs/case-studies/<new-case-study>/static
+evidence_registry_path: outputs/case-studies/<new-case-study>/static/evidence/evidence-registry.jsonl
+architecture_catalog_path: configs/cases/architecture-catalogs/<new-case-study>-service-architecture.yaml
+
+execution_mode: static
+
+governance_gate:
+  minimum_score: 65
+  fail_on_error: false
+  fail_on_critical: false
+  fail_on_high: false
+  fail_on_medium: false
+  fail_on_any_failure: false
+```
+
+Disable non-applicable rules explicitly. For example, if the system has Docker Compose but no Kubernetes manifests:
+
+```yaml
+disabled_rule_ids:
+  - DEP-001
+  - DEP-002
+  - DEP-003
+  - DEP-004
+  - DEP-005
+  - DEP-006
+  - DEP-007
+  - DEP-008
+  - SEC-002
+  - SEC-003
+  - TOOL-K8S-001
+```
+
+This prevents technology-mismatch false negatives.
+
+### 5. Create a runtime configuration
+
+Create:
+
+```text
+configs/cases/<new-case-study>-runtime.yaml
+```
+
+Example:
+
+```yaml
+project_name: new-case-study-runtime
+repository_path: case-studies/<new-case-study>
+rules_path: configs/rules
+services_path: configs/cases/service-catalogs/<new-case-study>-services.yaml
+actions_path: configs/actions.yaml
+scenarios_path: configs/scenarios/case-studies
+output_path: outputs/case-studies/<new-case-study>/runtime
+evidence_registry_path: outputs/case-studies/<new-case-study>/runtime/evidence/evidence-registry.jsonl
+
+execution_mode: runtime
+
+governance_gate:
+  minimum_score: 65
+  fail_on_error: false
+  fail_on_critical: false
+  fail_on_high: false
+  fail_on_medium: false
+  fail_on_any_failure: false
+```
+
+Before running runtime evaluation, make sure the target services are running and the configured ports are reachable.
+
+### 6. Validate and run
+
+Validate the configuration:
 
 ```bash
-docker compose -f docker-compose.tools.yml up
+ed-cage validate-config --config configs/cases/<new-case-study>-static.yaml
 ```
 
-The provided tool compose file includes:
+Run static evaluation:
 
-| Tool | Purpose |
-|---|---|
-| OPA | Policy-as-code evaluation |
-| kube-linter | Kubernetes manifest best-practice checks |
-| Trivy | Misconfiguration, secret, and security scanning evidence |
+```bash
+ed-cage scan --config configs/cases/<new-case-study>-static.yaml --execution-mode static
+```
 
-Tool outputs are normalized into ED-CAGE governance findings and evidence records when applicable.
+Run runtime evaluation:
+
+```bash
+ed-cage scan --config configs/cases/<new-case-study>-runtime.yaml --execution-mode runtime
+```
+
+### 7. Interpret applicability
+
+Not every rule applies to every system. For credible evaluation:
+
+- Disable Kubernetes rules for non-Kubernetes systems.
+- Disable Docker Compose rules for systems without Compose files.
+- Exclude HTTP runtime rules for gRPC-only services unless HTTP endpoints are available.
+- Prefer documenting rule exclusions in the case configuration.
+- Keep generated reports and evidence registries with the evaluation artifact.
 
 ---
 
-## Reports and Evidence
+## Scenario-Based Evaluation
 
-Each scan produces:
+Run a scenario:
 
-```text
-governance-report.json
-governance-report.md
-evidence/evidence-registry.jsonl
+```bash
+ed-cage run-scenario \
+  --config configs/ed-cage.yaml \
+  --scenario configs/scenarios/repository_baseline.yaml
 ```
 
-The JSON report includes:
-
-- Run metadata
-- Findings
-- Rule status
-- Severity and category summaries
-- Normalized evidence
-- Governance score
-- Maturity band
-- Governance gate result
-- Recommended governance actions
-
-The Markdown report is intended for human review. The JSON report and JSONL evidence registry are intended for automation, traceability, and downstream analysis.
+Scenario reports are written to the configured output directory.
 
 ---
 
-## Scoring and Maturity
+## Paper-Ready Tables
 
-ED-CAGE computes category-level and overall governance scores.
-
-The overall score is calculated as:
-
-```text
-sum(category_score * category_weight) / sum(category_weight)
-```
-
-Typical maturity bands:
-
-| Score Range | Maturity Band |
-|---:|---|
-| 0-39.99 | Initial Governance |
-| 40-59.99 | Emerging Governance |
-| 60-74.99 | Managed Governance |
-| 75-89.99 | Governed Architecture |
-| 90-100 | Continuously Governed Architecture |
-
-Category weights can be configured per project or case study.
-
----
-
-## Paper-Ready Evaluation Tables
-
-Generate paper-ready Markdown and CSV tables from evaluation summaries:
+Generate Markdown and CSV tables from evaluation outputs:
 
 ```bash
 python scripts/generate_paper_evaluation_tables.py
@@ -390,23 +575,11 @@ Default output directory:
 outputs/case-studies/paper-tables/
 ```
 
-Generated tables include:
-
-- Case study systems
-- Governance score results
-- Category-level scores
-- Top governance gaps
-- Excluded or not-applicable rules
+Generated tables include case-study systems, governance scores, category scores, governance gaps, and excluded rules.
 
 ---
 
 ## Development
-
-Install development dependencies:
-
-```bash
-pip install -e ".[dev]"
-```
 
 Run tests:
 
@@ -432,13 +605,13 @@ mypy src
 
 | Concept | Description |
 |---|---|
-| Governance Rule | A YAML-defined policy or architectural expectation. |
-| Check | Executable logic that evaluates a rule against repository, service, deployment, or runtime evidence. |
-| Evidence | Observed data collected during governance evaluation. |
+| Governance Rule | YAML-defined architectural or operational expectation. |
+| Check | Executable logic that evaluates a rule. |
+| Evidence | Observed data collected during evaluation. |
 | Finding | Result of evaluating one governance rule. |
-| Action | Recommended remediation or improvement generated from a finding. |
-| Scenario | A focused evaluation profile with assertions. |
-| Governance Gate | Pass/fail policy applied to the governance score and findings. |
+| Action | Recommended remediation generated from a finding. |
+| Scenario | Focused governance evaluation profile. |
+| Governance Gate | Pass/fail policy over score and findings. |
 | Maturity Band | Qualitative interpretation of the governance score. |
 
 ---
@@ -448,12 +621,12 @@ mypy src
 ED-CAGE currently focuses on:
 
 - Continuous architecture governance
-- Static architecture and repository evaluation
+- Static repository and deployment evaluation
 - Runtime service evidence evaluation
 - API documentation governance
-- Deployment and infrastructure governance
 - Observability evidence checks
-- Policy-as-code and tool-adapter based governance evidence
+- Architecture catalog and dependency governance
+- Policy-as-code and external tool evidence integration
 
 The framework is intended for research, experimentation, and extensible governance automation.
 
@@ -461,13 +634,13 @@ The framework is intended for research, experimentation, and extensible governan
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+No license has been published yet. Add a license file before distributing or reusing this project outside its current research and development context.
 
 ---
 
 ## Citation
 
-If you use ED-CAGE in academic work, cite the framework repository and related publication once available:
+If you use ED-CAGE in academic work, cite the repository and the related publication when available:
 
 ```text
 ED-CAGE: An Evidence-Driven Continuous Architecture Governance and Evaluation Framework.
