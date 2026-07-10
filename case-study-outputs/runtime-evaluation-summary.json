@@ -1,0 +1,68 @@
+{
+  "case_count": 1,
+  "successful_case_count": 1,
+  "failed_case_count": 0,
+  "cases": [
+    {
+      "config_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\train-ticket-runtime.yaml",
+      "report_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\outputs\\case-studies\\train-ticket\\runtime\\governance-report.json",
+      "return_code": 0,
+      "success": true,
+      "project_name": "train-ticket-runtime",
+      "run_id": "1b3c8ae1-cc59-46de-a9d4-76a4b9a43f99",
+      "started_at": "2026-07-09T09:04:20.657635Z",
+      "finished_at": "2026-07-09T09:04:25.338305Z",
+      "finding_count": 13,
+      "status_counts": {
+        "failed": 8,
+        "passed": 5
+      },
+      "severity_counts": {
+        "high": 4,
+        "medium": 9
+      },
+      "category_counts": {
+        "api": 6,
+        "observability": 5,
+        "service": 2
+      },
+      "failed_rule_ids": [
+        "API-005",
+        "API-006",
+        "OBS-001",
+        "OBS-002",
+        "OBS-003",
+        "OBS-004",
+        "SVC-001",
+        "SVC-003"
+      ],
+      "passed_rule_ids": [
+        "API-001",
+        "API-002",
+        "API-003",
+        "API-004",
+        "SVC-002"
+      ],
+      "skipped_rule_ids": [],
+      "error_rule_ids": [],
+      "overall_score": 37.04,
+      "maturity_band": "Initial Governance",
+      "category_scores": {
+        "api": 66.67,
+        "observability": 0.0,
+        "service": 50.0
+      },
+      "category_weights": {
+        "api": 1.1,
+        "observability": 1.3,
+        "service": 1.2
+      },
+      "applicable_rule_count": 13,
+      "not_applicable_rule_count": 0,
+      "gate_passed": false,
+      "gate_reasons": [
+        "Governance score 37.04 is below minimum score 65.00."
+      ]
+    }
+  ]
+}

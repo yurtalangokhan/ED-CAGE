@@ -1,0 +1,3646 @@
+{
+  "run_id": "1b3c8ae1-cc59-46de-a9d4-76a4b9a43f99",
+  "project_name": "train-ticket-runtime",
+  "started_at": "2026-07-09T09:04:20.657635Z",
+  "finished_at": "2026-07-09T09:04:25.338305Z",
+  "findings": [
+    {
+      "rule_id": "API-001",
+      "title": "OpenAPI document must define API metadata",
+      "severity": "medium",
+      "status": "passed",
+      "message": "All services satisfy OpenAPI policy: require_info_metadata.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service satisfies OpenAPI policy: require_info_metadata.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": true,
+                "failure_reason": null,
+                "operation_count": 24,
+                "spec_version": "2.0"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service satisfies OpenAPI policy: require_info_metadata.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": true,
+                "failure_reason": null,
+                "operation_count": 27,
+                "spec_version": "2.0"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service satisfies OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": true,
+            "failure_reason": null,
+            "operation_count": 24,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service satisfies OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": true,
+            "failure_reason": null,
+            "operation_count": 27,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-002",
+      "title": "OpenAPI operations must define operationId",
+      "severity": "medium",
+      "status": "passed",
+      "message": "All services satisfy OpenAPI policy: require_operation_id.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service satisfies OpenAPI policy: require_operation_id.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": true,
+                "failure_reason": null,
+                "missing_operations": [],
+                "operation_count": 24,
+                "spec_version": "2.0"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service satisfies OpenAPI policy: require_operation_id.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": true,
+                "failure_reason": null,
+                "missing_operations": [],
+                "operation_count": 27,
+                "spec_version": "2.0"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service satisfies OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": true,
+            "failure_reason": null,
+            "missing_operations": [],
+            "operation_count": 24,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service satisfies OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": true,
+            "failure_reason": null,
+            "missing_operations": [],
+            "operation_count": 27,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-003",
+      "title": "OpenAPI operations must define success responses",
+      "severity": "medium",
+      "status": "passed",
+      "message": "All services satisfy OpenAPI policy: require_success_responses.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service satisfies OpenAPI policy: require_success_responses.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": true,
+                "failure_reason": null,
+                "missing_operations": [],
+                "operation_count": 24,
+                "spec_version": "2.0"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service satisfies OpenAPI policy: require_success_responses.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": true,
+                "failure_reason": null,
+                "missing_operations": [],
+                "operation_count": 27,
+                "spec_version": "2.0"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service satisfies OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": true,
+            "failure_reason": null,
+            "missing_operations": [],
+            "operation_count": 24,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service satisfies OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": true,
+            "failure_reason": null,
+            "missing_operations": [],
+            "operation_count": 27,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-004",
+      "title": "OpenAPI operations must define error responses",
+      "severity": "medium",
+      "status": "passed",
+      "message": "All services satisfy OpenAPI policy: require_error_responses.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service satisfies OpenAPI policy: require_error_responses.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": true,
+                "failure_reason": null,
+                "missing_operations": [],
+                "operation_count": 24,
+                "spec_version": "2.0"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service satisfies OpenAPI policy: require_error_responses.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": true,
+                "failure_reason": null,
+                "missing_operations": [],
+                "operation_count": 27,
+                "spec_version": "2.0"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service satisfies OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": true,
+            "failure_reason": null,
+            "missing_operations": [],
+            "operation_count": 24,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service satisfies OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": true,
+            "failure_reason": null,
+            "missing_operations": [],
+            "operation_count": 27,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-005",
+      "title": "OpenAPI operations should define request and response schemas",
+      "severity": "medium",
+      "status": "failed",
+      "message": "OpenAPI policy 'require_operation_schemas' failed for service(s): ts-travel-service, ts-order-service",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "missing_operation_schema",
+                "missing_response_schema": [
+                  "GET /actuator",
+                  "GET /actuator/health",
+                  "GET /actuator/health/**",
+                  "GET /actuator/info",
+                  "GET /api/v1/travelservice/admin_trip",
+                  "GET /api/v1/travelservice/routes/{tripId}",
+                  "GET /api/v1/travelservice/train_types/{tripId}",
+                  "POST /api/v1/travelservice/trip_detail",
+                  "GET /api/v1/travelservice/trips",
+                  "POST /api/v1/travelservice/trips",
+                  "PUT /api/v1/travelservice/trips",
+                  "POST /api/v1/travelservice/trips/left",
+                  "POST /api/v1/travelservice/trips/left_parallel",
+                  "POST /api/v1/travelservice/trips/routes",
+                  "GET /api/v1/travelservice/trips/{tripId}",
+                  "DELETE /api/v1/travelservice/trips/{tripId}",
+                  "GET /api/v1/travelservice/welcome",
+                  "GET /error",
+                  "HEAD /error",
+                  "POST /error",
+                  "PUT /error",
+                  "DELETE /error",
+                  "OPTIONS /error",
+                  "PATCH /error"
+                ],
+                "missing_request_schema": [],
+                "operation_count": 24,
+                "spec_version": "2.0"
+              },
+              {
+                "url": "http://127.0.0.1:12346/v3/api-docs",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/swagger.json",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/openapi.json",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "missing_operation_schema",
+                "missing_response_schema": [
+                  "GET /actuator",
+                  "GET /actuator/health",
+                  "GET /actuator/health/**",
+                  "GET /actuator/info",
+                  "GET /api/v1/orderservice/order",
+                  "POST /api/v1/orderservice/order",
+                  "PUT /api/v1/orderservice/order",
+                  "POST /api/v1/orderservice/order/admin",
+                  "PUT /api/v1/orderservice/order/admin",
+                  "GET /api/v1/orderservice/order/orderPay/{orderId}",
+                  "GET /api/v1/orderservice/order/price/{orderId}",
+                  "POST /api/v1/orderservice/order/query",
+                  "POST /api/v1/orderservice/order/refresh",
+                  "GET /api/v1/orderservice/order/security/{checkDate}/{accountId}",
+                  "GET /api/v1/orderservice/order/status/{orderId}/{status}",
+                  "POST /api/v1/orderservice/order/tickets",
+                  "GET /api/v1/orderservice/order/{orderId}",
+                  "DELETE /api/v1/orderservice/order/{orderId}",
+                  "GET /api/v1/orderservice/order/{travelDate}/{trainNumber}",
+                  "GET /api/v1/orderservice/welcome",
+                  "GET /error",
+                  "HEAD /error",
+                  "POST /error",
+                  "PUT /error",
+                  "DELETE /error",
+                  "OPTIONS /error",
+                  "PATCH /error"
+                ],
+                "missing_request_schema": [],
+                "operation_count": 27,
+                "spec_version": "2.0"
+              },
+              {
+                "url": "http://127.0.0.1:12031/v3/api-docs",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/swagger.json",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/openapi.json",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "missing_operation_schema",
+            "missing_response_schema": [
+              "GET /actuator",
+              "GET /actuator/health",
+              "GET /actuator/health/**",
+              "GET /actuator/info",
+              "GET /api/v1/travelservice/admin_trip",
+              "GET /api/v1/travelservice/routes/{tripId}",
+              "GET /api/v1/travelservice/train_types/{tripId}",
+              "POST /api/v1/travelservice/trip_detail",
+              "GET /api/v1/travelservice/trips",
+              "POST /api/v1/travelservice/trips",
+              "PUT /api/v1/travelservice/trips",
+              "POST /api/v1/travelservice/trips/left",
+              "POST /api/v1/travelservice/trips/left_parallel",
+              "POST /api/v1/travelservice/trips/routes",
+              "GET /api/v1/travelservice/trips/{tripId}",
+              "DELETE /api/v1/travelservice/trips/{tripId}",
+              "GET /api/v1/travelservice/welcome",
+              "GET /error",
+              "HEAD /error",
+              "POST /error",
+              "PUT /error",
+              "DELETE /error",
+              "OPTIONS /error",
+              "PATCH /error"
+            ],
+            "missing_request_schema": [],
+            "operation_count": 24,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/v3/api-docs",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/v3/api-docs",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/swagger.json",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/swagger.json",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/openapi.json",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/openapi.json",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "missing_operation_schema",
+            "missing_response_schema": [
+              "GET /actuator",
+              "GET /actuator/health",
+              "GET /actuator/health/**",
+              "GET /actuator/info",
+              "GET /api/v1/orderservice/order",
+              "POST /api/v1/orderservice/order",
+              "PUT /api/v1/orderservice/order",
+              "POST /api/v1/orderservice/order/admin",
+              "PUT /api/v1/orderservice/order/admin",
+              "GET /api/v1/orderservice/order/orderPay/{orderId}",
+              "GET /api/v1/orderservice/order/price/{orderId}",
+              "POST /api/v1/orderservice/order/query",
+              "POST /api/v1/orderservice/order/refresh",
+              "GET /api/v1/orderservice/order/security/{checkDate}/{accountId}",
+              "GET /api/v1/orderservice/order/status/{orderId}/{status}",
+              "POST /api/v1/orderservice/order/tickets",
+              "GET /api/v1/orderservice/order/{orderId}",
+              "DELETE /api/v1/orderservice/order/{orderId}",
+              "GET /api/v1/orderservice/order/{travelDate}/{trainNumber}",
+              "GET /api/v1/orderservice/welcome",
+              "GET /error",
+              "HEAD /error",
+              "POST /error",
+              "PUT /error",
+              "DELETE /error",
+              "OPTIONS /error",
+              "PATCH /error"
+            ],
+            "missing_request_schema": [],
+            "operation_count": 27,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/v3/api-docs",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/v3/api-docs",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/swagger.json",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/swagger.json",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/openapi.json",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/openapi.json",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-006",
+      "title": "API security scheme should be defined",
+      "severity": "high",
+      "status": "failed",
+      "message": "OpenAPI policy 'require_security_scheme' failed for service(s): ts-travel-service, ts-order-service",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "missing_security_scheme_or_requirement",
+                "security_scheme_exists": false,
+                "security_requirement_exists": false,
+                "operation_count": 24,
+                "spec_version": "2.0"
+              },
+              {
+                "url": "http://127.0.0.1:12346/v3/api-docs",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/swagger.json",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/openapi.json",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "missing_security_scheme_or_requirement",
+                "security_scheme_exists": false,
+                "security_requirement_exists": false,
+                "operation_count": 27,
+                "spec_version": "2.0"
+              },
+              {
+                "url": "http://127.0.0.1:12031/v3/api-docs",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/swagger.json",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/openapi.json",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "missing_security_scheme_or_requirement",
+            "security_scheme_exists": false,
+            "security_requirement_exists": false,
+            "operation_count": 24,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/v3/api-docs",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/v3/api-docs",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/swagger.json",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/swagger.json",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/openapi.json",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/openapi.json",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "missing_security_scheme_or_requirement",
+            "security_scheme_exists": false,
+            "security_requirement_exists": false,
+            "operation_count": 27,
+            "spec_version": "2.0"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/v3/api-docs",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/v3/api-docs",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/swagger.json",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/swagger.json",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/openapi.json",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/openapi.json",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "SVC-003",
+      "title": "Services must expose a metrics endpoint",
+      "severity": "high",
+      "status": "failed",
+      "message": "Metrics endpoint check failed for service(s): ts-travel-service, ts-order-service",
+      "category": "observability",
+      "target": "service",
+      "check_type": "metrics_endpoint",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service does not expose a reachable metrics endpoint.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service does not expose a reachable metrics endpoint.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "OBS-001",
+      "title": "Metrics endpoint must be Prometheus-compatible",
+      "severity": "high",
+      "status": "failed",
+      "message": "Prometheus metrics compatibility check failed for service(s): ts-travel-service, ts-order-service",
+      "category": "observability",
+      "target": "service",
+      "check_type": "prometheus_metrics_compatibility",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service does not expose Prometheus-compatible metrics.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service does not expose Prometheus-compatible metrics.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "OBS-002",
+      "title": "Metrics must include request count metric",
+      "severity": "medium",
+      "status": "failed",
+      "message": "Required Prometheus metric group check failed for service(s): ts-travel-service, ts-order-service",
+      "category": "observability",
+      "target": "service",
+      "check_type": "required_prometheus_metric_groups",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_count": {
+                "description": "Metric representing request count or throughput.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^http_request_total$",
+                  "^requests_total$",
+                  "^grpc_server_handled_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_count": {
+                "description": "Metric representing request count or throughput.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^http_request_total$",
+                  "^requests_total$",
+                  "^grpc_server_handled_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "OBS-003",
+      "title": "Metrics must include request duration metric",
+      "severity": "medium",
+      "status": "failed",
+      "message": "Required Prometheus metric group check failed for service(s): ts-travel-service, ts-order-service",
+      "category": "observability",
+      "target": "service",
+      "check_type": "required_prometheus_metric_groups",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_duration": {
+                "description": "Metric representing request duration or latency.",
+                "patterns": [
+                  "^http_server_requests_seconds$",
+                  "^http_server_requests_seconds_sum$",
+                  "^http_request_duration_seconds$",
+                  "^http_request_duration_seconds_sum$",
+                  "^request_duration_seconds$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_duration": {
+                "description": "Metric representing request duration or latency.",
+                "patterns": [
+                  "^http_server_requests_seconds$",
+                  "^http_server_requests_seconds_sum$",
+                  "^http_request_duration_seconds$",
+                  "^http_request_duration_seconds_sum$",
+                  "^request_duration_seconds$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "OBS-004",
+      "title": "Metrics must include error or failure metric",
+      "severity": "medium",
+      "status": "failed",
+      "message": "Required Prometheus metric group check failed for service(s): ts-travel-service, ts-order-service",
+      "category": "observability",
+      "target": "service",
+      "check_type": "required_prometheus_metric_groups",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "error_metric": {
+                "description": "Metric representing error or failure count.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^errors_total$",
+                  "^request_errors_total$",
+                  "^failures_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12346/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "error_metric": {
+                "description": "Metric representing error or failure count.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^errors_total$",
+                  "^request_errors_total$",
+                  "^failures_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/actuator/prometheus",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/actuator/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:12031/metrics",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/prometheus",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/prometheus",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/metrics",
+          "observed_value": 403,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/metrics",
+            "status_code": 403,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/actuator/metrics",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "SVC-001",
+      "title": "Services must expose a health endpoint",
+      "severity": "high",
+      "status": "failed",
+      "message": "Health endpoint check failed for service(s): ts-travel-service, ts-order-service",
+      "category": "service",
+      "target": "service",
+      "check_type": "http_health_endpoint",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service does not have a reachable health endpoint.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/health",
+              "/health"
+            ],
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/actuator/health",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200,
+                  204
+                ],
+                "success": false
+              },
+              {
+                "url": "http://127.0.0.1:12346/health",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200,
+                  204
+                ],
+                "success": false
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service does not have a reachable health endpoint.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/health",
+              "/health"
+            ],
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/actuator/health",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200,
+                  204
+                ],
+                "success": false
+              },
+              {
+                "url": "http://127.0.0.1:12031/health",
+                "status_code": 403,
+                "expected_status_codes": [
+                  200,
+                  204
+                ],
+                "success": false
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "SVC-001",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/actuator/health",
+          "observed_value": 403,
+          "expected_value": [
+            200,
+            204
+          ],
+          "compliant": false,
+          "message": "Service does not have a reachable health endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/actuator/health",
+            "status_code": 403,
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "success": false
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/health",
+              "/health"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-001",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/health",
+          "observed_value": 403,
+          "expected_value": [
+            200,
+            204
+          ],
+          "compliant": false,
+          "message": "Service does not have a reachable health endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/health",
+            "status_code": 403,
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "success": false
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/actuator/health",
+              "/health"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-001",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/actuator/health",
+          "observed_value": 403,
+          "expected_value": [
+            200,
+            204
+          ],
+          "compliant": false,
+          "message": "Service does not have a reachable health endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/actuator/health",
+            "status_code": 403,
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "success": false
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/health",
+              "/health"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-001",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/health",
+          "observed_value": 403,
+          "expected_value": [
+            200,
+            204
+          ],
+          "compliant": false,
+          "message": "Service does not have a reachable health endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/health",
+            "status_code": 403,
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "success": false
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/actuator/health",
+              "/health"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "SVC-002",
+      "title": "Services must expose an OpenAPI specification",
+      "severity": "medium",
+      "status": "passed",
+      "message": "All services expose a valid OpenAPI specification.",
+      "category": "service",
+      "target": "service",
+      "check_type": "openapi_spec",
+      "evidence": [
+        {
+          "source": "ts-travel-service",
+          "message": "Service exposes a valid OpenAPI specification.",
+          "data": {
+            "service": "ts-travel-service",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12346/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "spec_version": "2.0",
+                "title": "Api Documentation",
+                "path_count": 15
+              }
+            ]
+          }
+        },
+        {
+          "source": "ts-order-service",
+          "message": "Service exposes a valid OpenAPI specification.",
+          "data": {
+            "service": "ts-order-service",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:12031/v2/api-docs",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "spec_version": "2.0",
+                "title": "Api Documentation",
+                "path_count": 17
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "ts-travel-service",
+          "resource": "http://127.0.0.1:12346/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12346/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "spec_version": "2.0",
+            "title": "Api Documentation",
+            "path_count": 15
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12346",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "ts-order-service",
+          "resource": "http://127.0.0.1:12031/v2/api-docs",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:12031/v2/api-docs",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "spec_version": "2.0",
+            "title": "Api Documentation",
+            "path_count": 17
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:12031",
+            "candidate_paths": [
+              "/v2/api-docs",
+              "/v3/api-docs",
+              "/swagger.json",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "score": 37.04,
+    "achieved_score": 133.34,
+    "max_score": 360.0,
+    "total_findings": 13,
+    "evaluated_findings": 13,
+    "skipped_findings": 0,
+    "status_summary": {
+      "passed": 5,
+      "failed": 8,
+      "skipped": 0,
+      "error": 0
+    },
+    "severity_summary": {
+      "info": 0,
+      "low": 0,
+      "medium": 9,
+      "high": 4,
+      "critical": 0
+    },
+    "maturity_band": "Initial Governance",
+    "category_scores": {
+      "api": 66.67,
+      "observability": 0.0,
+      "service": 50.0
+    },
+    "category_weights": {
+      "api": 1.1,
+      "observability": 1.3,
+      "service": 1.2
+    },
+    "category_details": [
+      {
+        "category": "api",
+        "score": 66.67,
+        "weight": 1.1,
+        "applicable_rule_count": 6,
+        "passed_rule_count": 4,
+        "warning_rule_count": 0,
+        "failed_rule_count": 2,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      },
+      {
+        "category": "observability",
+        "score": 0.0,
+        "weight": 1.3,
+        "applicable_rule_count": 5,
+        "passed_rule_count": 0,
+        "warning_rule_count": 0,
+        "failed_rule_count": 5,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      },
+      {
+        "category": "service",
+        "score": 50.0,
+        "weight": 1.2,
+        "applicable_rule_count": 2,
+        "passed_rule_count": 1,
+        "warning_rule_count": 0,
+        "failed_rule_count": 1,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      }
+    ],
+    "applicable_rule_count": 13,
+    "not_applicable_rule_count": 0,
+    "weighted_score_explanation": {
+      "formula": "sum(category_score * category_weight) / sum(category_weight)",
+      "weighted_score_sum": 133.34,
+      "weight_sum": 3.6,
+      "status_scores": {
+        "passed": 1.0,
+        "failed": 0.0,
+        "error": 0.0
+      }
+    }
+  },
+  "gate_result": {
+    "passed": false,
+    "actual_score": 37.04,
+    "minimum_score": 65.0,
+    "reasons": [
+      "Governance score 37.04 is below minimum score 65.00."
+    ],
+    "blocking_findings": []
+  },
+  "actions": [
+    {
+      "action_id": "ACTION-API-005-SCHEMAS:API-005",
+      "rule_id": "API-005",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add request and response schemas",
+      "action_type": "documentation",
+      "priority": "medium",
+      "recommendation": "Define request and response schemas for OpenAPI operations where applicable.",
+      "implementation_hint": "Use components.schemas and reference them from requestBody and responses.content.*.schema.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "references": [],
+      "tags": [
+        "api",
+        "openapi",
+        "schema"
+      ],
+      "metadata": {
+        "finding_message": "OpenAPI policy 'require_operation_schemas' failed for service(s): ts-travel-service, ts-order-service",
+        "source_action_definition": "ACTION-API-005-SCHEMAS"
+      }
+    },
+    {
+      "action_id": "ACTION-API-006-SECURITY-SCHEME:API-006",
+      "rule_id": "API-006",
+      "finding_status": "failed",
+      "severity": "high",
+      "title": "Define OpenAPI security scheme",
+      "action_type": "documentation",
+      "priority": "high",
+      "recommendation": "Define securitySchemes and security requirements in the OpenAPI document.",
+      "implementation_hint": "Add components.securitySchemes and global or operation-level security requirements.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "references": [],
+      "tags": [
+        "api",
+        "security",
+        "openapi"
+      ],
+      "metadata": {
+        "finding_message": "OpenAPI policy 'require_security_scheme' failed for service(s): ts-travel-service, ts-order-service",
+        "source_action_definition": "ACTION-API-006-SECURITY-SCHEME"
+      }
+    },
+    {
+      "action_id": "ACTION-SVC-003-METRICS-ENDPOINT:SVC-003",
+      "rule_id": "SVC-003",
+      "finding_status": "failed",
+      "severity": "high",
+      "title": "Expose a metrics endpoint",
+      "action_type": "remediation",
+      "priority": "high",
+      "recommendation": "Expose a reachable metrics endpoint for the service.",
+      "implementation_hint": "Provide /metrics or /actuator/prometheus and return HTTP 200 with non-empty metrics content.",
+      "category": "observability",
+      "target": "service",
+      "check_type": "metrics_endpoint",
+      "references": [],
+      "tags": [
+        "service",
+        "observability",
+        "metrics"
+      ],
+      "metadata": {
+        "finding_message": "Metrics endpoint check failed for service(s): ts-travel-service, ts-order-service",
+        "source_action_definition": "ACTION-SVC-003-METRICS-ENDPOINT"
+      }
+    },
+    {
+      "action_id": "ACTION-OBS-001-PROMETHEUS-COMPATIBILITY:OBS-001",
+      "rule_id": "OBS-001",
+      "finding_status": "failed",
+      "severity": "high",
+      "title": "Expose Prometheus-compatible metrics",
+      "action_type": "remediation",
+      "priority": "high",
+      "recommendation": "Expose metrics in Prometheus text exposition format.",
+      "implementation_hint": "Use Micrometer Prometheus registry, OpenTelemetry Collector Prometheus exporter, or native Prometheus client libraries.",
+      "category": "observability",
+      "target": "service",
+      "check_type": "prometheus_metrics_compatibility",
+      "references": [],
+      "tags": [
+        "observability",
+        "prometheus",
+        "metrics"
+      ],
+      "metadata": {
+        "finding_message": "Prometheus metrics compatibility check failed for service(s): ts-travel-service, ts-order-service",
+        "source_action_definition": "ACTION-OBS-001-PROMETHEUS-COMPATIBILITY"
+      }
+    },
+    {
+      "action_id": "ACTION-OBS-002-REQUEST-COUNT-METRIC:OBS-002",
+      "rule_id": "OBS-002",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add request count metric",
+      "action_type": "remediation",
+      "priority": "medium",
+      "recommendation": "Expose a request count or throughput metric for the service.",
+      "implementation_hint": "Provide a metric such as http_requests_total, http_server_requests_seconds_count or equivalent.",
+      "category": "observability",
+      "target": "service",
+      "check_type": "required_prometheus_metric_groups",
+      "references": [],
+      "tags": [
+        "observability",
+        "throughput",
+        "metrics"
+      ],
+      "metadata": {
+        "finding_message": "Required Prometheus metric group check failed for service(s): ts-travel-service, ts-order-service",
+        "source_action_definition": "ACTION-OBS-002-REQUEST-COUNT-METRIC"
+      }
+    },
+    {
+      "action_id": "ACTION-OBS-003-REQUEST-DURATION-METRIC:OBS-003",
+      "rule_id": "OBS-003",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add request duration metric",
+      "action_type": "remediation",
+      "priority": "medium",
+      "recommendation": "Expose a request duration or latency metric for the service.",
+      "implementation_hint": "Provide a metric such as http_request_duration_seconds, http_server_requests_seconds or equivalent.",
+      "category": "observability",
+      "target": "service",
+      "check_type": "required_prometheus_metric_groups",
+      "references": [],
+      "tags": [
+        "observability",
+        "latency",
+        "performance"
+      ],
+      "metadata": {
+        "finding_message": "Required Prometheus metric group check failed for service(s): ts-travel-service, ts-order-service",
+        "source_action_definition": "ACTION-OBS-003-REQUEST-DURATION-METRIC"
+      }
+    },
+    {
+      "action_id": "ACTION-OBS-004-ERROR-METRIC:OBS-004",
+      "rule_id": "OBS-004",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add error or failure metric",
+      "action_type": "remediation",
+      "priority": "medium",
+      "recommendation": "Expose a metric that enables error or failure rate calculation.",
+      "implementation_hint": "Provide a metric such as errors_total or expose request count metrics with status/code labels that include 5xx responses.",
+      "category": "observability",
+      "target": "service",
+      "check_type": "required_prometheus_metric_groups",
+      "references": [],
+      "tags": [
+        "observability",
+        "reliability",
+        "error-rate"
+      ],
+      "metadata": {
+        "finding_message": "Required Prometheus metric group check failed for service(s): ts-travel-service, ts-order-service",
+        "source_action_definition": "ACTION-OBS-004-ERROR-METRIC"
+      }
+    },
+    {
+      "action_id": "ACTION-SVC-001-HEALTH-ENDPOINT:SVC-001",
+      "rule_id": "SVC-001",
+      "finding_status": "failed",
+      "severity": "high",
+      "title": "Add a reachable health endpoint",
+      "action_type": "remediation",
+      "priority": "high",
+      "recommendation": "Expose at least one reachable health, readiness or liveness endpoint for the service.",
+      "implementation_hint": "Use /health, /ready, /live or /actuator/health. The endpoint should return HTTP 200 or 204 when the service is healthy.",
+      "category": "service",
+      "target": "service",
+      "check_type": "http_health_endpoint",
+      "references": [],
+      "tags": [
+        "service",
+        "healthcheck",
+        "runtime-governance"
+      ],
+      "metadata": {
+        "finding_message": "Health endpoint check failed for service(s): ts-travel-service, ts-order-service",
+        "source_action_definition": "ACTION-SVC-001-HEALTH-ENDPOINT"
+      }
+    }
+  ]
+}

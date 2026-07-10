@@ -1,0 +1,5524 @@
+{
+  "run_id": "0bf0839b-bf51-43e7-a53c-aa02b65fa6cf",
+  "project_name": "spring-petclinic-microservices-runtime",
+  "started_at": "2026-07-08T13:25:53.967234Z",
+  "finished_at": "2026-07-08T13:25:59.516579Z",
+  "findings": [
+    {
+      "rule_id": "API-001",
+      "title": "OpenAPI document must define API metadata",
+      "severity": "medium",
+      "status": "failed",
+      "message": "OpenAPI policy 'require_info_metadata' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8080/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8081/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8082/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8083/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_info_metadata",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-001",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_info_metadata.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_info_metadata",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-002",
+      "title": "OpenAPI operations must define operationId",
+      "severity": "medium",
+      "status": "failed",
+      "message": "OpenAPI policy 'require_operation_id' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8080/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8081/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8082/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8083/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_id",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-002",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_id.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_id",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-003",
+      "title": "OpenAPI operations must define success responses",
+      "severity": "medium",
+      "status": "failed",
+      "message": "OpenAPI policy 'require_success_responses' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8080/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8081/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8082/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8083/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_success_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-003",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_success_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_success_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-004",
+      "title": "OpenAPI operations must define error responses",
+      "severity": "medium",
+      "status": "failed",
+      "message": "OpenAPI policy 'require_error_responses' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8080/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8081/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8082/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8083/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_error_responses",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-004",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_error_responses.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_error_responses",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-005",
+      "title": "OpenAPI operations should define request and response schemas",
+      "severity": "medium",
+      "status": "failed",
+      "message": "OpenAPI policy 'require_operation_schemas' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8080/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8081/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8082/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8083/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_operation_schemas",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-005",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_operation_schemas.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_operation_schemas",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "API-006",
+      "title": "API security scheme should be defined",
+      "severity": "high",
+      "status": "failed",
+      "message": "OpenAPI policy 'require_security_scheme' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8080/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8081/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8082/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8083/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "policy": "require_security_scheme",
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "API-006",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not satisfy OpenAPI policy: require_security_scheme.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "policy": "require_security_scheme",
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "SVC-003",
+      "title": "Services must expose a metrics endpoint",
+      "severity": "high",
+      "status": "passed",
+      "message": "All services expose a reachable metrics endpoint.",
+      "category": "observability",
+      "target": "service",
+      "check_type": "metrics_endpoint",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service exposes a reachable metrics endpoint.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "response_size_bytes": 14070
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service exposes a reachable metrics endpoint.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "response_size_bytes": 26314
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service exposes a reachable metrics endpoint.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "response_size_bytes": 25898
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service exposes a reachable metrics endpoint.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "response_size_bytes": 22119
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "response_size_bytes": 14070
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "response_size_bytes": 26314
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "response_size_bytes": 25898
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-003",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes a reachable metrics endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "response_size_bytes": 22119
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "OBS-001",
+      "title": "Metrics endpoint must be Prometheus-compatible",
+      "severity": "high",
+      "status": "passed",
+      "message": "All services expose Prometheus-compatible metrics.",
+      "category": "observability",
+      "target": "service",
+      "check_type": "prometheus_metrics_compatibility",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service exposes Prometheus-compatible metrics.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 42,
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "http_server_requests_active_seconds_count",
+                  "http_server_requests_active_seconds_max",
+                  "http_server_requests_active_seconds_sum",
+                  "http_server_requests_seconds_count",
+                  "http_server_requests_seconds_max",
+                  "http_server_requests_seconds_sum",
+                  "jvm_buffer_count_buffers",
+                  "jvm_buffer_memory_used_bytes",
+                  "jvm_buffer_total_capacity_bytes",
+                  "jvm_classes_loaded_classes",
+                  "jvm_classes_unloaded_classes_total",
+                  "jvm_compilation_time_ms_total",
+                  "jvm_gc_memory_promoted_bytes_total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service exposes Prometheus-compatible metrics.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 84,
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service exposes Prometheus-compatible metrics.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 86,
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service exposes Prometheus-compatible metrics.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 86,
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 42,
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "http_server_requests_active_seconds_count",
+              "http_server_requests_active_seconds_max",
+              "http_server_requests_active_seconds_sum",
+              "http_server_requests_seconds_count",
+              "http_server_requests_seconds_max",
+              "http_server_requests_seconds_sum",
+              "jvm_buffer_count_buffers",
+              "jvm_buffer_memory_used_bytes",
+              "jvm_buffer_total_capacity_bytes",
+              "jvm_classes_loaded_classes",
+              "jvm_classes_unloaded_classes_total",
+              "jvm_compilation_time_ms_total",
+              "jvm_gc_memory_promoted_bytes_total"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 84,
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 86,
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-001",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes Prometheus-compatible metrics.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 86,
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "OBS-002",
+      "title": "Metrics must include request count metric",
+      "severity": "medium",
+      "status": "passed",
+      "message": "All services expose required Prometheus metric group(s).",
+      "category": "observability",
+      "target": "service",
+      "check_type": "required_prometheus_metric_groups",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_count": {
+                "description": "Metric representing request count or throughput.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^http_request_total$",
+                  "^requests_total$",
+                  "^grpc_server_handled_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 42,
+                "matched_groups": {
+                  "request_count": [
+                    "http_server_requests_seconds_count"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "http_server_requests_active_seconds_count",
+                  "http_server_requests_active_seconds_max",
+                  "http_server_requests_active_seconds_sum",
+                  "http_server_requests_seconds_count",
+                  "http_server_requests_seconds_max",
+                  "http_server_requests_seconds_sum",
+                  "jvm_buffer_count_buffers",
+                  "jvm_buffer_memory_used_bytes",
+                  "jvm_buffer_total_capacity_bytes",
+                  "jvm_classes_loaded_classes",
+                  "jvm_classes_unloaded_classes_total",
+                  "jvm_compilation_time_ms_total",
+                  "jvm_gc_memory_promoted_bytes_total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_count": {
+                "description": "Metric representing request count or throughput.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^http_request_total$",
+                  "^requests_total$",
+                  "^grpc_server_handled_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 84,
+                "matched_groups": {
+                  "request_count": [
+                    "http_server_requests_seconds_count"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_count": {
+                "description": "Metric representing request count or throughput.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^http_request_total$",
+                  "^requests_total$",
+                  "^grpc_server_handled_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 86,
+                "matched_groups": {
+                  "request_count": [
+                    "http_server_requests_seconds_count"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_count": {
+                "description": "Metric representing request count or throughput.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^http_request_total$",
+                  "^requests_total$",
+                  "^grpc_server_handled_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 86,
+                "matched_groups": {
+                  "request_count": [
+                    "http_server_requests_seconds_count"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 42,
+            "matched_groups": {
+              "request_count": [
+                "http_server_requests_seconds_count"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "http_server_requests_active_seconds_count",
+              "http_server_requests_active_seconds_max",
+              "http_server_requests_active_seconds_sum",
+              "http_server_requests_seconds_count",
+              "http_server_requests_seconds_max",
+              "http_server_requests_seconds_sum",
+              "jvm_buffer_count_buffers",
+              "jvm_buffer_memory_used_bytes",
+              "jvm_buffer_total_capacity_bytes",
+              "jvm_classes_loaded_classes",
+              "jvm_classes_unloaded_classes_total",
+              "jvm_compilation_time_ms_total",
+              "jvm_gc_memory_promoted_bytes_total"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 84,
+            "matched_groups": {
+              "request_count": [
+                "http_server_requests_seconds_count"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 86,
+            "matched_groups": {
+              "request_count": [
+                "http_server_requests_seconds_count"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-002",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 86,
+            "matched_groups": {
+              "request_count": [
+                "http_server_requests_seconds_count"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "OBS-003",
+      "title": "Metrics must include request duration metric",
+      "severity": "medium",
+      "status": "passed",
+      "message": "All services expose required Prometheus metric group(s).",
+      "category": "observability",
+      "target": "service",
+      "check_type": "required_prometheus_metric_groups",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_duration": {
+                "description": "Metric representing request duration or latency.",
+                "patterns": [
+                  "^http_server_requests_seconds$",
+                  "^http_server_requests_seconds_sum$",
+                  "^http_request_duration_seconds$",
+                  "^http_request_duration_seconds_sum$",
+                  "^request_duration_seconds$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 42,
+                "matched_groups": {
+                  "request_duration": [
+                    "http_server_requests_seconds_sum"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "http_server_requests_active_seconds_count",
+                  "http_server_requests_active_seconds_max",
+                  "http_server_requests_active_seconds_sum",
+                  "http_server_requests_seconds_count",
+                  "http_server_requests_seconds_max",
+                  "http_server_requests_seconds_sum",
+                  "jvm_buffer_count_buffers",
+                  "jvm_buffer_memory_used_bytes",
+                  "jvm_buffer_total_capacity_bytes",
+                  "jvm_classes_loaded_classes",
+                  "jvm_classes_unloaded_classes_total",
+                  "jvm_compilation_time_ms_total",
+                  "jvm_gc_memory_promoted_bytes_total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_duration": {
+                "description": "Metric representing request duration or latency.",
+                "patterns": [
+                  "^http_server_requests_seconds$",
+                  "^http_server_requests_seconds_sum$",
+                  "^http_request_duration_seconds$",
+                  "^http_request_duration_seconds_sum$",
+                  "^request_duration_seconds$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 84,
+                "matched_groups": {
+                  "request_duration": [
+                    "http_server_requests_seconds_sum"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_duration": {
+                "description": "Metric representing request duration or latency.",
+                "patterns": [
+                  "^http_server_requests_seconds$",
+                  "^http_server_requests_seconds_sum$",
+                  "^http_request_duration_seconds$",
+                  "^http_request_duration_seconds_sum$",
+                  "^request_duration_seconds$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 86,
+                "matched_groups": {
+                  "request_duration": [
+                    "http_server_requests_seconds_sum"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "request_duration": {
+                "description": "Metric representing request duration or latency.",
+                "patterns": [
+                  "^http_server_requests_seconds$",
+                  "^http_server_requests_seconds_sum$",
+                  "^http_request_duration_seconds$",
+                  "^http_request_duration_seconds_sum$",
+                  "^request_duration_seconds$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 86,
+                "matched_groups": {
+                  "request_duration": [
+                    "http_server_requests_seconds_sum"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 42,
+            "matched_groups": {
+              "request_duration": [
+                "http_server_requests_seconds_sum"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "http_server_requests_active_seconds_count",
+              "http_server_requests_active_seconds_max",
+              "http_server_requests_active_seconds_sum",
+              "http_server_requests_seconds_count",
+              "http_server_requests_seconds_max",
+              "http_server_requests_seconds_sum",
+              "jvm_buffer_count_buffers",
+              "jvm_buffer_memory_used_bytes",
+              "jvm_buffer_total_capacity_bytes",
+              "jvm_classes_loaded_classes",
+              "jvm_classes_unloaded_classes_total",
+              "jvm_compilation_time_ms_total",
+              "jvm_gc_memory_promoted_bytes_total"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 84,
+            "matched_groups": {
+              "request_duration": [
+                "http_server_requests_seconds_sum"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 86,
+            "matched_groups": {
+              "request_duration": [
+                "http_server_requests_seconds_sum"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-003",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 86,
+            "matched_groups": {
+              "request_duration": [
+                "http_server_requests_seconds_sum"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "OBS-004",
+      "title": "Metrics must include error or failure metric",
+      "severity": "medium",
+      "status": "passed",
+      "message": "All services expose required Prometheus metric group(s).",
+      "category": "observability",
+      "target": "service",
+      "check_type": "required_prometheus_metric_groups",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "error_metric": {
+                "description": "Metric representing error or failure count.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^errors_total$",
+                  "^request_errors_total$",
+                  "^failures_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 42,
+                "matched_groups": {
+                  "error_metric": [
+                    "http_server_requests_seconds_count"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "http_server_requests_active_seconds_count",
+                  "http_server_requests_active_seconds_max",
+                  "http_server_requests_active_seconds_sum",
+                  "http_server_requests_seconds_count",
+                  "http_server_requests_seconds_max",
+                  "http_server_requests_seconds_sum",
+                  "jvm_buffer_count_buffers",
+                  "jvm_buffer_memory_used_bytes",
+                  "jvm_buffer_total_capacity_bytes",
+                  "jvm_classes_loaded_classes",
+                  "jvm_classes_unloaded_classes_total",
+                  "jvm_compilation_time_ms_total",
+                  "jvm_gc_memory_promoted_bytes_total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "error_metric": {
+                "description": "Metric representing error or failure count.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^errors_total$",
+                  "^request_errors_total$",
+                  "^failures_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 84,
+                "matched_groups": {
+                  "error_metric": [
+                    "http_server_requests_seconds_count"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "error_metric": {
+                "description": "Metric representing error or failure count.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^errors_total$",
+                  "^request_errors_total$",
+                  "^failures_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 86,
+                "matched_groups": {
+                  "error_metric": [
+                    "http_server_requests_seconds_count"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service exposes required Prometheus metric group(s).",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "required_metric_groups": {
+              "error_metric": {
+                "description": "Metric representing error or failure count.",
+                "patterns": [
+                  "^http_server_requests_seconds_count$",
+                  "^http_requests_total$",
+                  "^errors_total$",
+                  "^request_errors_total$",
+                  "^failures_total$"
+                ]
+              }
+            },
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/actuator/prometheus",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": true,
+                "failure_reason": null,
+                "metric_count": 86,
+                "matched_groups": {
+                  "error_metric": [
+                    "http_server_requests_seconds_count"
+                  ]
+                },
+                "missing_groups": [],
+                "metric_names_sample": [
+                  "application_ready_time_seconds",
+                  "application_started_time_seconds",
+                  "executor_active_threads",
+                  "executor_completed_tasks_total",
+                  "executor_pool_core_threads",
+                  "executor_pool_size_threads",
+                  "executor_queued_tasks",
+                  "hikaricp_connections",
+                  "hikaricp_connections_acquire_seconds_count",
+                  "hikaricp_connections_acquire_seconds_sum",
+                  "hikaricp_connections_active",
+                  "hikaricp_connections_creation_seconds_count",
+                  "hikaricp_connections_creation_seconds_max",
+                  "hikaricp_connections_creation_seconds_sum",
+                  "hikaricp_connections_idle",
+                  "hikaricp_connections_max",
+                  "hikaricp_connections_min",
+                  "hikaricp_connections_pending",
+                  "hikaricp_connections_timeout_total",
+                  "hikaricp_connections_usage_seconds_count"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 42,
+            "matched_groups": {
+              "error_metric": [
+                "http_server_requests_seconds_count"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "http_server_requests_active_seconds_count",
+              "http_server_requests_active_seconds_max",
+              "http_server_requests_active_seconds_sum",
+              "http_server_requests_seconds_count",
+              "http_server_requests_seconds_max",
+              "http_server_requests_seconds_sum",
+              "jvm_buffer_count_buffers",
+              "jvm_buffer_memory_used_bytes",
+              "jvm_buffer_total_capacity_bytes",
+              "jvm_classes_loaded_classes",
+              "jvm_classes_unloaded_classes_total",
+              "jvm_compilation_time_ms_total",
+              "jvm_gc_memory_promoted_bytes_total"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 84,
+            "matched_groups": {
+              "error_metric": [
+                "http_server_requests_seconds_count"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 86,
+            "matched_groups": {
+              "error_metric": [
+                "http_server_requests_seconds_count"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        },
+        {
+          "rule_id": "OBS-004",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/actuator/prometheus",
+          "observed_value": 200,
+          "expected_value": [
+            200
+          ],
+          "compliant": true,
+          "message": "Service exposes required Prometheus metric group(s).",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/actuator/prometheus",
+            "status_code": 200,
+            "expected_status_codes": [
+              200
+            ],
+            "success": true,
+            "failure_reason": null,
+            "metric_count": 86,
+            "matched_groups": {
+              "error_metric": [
+                "http_server_requests_seconds_count"
+              ]
+            },
+            "missing_groups": [],
+            "metric_names_sample": [
+              "application_ready_time_seconds",
+              "application_started_time_seconds",
+              "executor_active_threads",
+              "executor_completed_tasks_total",
+              "executor_pool_core_threads",
+              "executor_pool_size_threads",
+              "executor_queued_tasks",
+              "hikaricp_connections",
+              "hikaricp_connections_acquire_seconds_count",
+              "hikaricp_connections_acquire_seconds_sum",
+              "hikaricp_connections_active",
+              "hikaricp_connections_creation_seconds_count",
+              "hikaricp_connections_creation_seconds_max",
+              "hikaricp_connections_creation_seconds_sum",
+              "hikaricp_connections_idle",
+              "hikaricp_connections_max",
+              "hikaricp_connections_min",
+              "hikaricp_connections_pending",
+              "hikaricp_connections_timeout_total",
+              "hikaricp_connections_usage_seconds_count"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/prometheus",
+              "/metrics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "SVC-001",
+      "title": "Services must expose a health endpoint",
+      "severity": "high",
+      "status": "passed",
+      "message": "All services expose at least one reachable health endpoint.",
+      "category": "service",
+      "target": "service",
+      "check_type": "http_health_endpoint",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service has a reachable health endpoint.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/health"
+            ],
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/actuator/health",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200,
+                  204
+                ],
+                "success": true
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service has a reachable health endpoint.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/health"
+            ],
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/actuator/health",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200,
+                  204
+                ],
+                "success": true
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service has a reachable health endpoint.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/health"
+            ],
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/actuator/health",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200,
+                  204
+                ],
+                "success": true
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service has a reachable health endpoint.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/health"
+            ],
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/actuator/health",
+                "status_code": 200,
+                "expected_status_codes": [
+                  200,
+                  204
+                ],
+                "success": true
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "SVC-001",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/actuator/health",
+          "observed_value": 200,
+          "expected_value": [
+            200,
+            204
+          ],
+          "compliant": true,
+          "message": "Service has a reachable health endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/actuator/health",
+            "status_code": 200,
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "success": true
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/actuator/health"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-001",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/actuator/health",
+          "observed_value": 200,
+          "expected_value": [
+            200,
+            204
+          ],
+          "compliant": true,
+          "message": "Service has a reachable health endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/actuator/health",
+            "status_code": 200,
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "success": true
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/actuator/health"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-001",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/actuator/health",
+          "observed_value": 200,
+          "expected_value": [
+            200,
+            204
+          ],
+          "compliant": true,
+          "message": "Service has a reachable health endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/actuator/health",
+            "status_code": 200,
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "success": true
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/actuator/health"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-001",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/actuator/health",
+          "observed_value": 200,
+          "expected_value": [
+            200,
+            204
+          ],
+          "compliant": true,
+          "message": "Service has a reachable health endpoint.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/actuator/health",
+            "status_code": 200,
+            "expected_status_codes": [
+              200,
+              204
+            ],
+            "success": true
+          },
+          "metadata": {
+            "finding_status": "passed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/actuator/health"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "SVC-002",
+      "title": "Services must expose an OpenAPI specification",
+      "severity": "medium",
+      "status": "failed",
+      "message": "OpenAPI specification check failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+      "category": "service",
+      "target": "service",
+      "check_type": "openapi_spec",
+      "evidence": [
+        {
+          "source": "api-gateway",
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "data": {
+            "service": "api-gateway",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8080/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8080/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "customers-service",
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "data": {
+            "service": "customers-service",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8081/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8081/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "visits-service",
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "data": {
+            "service": "visits-service",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8082/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8082/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        },
+        {
+          "source": "vets-service",
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "data": {
+            "service": "vets-service",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ],
+            "expected_status_codes": [
+              200
+            ],
+            "attempts": [
+              {
+                "url": "http://127.0.0.1:8083/v3/api-docs",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              },
+              {
+                "url": "http://127.0.0.1:8083/openapi.json",
+                "status_code": 404,
+                "expected_status_codes": [
+                  200
+                ],
+                "success": false,
+                "failure_reason": "unexpected_status_code"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "api-gateway",
+          "resource": "http://127.0.0.1:8080/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8080/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8080",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "customers-service",
+          "resource": "http://127.0.0.1:8081/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8081/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8081",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "visits-service",
+          "resource": "http://127.0.0.1:8082/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8082/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8082",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/v3/api-docs",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/v3/api-docs",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        },
+        {
+          "rule_id": "SVC-002",
+          "source_type": "http",
+          "source_name": "vets-service",
+          "resource": "http://127.0.0.1:8083/openapi.json",
+          "observed_value": 404,
+          "expected_value": [
+            200
+          ],
+          "compliant": false,
+          "message": "Service does not expose a valid OpenAPI specification.",
+          "raw_data": {
+            "url": "http://127.0.0.1:8083/openapi.json",
+            "status_code": 404,
+            "expected_status_codes": [
+              200
+            ],
+            "success": false,
+            "failure_reason": "unexpected_status_code"
+          },
+          "metadata": {
+            "finding_status": "failed",
+            "base_url": "http://127.0.0.1:8083",
+            "candidate_paths": [
+              "/v3/api-docs",
+              "/openapi.json"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "score": 52.78,
+    "achieved_score": 190.0,
+    "max_score": 360.0,
+    "total_findings": 13,
+    "evaluated_findings": 13,
+    "skipped_findings": 0,
+    "status_summary": {
+      "passed": 6,
+      "failed": 7,
+      "skipped": 0,
+      "error": 0
+    },
+    "severity_summary": {
+      "info": 0,
+      "low": 0,
+      "medium": 9,
+      "high": 4,
+      "critical": 0
+    },
+    "maturity_band": "Emerging Governance",
+    "category_scores": {
+      "api": 0.0,
+      "observability": 100.0,
+      "service": 50.0
+    },
+    "category_weights": {
+      "api": 1.1,
+      "observability": 1.3,
+      "service": 1.2
+    },
+    "category_details": [
+      {
+        "category": "api",
+        "score": 0.0,
+        "weight": 1.1,
+        "applicable_rule_count": 6,
+        "passed_rule_count": 0,
+        "warning_rule_count": 0,
+        "failed_rule_count": 6,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      },
+      {
+        "category": "observability",
+        "score": 100.0,
+        "weight": 1.3,
+        "applicable_rule_count": 5,
+        "passed_rule_count": 5,
+        "warning_rule_count": 0,
+        "failed_rule_count": 0,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      },
+      {
+        "category": "service",
+        "score": 50.0,
+        "weight": 1.2,
+        "applicable_rule_count": 2,
+        "passed_rule_count": 1,
+        "warning_rule_count": 0,
+        "failed_rule_count": 1,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      }
+    ],
+    "applicable_rule_count": 13,
+    "not_applicable_rule_count": 0,
+    "weighted_score_explanation": {
+      "formula": "sum(category_score * category_weight) / sum(category_weight)",
+      "weighted_score_sum": 190.0,
+      "weight_sum": 3.6,
+      "status_scores": {
+        "passed": 1.0,
+        "failed": 0.0,
+        "error": 0.0
+      }
+    }
+  },
+  "gate_result": {
+    "passed": false,
+    "actual_score": 52.78,
+    "minimum_score": 70.0,
+    "reasons": [
+      "Governance score 52.78 is below minimum score 70.00."
+    ],
+    "blocking_findings": []
+  },
+  "actions": [
+    {
+      "action_id": "ACTION-API-001-INFO-METADATA:API-001",
+      "rule_id": "API-001",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add OpenAPI metadata",
+      "action_type": "documentation",
+      "priority": "medium",
+      "recommendation": "Define info.title and info.version in the OpenAPI document.",
+      "implementation_hint": "Add the info object with title and version fields to the OpenAPI specification.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "references": [],
+      "tags": [
+        "api",
+        "openapi",
+        "contract"
+      ],
+      "metadata": {
+        "finding_message": "OpenAPI policy 'require_info_metadata' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+        "source_action_definition": "ACTION-API-001-INFO-METADATA"
+      }
+    },
+    {
+      "action_id": "ACTION-API-002-OPERATION-ID:API-002",
+      "rule_id": "API-002",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add operationId to OpenAPI operations",
+      "action_type": "documentation",
+      "priority": "medium",
+      "recommendation": "Define operationId for every OpenAPI operation.",
+      "implementation_hint": "Add stable and unique operationId values such as getOrder, createPayment or listUsers.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "references": [],
+      "tags": [
+        "api",
+        "openapi",
+        "client-generation"
+      ],
+      "metadata": {
+        "finding_message": "OpenAPI policy 'require_operation_id' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+        "source_action_definition": "ACTION-API-002-OPERATION-ID"
+      }
+    },
+    {
+      "action_id": "ACTION-API-003-SUCCESS-RESPONSES:API-003",
+      "rule_id": "API-003",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add success responses to OpenAPI operations",
+      "action_type": "documentation",
+      "priority": "medium",
+      "recommendation": "Define at least one 2xx success response for every OpenAPI operation.",
+      "implementation_hint": "Add response codes such as 200, 201, 202 or 204 with descriptions and schemas where applicable.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "references": [],
+      "tags": [
+        "api",
+        "openapi",
+        "responses"
+      ],
+      "metadata": {
+        "finding_message": "OpenAPI policy 'require_success_responses' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+        "source_action_definition": "ACTION-API-003-SUCCESS-RESPONSES"
+      }
+    },
+    {
+      "action_id": "ACTION-API-004-ERROR-RESPONSES:API-004",
+      "rule_id": "API-004",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add error responses to OpenAPI operations",
+      "action_type": "documentation",
+      "priority": "medium",
+      "recommendation": "Define 4xx or 5xx error responses for every OpenAPI operation.",
+      "implementation_hint": "Add response codes such as 400, 401, 403, 404 and 500 with standard error schema.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "references": [],
+      "tags": [
+        "api",
+        "openapi",
+        "error-handling"
+      ],
+      "metadata": {
+        "finding_message": "OpenAPI policy 'require_error_responses' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+        "source_action_definition": "ACTION-API-004-ERROR-RESPONSES"
+      }
+    },
+    {
+      "action_id": "ACTION-API-005-SCHEMAS:API-005",
+      "rule_id": "API-005",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add request and response schemas",
+      "action_type": "documentation",
+      "priority": "medium",
+      "recommendation": "Define request and response schemas for OpenAPI operations where applicable.",
+      "implementation_hint": "Use components.schemas and reference them from requestBody and responses.content.*.schema.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "references": [],
+      "tags": [
+        "api",
+        "openapi",
+        "schema"
+      ],
+      "metadata": {
+        "finding_message": "OpenAPI policy 'require_operation_schemas' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+        "source_action_definition": "ACTION-API-005-SCHEMAS"
+      }
+    },
+    {
+      "action_id": "ACTION-API-006-SECURITY-SCHEME:API-006",
+      "rule_id": "API-006",
+      "finding_status": "failed",
+      "severity": "high",
+      "title": "Define OpenAPI security scheme",
+      "action_type": "documentation",
+      "priority": "high",
+      "recommendation": "Define securitySchemes and security requirements in the OpenAPI document.",
+      "implementation_hint": "Add components.securitySchemes and global or operation-level security requirements.",
+      "category": "api",
+      "target": "service",
+      "check_type": "openapi_document_policy",
+      "references": [],
+      "tags": [
+        "api",
+        "security",
+        "openapi"
+      ],
+      "metadata": {
+        "finding_message": "OpenAPI policy 'require_security_scheme' failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+        "source_action_definition": "ACTION-API-006-SECURITY-SCHEME"
+      }
+    },
+    {
+      "action_id": "ACTION-SVC-002-OPENAPI-SPEC:SVC-002",
+      "rule_id": "SVC-002",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Expose an OpenAPI specification",
+      "action_type": "documentation",
+      "priority": "medium",
+      "recommendation": "Expose a reachable OpenAPI or Swagger specification endpoint for the service.",
+      "implementation_hint": "Provide /openapi.json, /swagger.json or /v3/api-docs. The response should be valid JSON and include either an openapi or swagger version field.",
+      "category": "service",
+      "target": "service",
+      "check_type": "openapi_spec",
+      "references": [],
+      "tags": [
+        "service",
+        "api-governance",
+        "openapi"
+      ],
+      "metadata": {
+        "finding_message": "OpenAPI specification check failed for service(s): api-gateway, customers-service, visits-service, vets-service",
+        "source_action_definition": "ACTION-SVC-002-OPENAPI-SPEC"
+      }
+    }
+  ]
+}

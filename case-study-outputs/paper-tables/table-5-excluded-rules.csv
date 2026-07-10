@@ -1,0 +1,20 @@
+System,Excluded Rule ID,Reason
+Spring PetClinic Microservices,DEP-001,Kubernetes governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,DEP-002,Kubernetes governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,DEP-003,Kubernetes governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,DEP-004,Kubernetes governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,DEP-005,Kubernetes governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,DEP-006,Kubernetes governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,DEP-007,Kubernetes governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,DEP-008,Kubernetes governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,REL-001,Kubernetes-specific runtime/deployment evidence not available for this case.
+Spring PetClinic Microservices,SEC-002,Kubernetes-specific runtime/deployment evidence not available for this case.
+Spring PetClinic Microservices,SEC-003,Kubernetes-specific runtime/deployment evidence not available for this case.
+Spring PetClinic Microservices,TOOL-K8S-001,Kubernetes/IaC tool governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,TOOL-TRIVY-001,Kubernetes/IaC tool governance not applicable to this case artifact profile.
+Spring PetClinic Microservices,REPO-002,Python-specific project metadata rule not applicable to this case technology stack.
+Online Boutique,CMP-001,Docker Compose governance not applicable to this case artifact profile.
+Online Boutique,CMP-002,Docker Compose governance not applicable to this case artifact profile.
+Online Boutique,CMP-003,Docker Compose governance not applicable to this case artifact profile.
+Online Boutique,REPO-002,Python-specific project metadata rule not applicable to this case technology stack.
+Train Ticket,REPO-002,Python-specific project metadata rule not applicable to this case technology stack.

@@ -1,0 +1,281 @@
+{
+  "case_count": 3,
+  "successful_case_count": 3,
+  "failed_case_count": 0,
+  "cases": [
+    {
+      "config_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\spring-petclinic-microservices-static.yaml",
+      "report_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\outputs\\case-studies\\spring-petclinic-microservices\\static\\governance-report.json",
+      "return_code": 0,
+      "success": true,
+      "project_name": "spring-petclinic-microservices-static",
+      "run_id": "7b406db1-9c3c-421f-a0db-41d47ce094a9",
+      "started_at": "2026-07-08T12:31:55.948554Z",
+      "finished_at": "2026-07-08T12:31:58.309738Z",
+      "finding_count": 16,
+      "status_counts": {
+        "failed": 5,
+        "passed": 11
+      },
+      "severity_counts": {
+        "critical": 2,
+        "high": 11,
+        "medium": 3
+      },
+      "category_counts": {
+        "architecture": 4,
+        "dependency": 3,
+        "deployment": 1,
+        "reliability": 5,
+        "repository": 1,
+        "security": 2
+      },
+      "failed_rule_ids": [
+        "ARCH-001",
+        "ARCH-002",
+        "CMP-002",
+        "REL-005",
+        "SEC-001"
+      ],
+      "passed_rule_ids": [
+        "ARCH-003",
+        "CMP-001",
+        "CMP-003",
+        "DEPEN-001",
+        "DEPEN-002",
+        "DEPEN-003",
+        "REL-002",
+        "REL-003",
+        "REL-004",
+        "REPO-001",
+        "TOOL-OPA-001"
+      ],
+      "overall_score": 73.58,
+      "maturity_band": "Managed Governance",
+      "category_scores": {
+        "architecture": 50.0,
+        "dependency": 100.0,
+        "deployment": 100.0,
+        "reliability": 60.0,
+        "repository": 100.0,
+        "security": 50.0
+      },
+      "category_weights": {
+        "architecture": 1.2,
+        "dependency": 1.1,
+        "deployment": 1.1,
+        "reliability": 1.3,
+        "repository": 0.7,
+        "security": 1.3
+      },
+      "applicable_rule_count": 16,
+      "not_applicable_rule_count": 14,
+      "excluded_rule_count": 14,
+      "excluded_rule_ids": [
+        "DEP-001",
+        "DEP-002",
+        "DEP-003",
+        "DEP-004",
+        "DEP-005",
+        "DEP-006",
+        "DEP-007",
+        "DEP-008",
+        "REL-001",
+        "SEC-002",
+        "SEC-003",
+        "TOOL-K8S-001",
+        "TOOL-TRIVY-001",
+        "REPO-002"
+      ],
+      "gate_passed": false,
+      "gate_reasons": [
+        "Blocking critical finding detected: SEC-001"
+      ]
+    },
+    {
+      "config_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\online-boutique-static.yaml",
+      "report_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\outputs\\case-studies\\online-boutique\\static\\governance-report.json",
+      "return_code": 0,
+      "success": true,
+      "project_name": "online-boutique-static",
+      "run_id": "51a6800b-a7c0-476c-9071-8d7aa76076a2",
+      "started_at": "2026-07-08T12:31:58.979696Z",
+      "finished_at": "2026-07-08T12:32:37.463932Z",
+      "finding_count": 26,
+      "status_counts": {
+        "error": 1,
+        "failed": 13,
+        "passed": 11,
+        "skipped": 1
+      },
+      "severity_counts": {
+        "critical": 4,
+        "high": 18,
+        "medium": 4
+      },
+      "category_counts": {
+        "architecture": 4,
+        "dependency": 3,
+        "deployment": 7,
+        "reliability": 5,
+        "repository": 1,
+        "security": 6
+      },
+      "failed_rule_ids": [
+        "ARCH-001",
+        "ARCH-002",
+        "DEP-002",
+        "DEP-003",
+        "DEP-004",
+        "DEP-005",
+        "DEP-006",
+        "REL-001",
+        "REL-004",
+        "REL-005",
+        "SEC-001",
+        "SEC-003",
+        "TOOL-TRIVY-001"
+      ],
+      "passed_rule_ids": [
+        "ARCH-003",
+        "DEP-001",
+        "DEP-007",
+        "DEP-008",
+        "DEPEN-001",
+        "DEPEN-002",
+        "DEPEN-003",
+        "REL-002",
+        "REL-003",
+        "REPO-001",
+        "TOOL-OPA-001"
+      ],
+      "overall_score": 53.69,
+      "maturity_band": "Emerging Governance",
+      "category_scores": {
+        "architecture": 50.0,
+        "dependency": 100.0,
+        "deployment": 14.29,
+        "reliability": 40.0,
+        "repository": 100.0,
+        "security": 40.0
+      },
+      "category_weights": {
+        "architecture": 1.2,
+        "dependency": 1.1,
+        "deployment": 1.1,
+        "reliability": 1.3,
+        "repository": 0.7,
+        "security": 1.3
+      },
+      "applicable_rule_count": 25,
+      "not_applicable_rule_count": 5,
+      "excluded_rule_count": 4,
+      "excluded_rule_ids": [
+        "CMP-001",
+        "CMP-002",
+        "CMP-003",
+        "REPO-002"
+      ],
+      "gate_passed": false,
+      "gate_reasons": [
+        "Governance score 53.69 is below minimum score 70.00.",
+        "Blocking critical finding detected: SEC-001",
+        "Execution error detected: TOOL-K8S-001",
+        "Blocking critical finding detected: TOOL-TRIVY-001"
+      ]
+    },
+    {
+      "config_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\train-ticket-static.yaml",
+      "report_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\outputs\\case-studies\\train-ticket\\static\\governance-report.json",
+      "return_code": 0,
+      "success": true,
+      "project_name": "train-ticket-static",
+      "run_id": "5da1d662-acff-4fdf-8355-f418b997d016",
+      "started_at": "2026-07-08T12:32:39.094465Z",
+      "finished_at": "2026-07-08T12:34:10.006120Z",
+      "finding_count": 29,
+      "status_counts": {
+        "error": 1,
+        "failed": 17,
+        "passed": 10,
+        "skipped": 1
+      },
+      "severity_counts": {
+        "critical": 4,
+        "high": 21,
+        "medium": 4
+      },
+      "category_counts": {
+        "architecture": 4,
+        "dependency": 3,
+        "deployment": 8,
+        "reliability": 6,
+        "repository": 1,
+        "security": 7
+      },
+      "failed_rule_ids": [
+        "ARCH-001",
+        "ARCH-002",
+        "CMP-002",
+        "DEP-002",
+        "DEP-003",
+        "DEP-004",
+        "DEP-005",
+        "DEP-006",
+        "DEP-008",
+        "DEPEN-002",
+        "REL-001",
+        "REL-004",
+        "REL-005",
+        "SEC-001",
+        "SEC-003",
+        "TOOL-OPA-001",
+        "TOOL-TRIVY-001"
+      ],
+      "passed_rule_ids": [
+        "ARCH-003",
+        "CMP-001",
+        "CMP-003",
+        "DEP-001",
+        "DEP-007",
+        "DEPEN-001",
+        "DEPEN-003",
+        "REL-002",
+        "REL-003",
+        "REPO-001"
+      ],
+      "overall_score": 42.91,
+      "maturity_band": "Emerging Governance",
+      "category_scores": {
+        "architecture": 25.0,
+        "dependency": 66.67,
+        "deployment": 25.0,
+        "reliability": 33.33,
+        "repository": 100.0,
+        "security": 33.33
+      },
+      "category_weights": {
+        "architecture": 1.2,
+        "dependency": 1.1,
+        "deployment": 1.1,
+        "reliability": 1.3,
+        "repository": 0.7,
+        "security": 1.3
+      },
+      "applicable_rule_count": 28,
+      "not_applicable_rule_count": 2,
+      "excluded_rule_count": 1,
+      "excluded_rule_ids": [
+        "REPO-002"
+      ],
+      "gate_passed": false,
+      "gate_reasons": [
+        "Governance score 42.91 is below minimum score 65.00.",
+        "Blocking critical finding detected: DEPEN-002",
+        "Blocking critical finding detected: SEC-001",
+        "Execution error detected: TOOL-K8S-001",
+        "Blocking critical finding detected: TOOL-TRIVY-001"
+      ]
+    }
+  ]
+}

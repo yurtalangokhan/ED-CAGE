@@ -1,0 +1,3566 @@
+{
+  "run_id": "7b406db1-9c3c-421f-a0db-41d47ce094a9",
+  "project_name": "spring-petclinic-microservices-static",
+  "started_at": "2026-07-08T12:31:55.948554Z",
+  "finished_at": "2026-07-08T12:31:58.309738Z",
+  "findings": [
+    {
+      "rule_id": "ARCH-001",
+      "title": "ADR directory must exist",
+      "severity": "medium",
+      "status": "failed",
+      "message": "Required repository path violations detected: 1.",
+      "category": "architecture",
+      "target": "repository",
+      "check_type": "repository_required_paths",
+      "evidence": [
+        {
+          "source": "repository-required-paths",
+          "message": "Repository required path evaluation completed.",
+          "data": {
+            "required_paths": [
+              {
+                "path": "docs/adr",
+                "type": "directory"
+              }
+            ],
+            "evaluated_paths": [
+              {
+                "path": "docs/adr",
+                "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\adr",
+                "expected_type": "directory",
+                "exists": false,
+                "actual_type": "missing"
+              }
+            ],
+            "violations": [
+              {
+                "path": "docs/adr",
+                "expected_type": "directory",
+                "reason": "path_does_not_exist"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "ARCH-001",
+          "source_type": "generic",
+          "source_name": "repository-required-paths",
+          "resource": "repository-required-paths",
+          "observed_value": {
+            "required_paths": [
+              {
+                "path": "docs/adr",
+                "type": "directory"
+              }
+            ],
+            "evaluated_paths": [
+              {
+                "path": "docs/adr",
+                "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\adr",
+                "expected_type": "directory",
+                "exists": false,
+                "actual_type": "missing"
+              }
+            ],
+            "violations": [
+              {
+                "path": "docs/adr",
+                "expected_type": "directory",
+                "reason": "path_does_not_exist"
+              }
+            ]
+          },
+          "expected_value": null,
+          "compliant": false,
+          "message": "Repository required path evaluation completed.",
+          "raw_data": {
+            "required_paths": [
+              {
+                "path": "docs/adr",
+                "type": "directory"
+              }
+            ],
+            "evaluated_paths": [
+              {
+                "path": "docs/adr",
+                "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\adr",
+                "expected_type": "directory",
+                "exists": false,
+                "actual_type": "missing"
+              }
+            ],
+            "violations": [
+              {
+                "path": "docs/adr",
+                "expected_type": "directory",
+                "reason": "path_does_not_exist"
+              }
+            ]
+          },
+          "metadata": {
+            "finding_status": "failed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "ARCH-002",
+      "title": "Quality attribute scenarios must be documented",
+      "severity": "high",
+      "status": "failed",
+      "message": "Required repository path violations detected: 1.",
+      "category": "architecture",
+      "target": "repository",
+      "check_type": "repository_required_paths",
+      "evidence": [
+        {
+          "source": "repository-required-paths",
+          "message": "Repository required path evaluation completed.",
+          "data": {
+            "required_paths": [
+              {
+                "path": "docs/quality-attributes/scenarios.yaml",
+                "type": "file"
+              }
+            ],
+            "evaluated_paths": [
+              {
+                "path": "docs/quality-attributes/scenarios.yaml",
+                "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\quality-attributes\\scenarios.yaml",
+                "expected_type": "file",
+                "exists": false,
+                "actual_type": "missing"
+              }
+            ],
+            "violations": [
+              {
+                "path": "docs/quality-attributes/scenarios.yaml",
+                "expected_type": "file",
+                "reason": "path_does_not_exist"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "ARCH-002",
+          "source_type": "generic",
+          "source_name": "repository-required-paths",
+          "resource": "repository-required-paths",
+          "observed_value": {
+            "required_paths": [
+              {
+                "path": "docs/quality-attributes/scenarios.yaml",
+                "type": "file"
+              }
+            ],
+            "evaluated_paths": [
+              {
+                "path": "docs/quality-attributes/scenarios.yaml",
+                "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\quality-attributes\\scenarios.yaml",
+                "expected_type": "file",
+                "exists": false,
+                "actual_type": "missing"
+              }
+            ],
+            "violations": [
+              {
+                "path": "docs/quality-attributes/scenarios.yaml",
+                "expected_type": "file",
+                "reason": "path_does_not_exist"
+              }
+            ]
+          },
+          "expected_value": null,
+          "compliant": false,
+          "message": "Repository required path evaluation completed.",
+          "raw_data": {
+            "required_paths": [
+              {
+                "path": "docs/quality-attributes/scenarios.yaml",
+                "type": "file"
+              }
+            ],
+            "evaluated_paths": [
+              {
+                "path": "docs/quality-attributes/scenarios.yaml",
+                "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\quality-attributes\\scenarios.yaml",
+                "expected_type": "file",
+                "exists": false,
+                "actual_type": "missing"
+              }
+            ],
+            "violations": [
+              {
+                "path": "docs/quality-attributes/scenarios.yaml",
+                "expected_type": "file",
+                "reason": "path_does_not_exist"
+              }
+            ]
+          },
+          "metadata": {
+            "finding_status": "failed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "ARCH-003",
+      "title": "Critical services must be declared",
+      "severity": "high",
+      "status": "passed",
+      "message": "Architecture catalog policy passed: require_critical_services.",
+      "category": "architecture",
+      "target": "architecture-catalog",
+      "check_type": "architecture_catalog_policy",
+      "evidence": [
+        {
+          "source": "architecture-catalog-policy",
+          "message": "Architecture catalog policy evaluation completed: require_critical_services.",
+          "data": {
+            "policy": "require_critical_services",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "critical_services": [
+              "api-gateway",
+              "customers-service",
+              "discovery-server"
+            ],
+            "service_count": 6
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "ARCH-003",
+          "source_type": "generic",
+          "source_name": "architecture-catalog-policy",
+          "resource": "architecture-catalog-policy",
+          "observed_value": {
+            "policy": "require_critical_services",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "critical_services": [
+              "api-gateway",
+              "customers-service",
+              "discovery-server"
+            ],
+            "service_count": 6
+          },
+          "expected_value": null,
+          "compliant": true,
+          "message": "Architecture catalog policy evaluation completed: require_critical_services.",
+          "raw_data": {
+            "policy": "require_critical_services",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "critical_services": [
+              "api-gateway",
+              "customers-service",
+              "discovery-server"
+            ],
+            "service_count": 6
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "DEPEN-001",
+      "title": "Service dependencies must be explicitly declared",
+      "severity": "high",
+      "status": "passed",
+      "message": "Architecture catalog policy passed: require_declared_dependencies.",
+      "category": "dependency",
+      "target": "architecture-catalog",
+      "check_type": "architecture_catalog_policy",
+      "evidence": [
+        {
+          "source": "architecture-catalog-policy",
+          "message": "Architecture catalog policy evaluation completed: require_declared_dependencies.",
+          "data": {
+            "policy": "require_declared_dependencies",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "service_count": 6,
+            "violations": []
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "DEPEN-001",
+          "source_type": "generic",
+          "source_name": "architecture-catalog-policy",
+          "resource": "architecture-catalog-policy",
+          "observed_value": {
+            "policy": "require_declared_dependencies",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "service_count": 6,
+            "violations": []
+          },
+          "expected_value": null,
+          "compliant": true,
+          "message": "Architecture catalog policy evaluation completed: require_declared_dependencies.",
+          "raw_data": {
+            "policy": "require_declared_dependencies",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "service_count": 6,
+            "violations": []
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "DEPEN-002",
+      "title": "Circular service dependencies must not exist",
+      "severity": "critical",
+      "status": "passed",
+      "message": "Architecture catalog policy passed: disallow_circular_dependencies.",
+      "category": "dependency",
+      "target": "architecture-catalog",
+      "check_type": "architecture_catalog_policy",
+      "evidence": [
+        {
+          "source": "architecture-catalog-policy",
+          "message": "Architecture catalog policy evaluation completed: disallow_circular_dependencies.",
+          "data": {
+            "policy": "disallow_circular_dependencies",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "service_count": 6,
+            "graph": {
+              "customers-service": [],
+              "api-gateway": [
+                "customers-service",
+                "vets-service",
+                "visits-service"
+              ],
+              "discovery-server": [],
+              "config-server": [],
+              "visits-service": [],
+              "vets-service": []
+            },
+            "cycles": []
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "DEPEN-002",
+          "source_type": "generic",
+          "source_name": "architecture-catalog-policy",
+          "resource": "architecture-catalog-policy",
+          "observed_value": {
+            "policy": "disallow_circular_dependencies",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "service_count": 6,
+            "graph": {
+              "customers-service": [],
+              "api-gateway": [
+                "customers-service",
+                "vets-service",
+                "visits-service"
+              ],
+              "discovery-server": [],
+              "config-server": [],
+              "visits-service": [],
+              "vets-service": []
+            },
+            "cycles": []
+          },
+          "expected_value": null,
+          "compliant": true,
+          "message": "Architecture catalog policy evaluation completed: disallow_circular_dependencies.",
+          "raw_data": {
+            "policy": "disallow_circular_dependencies",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "service_count": 6,
+            "graph": {
+              "customers-service": [],
+              "api-gateway": [
+                "customers-service",
+                "vets-service",
+                "visits-service"
+              ],
+              "discovery-server": [],
+              "config-server": [],
+              "visits-service": [],
+              "vets-service": []
+            },
+            "cycles": []
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "DEPEN-003",
+      "title": "External dependencies must define owner and SLA metadata",
+      "severity": "high",
+      "status": "passed",
+      "message": "Architecture catalog policy passed: require_external_dependency_metadata.",
+      "category": "dependency",
+      "target": "architecture-catalog",
+      "check_type": "architecture_catalog_policy",
+      "evidence": [
+        {
+          "source": "architecture-catalog-policy",
+          "message": "Architecture catalog policy evaluation completed: require_external_dependency_metadata.",
+          "data": {
+            "policy": "require_external_dependency_metadata",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "service_count": 6,
+            "evaluated_external_dependencies": 0,
+            "required_metadata": [
+              "owner",
+              "sla"
+            ],
+            "violations": []
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "DEPEN-003",
+          "source_type": "generic",
+          "source_name": "architecture-catalog-policy",
+          "resource": "architecture-catalog-policy",
+          "observed_value": {
+            "policy": "require_external_dependency_metadata",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "service_count": 6,
+            "evaluated_external_dependencies": 0,
+            "required_metadata": [
+              "owner",
+              "sla"
+            ],
+            "violations": []
+          },
+          "expected_value": null,
+          "compliant": true,
+          "message": "Architecture catalog policy evaluation completed: require_external_dependency_metadata.",
+          "raw_data": {
+            "policy": "require_external_dependency_metadata",
+            "architecture_catalog_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "resolved_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "catalog_exists": true,
+            "load_errors": [],
+            "success": true,
+            "failure_reason": null,
+            "service_count": 6,
+            "evaluated_external_dependencies": 0,
+            "required_metadata": [
+              "owner",
+              "sla"
+            ],
+            "violations": []
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "CMP-001",
+      "title": "Docker Compose file must exist",
+      "severity": "high",
+      "status": "passed",
+      "message": "Docker Compose file exists and is parseable.",
+      "category": "deployment",
+      "target": "docker-compose",
+      "check_type": "docker_compose_file_exists",
+      "evidence": [
+        {
+          "source": "docker-compose-file-exists",
+          "message": "Docker Compose file discovery completed.",
+          "data": {
+            "candidate_files": [
+              "docker-compose.yml",
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "existing_files": [
+              "docker-compose.yml"
+            ],
+            "missing_files": [
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "parse_errors": []
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "CMP-001",
+          "source_type": "filesystem",
+          "source_name": "docker-compose-file-exists",
+          "resource": "docker-compose-file-exists",
+          "observed_value": {
+            "existing_files": [
+              "docker-compose.yml"
+            ],
+            "missing_files": [
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ]
+          },
+          "expected_value": [
+            "compose.yaml",
+            "compose.yml",
+            "docker-compose.yaml",
+            "docker-compose.yml"
+          ],
+          "compliant": true,
+          "message": "Docker Compose file discovery completed.",
+          "raw_data": {
+            "candidate_files": [
+              "docker-compose.yml",
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "existing_files": [
+              "docker-compose.yml"
+            ],
+            "missing_files": [
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "parse_errors": []
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "CMP-002",
+      "title": "Docker Compose services should define healthchecks",
+      "severity": "high",
+      "status": "failed",
+      "message": "Docker Compose service healthcheck violations detected: 7.",
+      "category": "reliability",
+      "target": "docker-compose",
+      "check_type": "docker_compose_healthcheck_policy",
+      "evidence": [
+        {
+          "source": "docker-compose-healthcheck-policy",
+          "message": "Docker Compose healthcheck policy evaluation completed.",
+          "data": {
+            "candidate_files": [
+              "docker-compose.yml",
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "existing_files": [
+              "docker-compose.yml"
+            ],
+            "missing_files": [
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "parse_errors": [],
+            "ignored_services": [
+              "grafana",
+              "prometheus",
+              "tracing-server",
+              "admin-server"
+            ],
+            "service_count": 9,
+            "service_evaluations": [
+              {
+                "file": "docker-compose.yml",
+                "service": "config-server",
+                "has_healthcheck": true,
+                "healthcheck_disabled": false,
+                "has_test": true
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "discovery-server",
+                "has_healthcheck": true,
+                "healthcheck_disabled": false,
+                "has_test": true
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "customers-service",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "visits-service",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "vets-service",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "genai-service",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "api-gateway",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "grafana-server",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "prometheus-server",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              }
+            ],
+            "violations": [
+              {
+                "file": "docker-compose.yml",
+                "service": "customers-service",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "visits-service",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "vets-service",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "genai-service",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "api-gateway",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "grafana-server",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "prometheus-server",
+                "reason": "missing_healthcheck"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "CMP-002",
+          "source_type": "filesystem",
+          "source_name": "docker-compose-healthcheck-policy",
+          "resource": "docker-compose-healthcheck-policy",
+          "observed_value": {
+            "existing_files": [
+              "docker-compose.yml"
+            ],
+            "missing_files": [
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ]
+          },
+          "expected_value": [
+            "compose.yaml",
+            "compose.yml",
+            "docker-compose.yaml",
+            "docker-compose.yml"
+          ],
+          "compliant": false,
+          "message": "Docker Compose healthcheck policy evaluation completed.",
+          "raw_data": {
+            "candidate_files": [
+              "docker-compose.yml",
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "existing_files": [
+              "docker-compose.yml"
+            ],
+            "missing_files": [
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "parse_errors": [],
+            "ignored_services": [
+              "grafana",
+              "prometheus",
+              "tracing-server",
+              "admin-server"
+            ],
+            "service_count": 9,
+            "service_evaluations": [
+              {
+                "file": "docker-compose.yml",
+                "service": "config-server",
+                "has_healthcheck": true,
+                "healthcheck_disabled": false,
+                "has_test": true
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "discovery-server",
+                "has_healthcheck": true,
+                "healthcheck_disabled": false,
+                "has_test": true
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "customers-service",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "visits-service",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "vets-service",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "genai-service",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "api-gateway",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "grafana-server",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "prometheus-server",
+                "has_healthcheck": false,
+                "healthcheck_disabled": false,
+                "has_test": false
+              }
+            ],
+            "violations": [
+              {
+                "file": "docker-compose.yml",
+                "service": "customers-service",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "visits-service",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "vets-service",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "genai-service",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "api-gateway",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "grafana-server",
+                "reason": "missing_healthcheck"
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "prometheus-server",
+                "reason": "missing_healthcheck"
+              }
+            ]
+          },
+          "metadata": {
+            "finding_status": "failed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "CMP-003",
+      "title": "Docker Compose services must avoid privileged or host-level isolation",
+      "severity": "high",
+      "status": "passed",
+      "message": "Docker Compose security policy passed.",
+      "category": "security",
+      "target": "docker-compose",
+      "check_type": "docker_compose_security_policy",
+      "evidence": [
+        {
+          "source": "docker-compose-security-policy",
+          "message": "Docker Compose security policy evaluation completed.",
+          "data": {
+            "candidate_files": [
+              "docker-compose.yml",
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "existing_files": [
+              "docker-compose.yml"
+            ],
+            "missing_files": [
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "parse_errors": [],
+            "disallowed_capabilities": [
+              "ALL",
+              "SYS_ADMIN",
+              "NET_ADMIN"
+            ],
+            "service_count": 11,
+            "service_evaluations": [
+              {
+                "file": "docker-compose.yml",
+                "service": "config-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "discovery-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "customers-service",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "visits-service",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "vets-service",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "genai-service",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "api-gateway",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "tracing-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "admin-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "grafana-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "prometheus-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              }
+            ],
+            "violations": []
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "CMP-003",
+          "source_type": "filesystem",
+          "source_name": "docker-compose-security-policy",
+          "resource": "docker-compose-security-policy",
+          "observed_value": {
+            "existing_files": [
+              "docker-compose.yml"
+            ],
+            "missing_files": [
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ]
+          },
+          "expected_value": [
+            "compose.yaml",
+            "compose.yml",
+            "docker-compose.yaml",
+            "docker-compose.yml"
+          ],
+          "compliant": true,
+          "message": "Docker Compose security policy evaluation completed.",
+          "raw_data": {
+            "candidate_files": [
+              "docker-compose.yml",
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "existing_files": [
+              "docker-compose.yml"
+            ],
+            "missing_files": [
+              "docker-compose.yaml",
+              "compose.yml",
+              "compose.yaml"
+            ],
+            "parse_errors": [],
+            "disallowed_capabilities": [
+              "ALL",
+              "SYS_ADMIN",
+              "NET_ADMIN"
+            ],
+            "service_count": 11,
+            "service_evaluations": [
+              {
+                "file": "docker-compose.yml",
+                "service": "config-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "discovery-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "customers-service",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "visits-service",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "vets-service",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "genai-service",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "api-gateway",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "tracing-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "admin-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "grafana-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              },
+              {
+                "file": "docker-compose.yml",
+                "service": "prometheus-server",
+                "privileged": false,
+                "network_mode": null,
+                "pid": null,
+                "ipc": null,
+                "cap_add": []
+              }
+            ],
+            "violations": []
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "REL-002",
+      "title": "Services should define timeout policy",
+      "severity": "high",
+      "status": "passed",
+      "message": "Required repository configuration pattern group(s) were found.",
+      "category": "reliability",
+      "target": "repository",
+      "check_type": "repository_configuration_patterns",
+      "evidence": [
+        {
+          "source": "repository-configuration-patterns",
+          "message": "Repository configuration pattern scan completed.",
+          "data": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "timeout_policy": {
+                "description": "Timeout configuration for service calls.",
+                "patterns": [
+                  "(?i)timeout",
+                  "(?i)connectTimeout",
+                  "(?i)readTimeout",
+                  "(?i)responseTimeout",
+                  "(?i)timeoutDuration",
+                  "(?i)timeLimiter"
+                ]
+              }
+            },
+            "matched_groups": {
+              "timeout_policy": [
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 226,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 307,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 389,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 471,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\prometheus\\prometheus.yml",
+                  "line_number": 5,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "# scrape_timeout is set to the global default (10s)."
+                },
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 12,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "timeout: 5s"
+                },
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 27,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "timeout: 3s"
+                }
+              ]
+            },
+            "missing_groups": [],
+            "skipped_files_sample": []
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "REL-002",
+          "source_type": "generic",
+          "source_name": "repository-configuration-patterns",
+          "resource": "repository-configuration-patterns",
+          "observed_value": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "timeout_policy": {
+                "description": "Timeout configuration for service calls.",
+                "patterns": [
+                  "(?i)timeout",
+                  "(?i)connectTimeout",
+                  "(?i)readTimeout",
+                  "(?i)responseTimeout",
+                  "(?i)timeoutDuration",
+                  "(?i)timeLimiter"
+                ]
+              }
+            },
+            "matched_groups": {
+              "timeout_policy": [
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 226,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 307,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 389,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 471,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\prometheus\\prometheus.yml",
+                  "line_number": 5,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "# scrape_timeout is set to the global default (10s)."
+                },
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 12,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "timeout: 5s"
+                },
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 27,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "timeout: 3s"
+                }
+              ]
+            },
+            "missing_groups": [],
+            "skipped_files_sample": []
+          },
+          "expected_value": null,
+          "compliant": true,
+          "message": "Repository configuration pattern scan completed.",
+          "raw_data": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "timeout_policy": {
+                "description": "Timeout configuration for service calls.",
+                "patterns": [
+                  "(?i)timeout",
+                  "(?i)connectTimeout",
+                  "(?i)readTimeout",
+                  "(?i)responseTimeout",
+                  "(?i)timeoutDuration",
+                  "(?i)timeLimiter"
+                ]
+              }
+            },
+            "matched_groups": {
+              "timeout_policy": [
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 226,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 307,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 389,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 471,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "\"cacheTimeout\": null,"
+                },
+                {
+                  "path": "docker\\prometheus\\prometheus.yml",
+                  "line_number": 5,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "# scrape_timeout is set to the global default (10s)."
+                },
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 12,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "timeout: 5s"
+                },
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 27,
+                  "pattern": "(?i)timeout",
+                  "match_preview": "timeout: 3s"
+                }
+              ]
+            },
+            "missing_groups": [],
+            "skipped_files_sample": []
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "REL-003",
+      "title": "Services should define retry policy",
+      "severity": "medium",
+      "status": "passed",
+      "message": "Required repository configuration pattern group(s) were found.",
+      "category": "reliability",
+      "target": "repository",
+      "check_type": "repository_configuration_patterns",
+      "evidence": [
+        {
+          "source": "repository-configuration-patterns",
+          "message": "Repository configuration pattern scan completed.",
+          "data": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "retry_policy": {
+                "description": "Retry configuration for transient failures.",
+                "patterns": [
+                  "(?i)retry",
+                  "(?i)retries",
+                  "(?i)resilience4j\\.retry",
+                  "(?i)spring\\.retry"
+                ]
+              }
+            },
+            "matched_groups": {
+              "retry_policy": [
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)retries",
+                  "match_preview": "retries: 10"
+                },
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 28,
+                  "pattern": "(?i)retries",
+                  "match_preview": "retries: 10"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 15,
+                  "pattern": "(?i)retry",
+                  "match_preview": "- name: Retry"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 17,
+                  "pattern": "(?i)retries",
+                  "match_preview": "retries: 1"
+                }
+              ]
+            },
+            "missing_groups": [],
+            "skipped_files_sample": []
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "REL-003",
+          "source_type": "generic",
+          "source_name": "repository-configuration-patterns",
+          "resource": "repository-configuration-patterns",
+          "observed_value": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "retry_policy": {
+                "description": "Retry configuration for transient failures.",
+                "patterns": [
+                  "(?i)retry",
+                  "(?i)retries",
+                  "(?i)resilience4j\\.retry",
+                  "(?i)spring\\.retry"
+                ]
+              }
+            },
+            "matched_groups": {
+              "retry_policy": [
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)retries",
+                  "match_preview": "retries: 10"
+                },
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 28,
+                  "pattern": "(?i)retries",
+                  "match_preview": "retries: 10"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 15,
+                  "pattern": "(?i)retry",
+                  "match_preview": "- name: Retry"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 17,
+                  "pattern": "(?i)retries",
+                  "match_preview": "retries: 1"
+                }
+              ]
+            },
+            "missing_groups": [],
+            "skipped_files_sample": []
+          },
+          "expected_value": null,
+          "compliant": true,
+          "message": "Repository configuration pattern scan completed.",
+          "raw_data": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "retry_policy": {
+                "description": "Retry configuration for transient failures.",
+                "patterns": [
+                  "(?i)retry",
+                  "(?i)retries",
+                  "(?i)resilience4j\\.retry",
+                  "(?i)spring\\.retry"
+                ]
+              }
+            },
+            "matched_groups": {
+              "retry_policy": [
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)retries",
+                  "match_preview": "retries: 10"
+                },
+                {
+                  "path": "docker-compose.yml",
+                  "line_number": 28,
+                  "pattern": "(?i)retries",
+                  "match_preview": "retries: 10"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 15,
+                  "pattern": "(?i)retry",
+                  "match_preview": "- name: Retry"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 17,
+                  "pattern": "(?i)retries",
+                  "match_preview": "retries: 1"
+                }
+              ]
+            },
+            "missing_groups": [],
+            "skipped_files_sample": []
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "REL-004",
+      "title": "Services should define circuit breaker policy",
+      "severity": "high",
+      "status": "passed",
+      "message": "Required repository configuration pattern group(s) were found.",
+      "category": "reliability",
+      "target": "repository",
+      "check_type": "repository_configuration_patterns",
+      "evidence": [
+        {
+          "source": "repository-configuration-patterns",
+          "message": "Repository configuration pattern scan completed.",
+          "data": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "circuit_breaker_policy": {
+                "description": "Circuit breaker configuration for dependency isolation.",
+                "patterns": [
+                  "(?i)circuitbreaker",
+                  "(?i)circuitBreaker",
+                  "(?i)resilience4j\\.circuitbreaker",
+                  "(?i)CircuitBreaker"
+                ]
+              }
+            },
+            "matched_groups": {
+              "circuit_breaker_policy": [
+                {
+                  "path": "spring-petclinic-api-gateway\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 11,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "- name: CircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 11,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "- name: CircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 11,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "- name: CircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "name: defaultCircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "name: defaultCircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "name: defaultCircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 45,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "- CircuitBreaker=name=genaiCircuitBreaker,fallbackUri=/fallback"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 45,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "- CircuitBreaker=name=genaiCircuitBreaker,fallbackUri=/fallback"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 45,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "- CircuitBreaker=name=genaiCircuitBreaker,fallbackUri=/fallback"
+                },
+                {
+                  "path": "spring-petclinic-genai-service\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-genai-service\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-genai-service\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                }
+              ]
+            },
+            "missing_groups": [],
+            "skipped_files_sample": []
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "REL-004",
+          "source_type": "generic",
+          "source_name": "repository-configuration-patterns",
+          "resource": "repository-configuration-patterns",
+          "observed_value": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "circuit_breaker_policy": {
+                "description": "Circuit breaker configuration for dependency isolation.",
+                "patterns": [
+                  "(?i)circuitbreaker",
+                  "(?i)circuitBreaker",
+                  "(?i)resilience4j\\.circuitbreaker",
+                  "(?i)CircuitBreaker"
+                ]
+              }
+            },
+            "matched_groups": {
+              "circuit_breaker_policy": [
+                {
+                  "path": "spring-petclinic-api-gateway\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 11,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "- name: CircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 11,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "- name: CircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 11,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "- name: CircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "name: defaultCircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "name: defaultCircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "name: defaultCircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 45,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "- CircuitBreaker=name=genaiCircuitBreaker,fallbackUri=/fallback"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 45,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "- CircuitBreaker=name=genaiCircuitBreaker,fallbackUri=/fallback"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 45,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "- CircuitBreaker=name=genaiCircuitBreaker,fallbackUri=/fallback"
+                },
+                {
+                  "path": "spring-petclinic-genai-service\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-genai-service\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-genai-service\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                }
+              ]
+            },
+            "missing_groups": [],
+            "skipped_files_sample": []
+          },
+          "expected_value": null,
+          "compliant": true,
+          "message": "Repository configuration pattern scan completed.",
+          "raw_data": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "circuit_breaker_policy": {
+                "description": "Circuit breaker configuration for dependency isolation.",
+                "patterns": [
+                  "(?i)circuitbreaker",
+                  "(?i)circuitBreaker",
+                  "(?i)resilience4j\\.circuitbreaker",
+                  "(?i)CircuitBreaker"
+                ]
+              }
+            },
+            "matched_groups": {
+              "circuit_breaker_policy": [
+                {
+                  "path": "spring-petclinic-api-gateway\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 11,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "- name: CircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 11,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "- name: CircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 11,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "- name: CircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "name: defaultCircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "name: defaultCircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 13,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "name: defaultCircuitBreaker"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 45,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "- CircuitBreaker=name=genaiCircuitBreaker,fallbackUri=/fallback"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 45,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "- CircuitBreaker=name=genaiCircuitBreaker,fallbackUri=/fallback"
+                },
+                {
+                  "path": "spring-petclinic-api-gateway\\src\\main\\resources\\application.yml",
+                  "line_number": 45,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "- CircuitBreaker=name=genaiCircuitBreaker,fallbackUri=/fallback"
+                },
+                {
+                  "path": "spring-petclinic-genai-service\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitbreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-genai-service\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)circuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                },
+                {
+                  "path": "spring-petclinic-genai-service\\pom.xml",
+                  "line_number": 68,
+                  "pattern": "(?i)CircuitBreaker",
+                  "match_preview": "<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>"
+                }
+              ]
+            },
+            "missing_groups": [],
+            "skipped_files_sample": []
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "REL-005",
+      "title": "Retry policy must be bounded",
+      "severity": "high",
+      "status": "failed",
+      "message": "Required repository configuration pattern group(s) missing: retry_attempt_bound.",
+      "category": "reliability",
+      "target": "repository",
+      "check_type": "repository_configuration_patterns",
+      "evidence": [
+        {
+          "source": "repository-configuration-patterns",
+          "message": "Repository configuration pattern scan completed.",
+          "data": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "retry_attempt_bound": {
+                "description": "Maximum retry attempt configuration.",
+                "patterns": [
+                  "(?i)maxAttempts",
+                  "(?i)maxRetryAttempts",
+                  "(?i)maximumAttempts"
+                ]
+              },
+              "retry_backoff": {
+                "description": "Retry wait duration or backoff configuration.",
+                "patterns": [
+                  "(?i)waitDuration",
+                  "(?i)backoff",
+                  "(?i)backOff",
+                  "(?i)interval"
+                ]
+              }
+            },
+            "matched_groups": {
+              "retry_attempt_bound": [],
+              "retry_backoff": [
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 87,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 94,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 175,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": \"\","
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 176,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 183,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": \"\","
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 184,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 250,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 289,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 331,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 370,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 413,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 452,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 495,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 534,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 596,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 603,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 610,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 617,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 671,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"value\": \"$__auto_interval_timeRange\""
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 680,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"value\": \"$__auto_interval_timeRange\""
+                }
+              ]
+            },
+            "missing_groups": [
+              "retry_attempt_bound"
+            ],
+            "skipped_files_sample": []
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "REL-005",
+          "source_type": "generic",
+          "source_name": "repository-configuration-patterns",
+          "resource": "repository-configuration-patterns",
+          "observed_value": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "retry_attempt_bound": {
+                "description": "Maximum retry attempt configuration.",
+                "patterns": [
+                  "(?i)maxAttempts",
+                  "(?i)maxRetryAttempts",
+                  "(?i)maximumAttempts"
+                ]
+              },
+              "retry_backoff": {
+                "description": "Retry wait duration or backoff configuration.",
+                "patterns": [
+                  "(?i)waitDuration",
+                  "(?i)backoff",
+                  "(?i)backOff",
+                  "(?i)interval"
+                ]
+              }
+            },
+            "matched_groups": {
+              "retry_attempt_bound": [],
+              "retry_backoff": [
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 87,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 94,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 175,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": \"\","
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 176,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 183,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": \"\","
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 184,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 250,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 289,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 331,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 370,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 413,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 452,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 495,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 534,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 596,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 603,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 610,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 617,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 671,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"value\": \"$__auto_interval_timeRange\""
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 680,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"value\": \"$__auto_interval_timeRange\""
+                }
+              ]
+            },
+            "missing_groups": [
+              "retry_attempt_bound"
+            ],
+            "skipped_files_sample": []
+          },
+          "expected_value": null,
+          "compliant": false,
+          "message": "Repository configuration pattern scan completed.",
+          "raw_data": {
+            "include_paths": [
+              ".",
+              "examples/reliability"
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules"
+            ],
+            "file_patterns": [
+              "*.yaml",
+              "*.yml",
+              "*.properties",
+              "*.conf",
+              "*.json",
+              "*.xml"
+            ],
+            "candidate_file_count": 52,
+            "scanned_file_count": 52,
+            "skipped_file_count": 0,
+            "max_file_size_bytes": 1048576,
+            "required_groups": {
+              "retry_attempt_bound": {
+                "description": "Maximum retry attempt configuration.",
+                "patterns": [
+                  "(?i)maxAttempts",
+                  "(?i)maxRetryAttempts",
+                  "(?i)maximumAttempts"
+                ]
+              },
+              "retry_backoff": {
+                "description": "Retry wait duration or backoff configuration.",
+                "patterns": [
+                  "(?i)waitDuration",
+                  "(?i)backoff",
+                  "(?i)backOff",
+                  "(?i)interval"
+                ]
+              }
+            },
+            "matched_groups": {
+              "retry_attempt_bound": [],
+              "retry_backoff": [
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 87,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 94,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 175,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": \"\","
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 176,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 183,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": \"\","
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 184,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 250,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 289,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 331,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 370,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 413,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 452,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 495,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"interval\": null,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 534,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 596,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 603,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 610,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 617,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"intervalFactor\": 1,"
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 671,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"value\": \"$__auto_interval_timeRange\""
+                },
+                {
+                  "path": "docker\\grafana\\dashboards\\grafana-petclinic-dashboard.json",
+                  "line_number": 680,
+                  "pattern": "(?i)interval",
+                  "match_preview": "\"value\": \"$__auto_interval_timeRange\""
+                }
+              ]
+            },
+            "missing_groups": [
+              "retry_attempt_bound"
+            ],
+            "skipped_files_sample": []
+          },
+          "metadata": {
+            "finding_status": "failed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "REPO-001",
+      "title": "Repository must contain README",
+      "severity": "medium",
+      "status": "passed",
+      "message": "All required file(s) exist.",
+      "category": "repository",
+      "target": "repository",
+      "check_type": "required_files",
+      "evidence": [
+        {
+          "source": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices",
+          "message": "Required repository files check passed.",
+          "data": {
+            "existing_files": [
+              "README.md"
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "REPO-001",
+          "source_type": "filesystem",
+          "source_name": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices",
+          "resource": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices",
+          "observed_value": {
+            "existing_files": [
+              "README.md"
+            ],
+            "missing_files": []
+          },
+          "expected_value": [
+            "README.md"
+          ],
+          "compliant": true,
+          "message": "Required repository files check passed.",
+          "raw_data": {
+            "existing_files": [
+              "README.md"
+            ]
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "SEC-001",
+      "title": "Repository must not contain obvious secrets",
+      "severity": "critical",
+      "status": "failed",
+      "message": "Potential committed secrets detected: 1.",
+      "category": "security",
+      "target": "repository",
+      "check_type": "repository_secret_patterns",
+      "evidence": [
+        {
+          "source": "repository-secret-patterns",
+          "message": "Repository secret pattern scan completed.",
+          "data": {
+            "include_paths": [
+              "."
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules",
+              "tests"
+            ],
+            "file_patterns": [
+              "*"
+            ],
+            "candidate_file_count": 208,
+            "scanned_file_count": 191,
+            "skipped_file_count": 17,
+            "max_file_size_bytes": 1048576,
+            "secret_pattern_names": [
+              "private_key",
+              "aws_access_key_id",
+              "github_token",
+              "generic_secret_assignment"
+            ],
+            "violations": [
+              {
+                "path": "README.md",
+                "line_number": 128,
+                "pattern_name": "generic_secret_assignment",
+                "match_preview": "API_***re"
+              }
+            ],
+            "skipped_files_sample": [
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\.mvn\\wrapper\\maven-wrapper.jar",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\application-screenshot.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\grafana-custom-metrics-dashboard.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\microservices-architecture-diagram.jpg",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\spring-ai.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\montserrat-webfont.eot",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\montserrat-webfont.ttf",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\montserrat-webfont.woff",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\varela_round-webfont.eot",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\varela_round-webfont.ttf",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\varela_round-webfont.woff",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\favicon.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\pets.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\platform-bg.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\spring-logo-dataflow-mobile.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\spring-logo-dataflow.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\spring-pivotal-logo.png",
+                "reason": "binary_file"
+              }
+            ]
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "SEC-001",
+          "source_type": "generic",
+          "source_name": "repository-secret-patterns",
+          "resource": "repository-secret-patterns",
+          "observed_value": {
+            "include_paths": [
+              "."
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules",
+              "tests"
+            ],
+            "file_patterns": [
+              "*"
+            ],
+            "candidate_file_count": 208,
+            "scanned_file_count": 191,
+            "skipped_file_count": 17,
+            "max_file_size_bytes": 1048576,
+            "secret_pattern_names": [
+              "private_key",
+              "aws_access_key_id",
+              "github_token",
+              "generic_secret_assignment"
+            ],
+            "violations": [
+              {
+                "path": "README.md",
+                "line_number": 128,
+                "pattern_name": "generic_secret_assignment",
+                "match_preview": "API_***re"
+              }
+            ],
+            "skipped_files_sample": [
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\.mvn\\wrapper\\maven-wrapper.jar",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\application-screenshot.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\grafana-custom-metrics-dashboard.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\microservices-architecture-diagram.jpg",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\spring-ai.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\montserrat-webfont.eot",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\montserrat-webfont.ttf",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\montserrat-webfont.woff",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\varela_round-webfont.eot",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\varela_round-webfont.ttf",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\varela_round-webfont.woff",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\favicon.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\pets.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\platform-bg.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\spring-logo-dataflow-mobile.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\spring-logo-dataflow.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\spring-pivotal-logo.png",
+                "reason": "binary_file"
+              }
+            ]
+          },
+          "expected_value": null,
+          "compliant": false,
+          "message": "Repository secret pattern scan completed.",
+          "raw_data": {
+            "include_paths": [
+              "."
+            ],
+            "exclude_paths": [
+              ".git",
+              ".venv",
+              "venv",
+              "env",
+              "__pycache__",
+              ".pytest_cache",
+              ".mypy_cache",
+              ".ruff_cache",
+              "outputs",
+              "dist",
+              "build",
+              "node_modules",
+              "tests"
+            ],
+            "file_patterns": [
+              "*"
+            ],
+            "candidate_file_count": 208,
+            "scanned_file_count": 191,
+            "skipped_file_count": 17,
+            "max_file_size_bytes": 1048576,
+            "secret_pattern_names": [
+              "private_key",
+              "aws_access_key_id",
+              "github_token",
+              "generic_secret_assignment"
+            ],
+            "violations": [
+              {
+                "path": "README.md",
+                "line_number": 128,
+                "pattern_name": "generic_secret_assignment",
+                "match_preview": "API_***re"
+              }
+            ],
+            "skipped_files_sample": [
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\.mvn\\wrapper\\maven-wrapper.jar",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\application-screenshot.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\grafana-custom-metrics-dashboard.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\microservices-architecture-diagram.jpg",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\docs\\spring-ai.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\montserrat-webfont.eot",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\montserrat-webfont.ttf",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\montserrat-webfont.woff",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\varela_round-webfont.eot",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\varela_round-webfont.ttf",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\fonts\\varela_round-webfont.woff",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\favicon.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\pets.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\platform-bg.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\spring-logo-dataflow-mobile.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\spring-logo-dataflow.png",
+                "reason": "binary_file"
+              },
+              {
+                "path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\case-studies\\spring-petclinic-microservices\\spring-petclinic-api-gateway\\src\\main\\resources\\static\\images\\spring-pivotal-logo.png",
+                "reason": "binary_file"
+              }
+            ]
+          },
+          "metadata": {
+            "finding_status": "failed"
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "TOOL-OPA-001",
+      "title": "Architecture catalog must satisfy OPA policy-as-code baseline",
+      "severity": "high",
+      "status": "passed",
+      "message": "External tool check passed: opa.",
+      "category": "architecture",
+      "target": "architecture-catalog",
+      "check_type": "external_tool",
+      "evidence": [
+        {
+          "source": "external-tool:opa",
+          "message": "OPA policy evaluation completed. Findings: 0.",
+          "data": {
+            "tool_name": "opa",
+            "status": "success",
+            "message": "OPA policy evaluation completed. Findings: 0.",
+            "command": [
+              "opa",
+              "eval",
+              "--format",
+              "json",
+              "--data",
+              "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\policies\\architecture_catalog.rego",
+              "--input",
+              "E:\\Repositories\\PythonProjects\\ED-CAGE\\outputs\\tools\\opa\\opa-input-66698b2f-11be-45d6-89b2-851888810119.json",
+              "data.ed_cage.architecture.deny"
+            ],
+            "exit_code": 0,
+            "stdout": "{\n  \"result\": [\n    {\n      \"expressions\": [\n        {\n          \"value\": [],\n          \"text\": \"data.ed_cage.architecture.deny\",\n          \"location\": {\n            \"row\": 1,\n            \"col\": 1\n          }\n        }\n      ]\n    }\n  ]\n}\n",
+            "stderr": "",
+            "resource": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "findings": [],
+            "summary": {
+              "policy_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\policies\\architecture_catalog.rego",
+              "query": "data.ed_cage.architecture.deny",
+              "finding_count": 0,
+              "execution_mode": "local"
+            },
+            "metadata": {}
+          }
+        }
+      ],
+      "normalized_evidence": [
+        {
+          "rule_id": "TOOL-OPA-001",
+          "source_type": "generic",
+          "source_name": "external-tool:opa",
+          "resource": "external-tool:opa",
+          "observed_value": {
+            "tool_name": "opa",
+            "status": "success",
+            "message": "OPA policy evaluation completed. Findings: 0.",
+            "command": [
+              "opa",
+              "eval",
+              "--format",
+              "json",
+              "--data",
+              "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\policies\\architecture_catalog.rego",
+              "--input",
+              "E:\\Repositories\\PythonProjects\\ED-CAGE\\outputs\\tools\\opa\\opa-input-66698b2f-11be-45d6-89b2-851888810119.json",
+              "data.ed_cage.architecture.deny"
+            ],
+            "exit_code": 0,
+            "stdout": "{\n  \"result\": [\n    {\n      \"expressions\": [\n        {\n          \"value\": [],\n          \"text\": \"data.ed_cage.architecture.deny\",\n          \"location\": {\n            \"row\": 1,\n            \"col\": 1\n          }\n        }\n      ]\n    }\n  ]\n}\n",
+            "stderr": "",
+            "resource": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "findings": [],
+            "summary": {
+              "policy_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\policies\\architecture_catalog.rego",
+              "query": "data.ed_cage.architecture.deny",
+              "finding_count": 0,
+              "execution_mode": "local"
+            },
+            "metadata": {}
+          },
+          "expected_value": null,
+          "compliant": true,
+          "message": "OPA policy evaluation completed. Findings: 0.",
+          "raw_data": {
+            "tool_name": "opa",
+            "status": "success",
+            "message": "OPA policy evaluation completed. Findings: 0.",
+            "command": [
+              "opa",
+              "eval",
+              "--format",
+              "json",
+              "--data",
+              "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\policies\\architecture_catalog.rego",
+              "--input",
+              "E:\\Repositories\\PythonProjects\\ED-CAGE\\outputs\\tools\\opa\\opa-input-66698b2f-11be-45d6-89b2-851888810119.json",
+              "data.ed_cage.architecture.deny"
+            ],
+            "exit_code": 0,
+            "stdout": "{\n  \"result\": [\n    {\n      \"expressions\": [\n        {\n          \"value\": [],\n          \"text\": \"data.ed_cage.architecture.deny\",\n          \"location\": {\n            \"row\": 1,\n            \"col\": 1\n          }\n        }\n      ]\n    }\n  ]\n}\n",
+            "stderr": "",
+            "resource": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\cases\\architecture-catalogs\\spring-petclinic-microservices-service-architecture.yaml",
+            "findings": [],
+            "summary": {
+              "policy_path": "E:\\Repositories\\PythonProjects\\ED-CAGE\\configs\\policies\\architecture_catalog.rego",
+              "query": "data.ed_cage.architecture.deny",
+              "finding_count": 0,
+              "execution_mode": "local"
+            },
+            "metadata": {}
+          },
+          "metadata": {
+            "finding_status": "passed"
+          }
+        }
+      ]
+    }
+  ],
+  "score": {
+    "score": 73.58,
+    "achieved_score": 493.0,
+    "max_score": 670.0,
+    "total_findings": 16,
+    "evaluated_findings": 16,
+    "skipped_findings": 0,
+    "status_summary": {
+      "passed": 11,
+      "failed": 5,
+      "skipped": 0,
+      "error": 0
+    },
+    "severity_summary": {
+      "info": 0,
+      "low": 0,
+      "medium": 3,
+      "high": 11,
+      "critical": 2
+    },
+    "maturity_band": "Managed Governance",
+    "category_scores": {
+      "architecture": 50.0,
+      "dependency": 100.0,
+      "deployment": 100.0,
+      "reliability": 60.0,
+      "repository": 100.0,
+      "security": 50.0
+    },
+    "category_weights": {
+      "architecture": 1.2,
+      "dependency": 1.1,
+      "deployment": 1.1,
+      "reliability": 1.3,
+      "repository": 0.7,
+      "security": 1.3
+    },
+    "category_details": [
+      {
+        "category": "architecture",
+        "score": 50.0,
+        "weight": 1.2,
+        "applicable_rule_count": 4,
+        "passed_rule_count": 2,
+        "warning_rule_count": 0,
+        "failed_rule_count": 2,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      },
+      {
+        "category": "dependency",
+        "score": 100.0,
+        "weight": 1.1,
+        "applicable_rule_count": 3,
+        "passed_rule_count": 3,
+        "warning_rule_count": 0,
+        "failed_rule_count": 0,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      },
+      {
+        "category": "deployment",
+        "score": 100.0,
+        "weight": 1.1,
+        "applicable_rule_count": 1,
+        "passed_rule_count": 1,
+        "warning_rule_count": 0,
+        "failed_rule_count": 0,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      },
+      {
+        "category": "reliability",
+        "score": 60.0,
+        "weight": 1.3,
+        "applicable_rule_count": 5,
+        "passed_rule_count": 3,
+        "warning_rule_count": 0,
+        "failed_rule_count": 2,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      },
+      {
+        "category": "repository",
+        "score": 100.0,
+        "weight": 0.7,
+        "applicable_rule_count": 1,
+        "passed_rule_count": 1,
+        "warning_rule_count": 0,
+        "failed_rule_count": 0,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      },
+      {
+        "category": "security",
+        "score": 50.0,
+        "weight": 1.3,
+        "applicable_rule_count": 2,
+        "passed_rule_count": 1,
+        "warning_rule_count": 0,
+        "failed_rule_count": 1,
+        "error_rule_count": 0,
+        "skipped_rule_count": 0
+      }
+    ],
+    "applicable_rule_count": 16,
+    "not_applicable_rule_count": 14,
+    "weighted_score_explanation": {
+      "formula": "sum(category_score * category_weight) / sum(category_weight)",
+      "weighted_score_sum": 493.0,
+      "weight_sum": 6.7,
+      "status_scores": {
+        "passed": 1.0,
+        "failed": 0.0,
+        "error": 0.0
+      },
+      "excluded_rule_ids": [
+        "DEP-001",
+        "DEP-002",
+        "DEP-003",
+        "DEP-004",
+        "DEP-005",
+        "DEP-006",
+        "DEP-007",
+        "DEP-008",
+        "REL-001",
+        "SEC-002",
+        "SEC-003",
+        "TOOL-K8S-001",
+        "TOOL-TRIVY-001",
+        "REPO-002"
+      ],
+      "excluded_rule_count": 14,
+      "excluded_rule_reason": "disabled_by_case_config"
+    }
+  },
+  "gate_result": {
+    "passed": false,
+    "actual_score": 73.58,
+    "minimum_score": 70.0,
+    "reasons": [
+      "Blocking critical finding detected: SEC-001"
+    ],
+    "blocking_findings": [
+      "SEC-001"
+    ]
+  },
+  "actions": [
+    {
+      "action_id": "ACTION-ARCH-001-ADR-DIRECTORY:ARCH-001",
+      "rule_id": "ARCH-001",
+      "finding_status": "failed",
+      "severity": "medium",
+      "title": "Add Architecture Decision Records directory",
+      "action_type": "documentation",
+      "priority": "medium",
+      "recommendation": "Create an ADR directory and document significant architecture decisions.",
+      "implementation_hint": "Add docs/adr and create ADR files using a consistent template including status, context, decision and consequences.",
+      "category": "architecture",
+      "target": "repository",
+      "check_type": "repository_required_paths",
+      "references": [],
+      "tags": [
+        "architecture",
+        "adr",
+        "documentation"
+      ],
+      "metadata": {
+        "finding_message": "Required repository path violations detected: 1.",
+        "source_action_definition": "ACTION-ARCH-001-ADR-DIRECTORY"
+      }
+    },
+    {
+      "action_id": "ACTION-ARCH-002-QUALITY-SCENARIOS:ARCH-002",
+      "rule_id": "ARCH-002",
+      "finding_status": "failed",
+      "severity": "high",
+      "title": "Document quality attribute scenarios",
+      "action_type": "documentation",
+      "priority": "high",
+      "recommendation": "Document quality attribute scenarios for architecture evaluation and governance.",
+      "implementation_hint": "Add docs/quality-attributes/scenarios.yaml and define scenarios for availability, performance, security, modifiability and observability.",
+      "category": "architecture",
+      "target": "repository",
+      "check_type": "repository_required_paths",
+      "references": [],
+      "tags": [
+        "architecture",
+        "quality-attributes",
+        "scenarios"
+      ],
+      "metadata": {
+        "finding_message": "Required repository path violations detected: 1.",
+        "source_action_definition": "ACTION-ARCH-002-QUALITY-SCENARIOS"
+      }
+    },
+    {
+      "action_id": "DEFAULT-FAILED:CMP-002",
+      "rule_id": "CMP-002",
+      "finding_status": "failed",
+      "severity": "high",
+      "title": "Remediate governance rule violation",
+      "action_type": "remediation",
+      "priority": "high",
+      "recommendation": "Review the failed governance rule and remediate the architecture or configuration issue reported by ED-CAGE.",
+      "implementation_hint": "Use the finding message and normalized evidence to identify the non-compliant resource and expected value.",
+      "category": "reliability",
+      "target": "docker-compose",
+      "check_type": "docker_compose_healthcheck_policy",
+      "references": [],
+      "tags": [
+        "default-action",
+        "remediation"
+      ],
+      "metadata": {
+        "finding_message": "Docker Compose service healthcheck violations detected: 7.",
+        "generated_by": "default_action_generator"
+      }
+    },
+    {
+      "action_id": "ACTION-REL-005-BOUNDED-RETRY:REL-005",
+      "rule_id": "REL-005",
+      "finding_status": "failed",
+      "severity": "high",
+      "title": "Bound retry attempts and backoff",
+      "action_type": "remediation",
+      "priority": "high",
+      "recommendation": "Ensure retry policies define maximum attempts and wait/backoff duration.",
+      "implementation_hint": "Configure maxAttempts and waitDuration/backoff to prevent retry storms and cascading failures.",
+      "category": "reliability",
+      "target": "repository",
+      "check_type": "repository_configuration_patterns",
+      "references": [],
+      "tags": [
+        "reliability",
+        "retry",
+        "backoff"
+      ],
+      "metadata": {
+        "finding_message": "Required repository configuration pattern group(s) missing: retry_attempt_bound.",
+        "source_action_definition": "ACTION-REL-005-BOUNDED-RETRY"
+      }
+    },
+    {
+      "action_id": "ACTION-SEC-001-REMOVE-COMMITTED-SECRETS:SEC-001",
+      "rule_id": "SEC-001",
+      "finding_status": "failed",
+      "severity": "critical",
+      "title": "Remove committed secrets",
+      "action_type": "remediation",
+      "priority": "critical",
+      "recommendation": "Remove detected secrets from the repository and rotate affected credentials.",
+      "implementation_hint": "Move secrets to a secret management mechanism and purge leaked secrets from version history where necessary.",
+      "category": "security",
+      "target": "repository",
+      "check_type": "repository_secret_patterns",
+      "references": [],
+      "tags": [
+        "security",
+        "secrets",
+        "repository"
+      ],
+      "metadata": {
+        "finding_message": "Potential committed secrets detected: 1.",
+        "source_action_definition": "ACTION-SEC-001-REMOVE-COMMITTED-SECRETS"
+      }
+    }
+  ]
+}
