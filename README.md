@@ -634,7 +634,7 @@ The framework is intended for research, experimentation, and extensible governan
 
 ## License
 
-No license has been published yet. Add a license file before distributing or reusing this project outside its current research and development context.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
