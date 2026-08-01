@@ -14,6 +14,7 @@ outputs/*
 
 # External case-study repositories
 case-studies/*
+case-studies-outputs/*
 !case-studies/.gitkeep
 
 # External tool temporary outputs
