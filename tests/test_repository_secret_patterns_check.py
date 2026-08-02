@@ -10,7 +10,10 @@ from ed_cage.domain.models import GovernanceRule, ProjectContext
 def _rule() -> GovernanceRule:
     return GovernanceRule(
         id="SEC-001",
-        title="First-party source and runtime configuration must not contain committed credential literals",
+        title=(
+            "First-party source and runtime configuration must not contain "
+            "committed credential literals"
+        ),
         description="Test rule",
         category="security",
         severity="critical",
@@ -86,6 +89,36 @@ def _rule() -> GovernanceRule:
                 "hash",
                 "salt",
             ],
+            "non_credential_identifier_terms": [
+                "message",
+                "error",
+                "validation",
+                "rule",
+                "policy",
+                "least",
+                "minimum",
+                "maximum",
+                "length",
+                "char",
+                "character",
+                "regex",
+                "pattern",
+                "format",
+            ],
+            "weak_credential_literals": [
+                "password",
+                "passwd",
+                "pwd",
+                "secret",
+                "token",
+                "admin",
+                "root",
+                "guest",
+                "default",
+                "changeme",
+                "admin123",
+                "password123",
+            ],
             "secret_patterns": [
                 {
                     "name": "private_key",
@@ -116,7 +149,9 @@ def _violations(finding) -> list[dict[str, object]]:
     return finding.evidence[0].data["violations"]
 
 
-def test_runtime_request_and_dto_expressions_are_not_violations(tmp_path: Path) -> None:
+def test_runtime_request_and_dto_expressions_are_not_violations(
+    tmp_path: Path,
+) -> None:
     java_file = tmp_path / "src" / "TokenService.java"
     java_file.parent.mkdir(parents=True)
     java_file.write_text(
@@ -127,7 +162,6 @@ def test_runtime_request_and_dto_expressions_are_not_violations(tmp_path: Path) 
         """,
         encoding="utf-8",
     )
-
     cs_file = tmp_path / "src" / "TokenService.cs"
     cs_file.write_text(
         """
@@ -157,7 +191,6 @@ def test_kubernetes_token_file_reference_is_not_a_violation(tmp_path: Path) -> N
     )
 
     finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
-
     assert finding.status == CheckStatus.PASSED
     assert _violations(finding) == []
 
@@ -165,13 +198,9 @@ def test_kubernetes_token_file_reference_is_not_a_violation(tmp_path: Path) -> N
 def test_secret_resource_name_is_not_a_violation(tmp_path: Path) -> None:
     manifest = tmp_path / "deployment" / "alloydb.yml"
     manifest.parent.mkdir(parents=True)
-    manifest.write_text(
-        "ALLOYDB_SECRET_NAME: alloydb-secret\n",
-        encoding="utf-8",
-    )
+    manifest.write_text("ALLOYDB_SECRET_NAME: alloydb-secret\n", encoding="utf-8")
 
     finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
-
     assert finding.status == CheckStatus.PASSED
     assert _violations(finding) == []
 
@@ -201,18 +230,13 @@ def test_nested_dependency_directory_is_not_scanned(tmp_path: Path) -> None:
 
 def test_documentation_and_shell_scripts_are_out_of_scope(tmp_path: Path) -> None:
     readme = tmp_path / "README.md"
-    readme.write_text(
-        'export OPENAI_API_KEY="your_api_key_here"\n', encoding="utf-8"
-    )
+    readme.write_text('export OPENAI_API_KEY="your_api_key_here"\n', encoding="utf-8")
 
     script = tmp_path / "scripts" / "deploy.sh"
     script.parent.mkdir()
-    script.write_text(
-        "ALLOYDB_SECRET_NAME=alloydb-secret\n", encoding="utf-8"
-    )
+    script.write_text("ALLOYDB_SECRET_NAME=alloydb-secret\n", encoding="utf-8")
 
     finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
-
     assert finding.status == CheckStatus.PASSED
     assert _violations(finding) == []
 
@@ -226,12 +250,13 @@ def test_hardcoded_source_literal_is_a_violation(tmp_path: Path) -> None:
     )
 
     finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
+    violations = _violations(finding)
 
     assert finding.status == CheckStatus.FAILED
-    violations = _violations(finding)
     assert len(violations) == 1
     assert violations[0]["pattern_name"] == "generic_hardcoded_credential_literal"
     assert violations[0]["key"] == "password"
+    assert violations[0]["candidate_origin"] == "source_assignment"
 
 
 def test_hardcoded_structured_config_literal_is_a_violation(tmp_path: Path) -> None:
@@ -247,12 +272,13 @@ def test_hardcoded_structured_config_literal_is_a_violation(tmp_path: Path) -> N
     )
 
     finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
+    violations = _violations(finding)
 
     assert finding.status == CheckStatus.FAILED
-    violations = _violations(finding)
     assert any(
         item["pattern_name"] == "generic_hardcoded_credential_literal"
         and item["key"] == "password"
+        and item["candidate_origin"] == "structured_config"
         for item in violations
     )
 
@@ -268,7 +294,6 @@ def test_provider_specific_token_is_detected_without_sensitive_variable_name(
     )
 
     finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
-
     assert finding.status == CheckStatus.FAILED
     assert any(item["pattern_name"] == "github_token" for item in _violations(finding))
 
@@ -310,7 +335,6 @@ def test_environment_reference_without_default_is_not_a_violation(
     )
 
     finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
-
     assert finding.status == CheckStatus.PASSED
     assert _violations(finding) == []
 
@@ -328,9 +352,9 @@ def test_environment_credential_default_is_a_violation(tmp_path: Path) -> None:
     )
 
     finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
+    violations = _violations(finding)
 
     assert finding.status == CheckStatus.FAILED
-    violations = _violations(finding)
     assert len(violations) == 1
     assert violations[0]["pattern_name"] == "insecure_default_credential_literal"
     assert violations[0]["key"] == "password"
@@ -347,7 +371,83 @@ def test_shell_style_environment_credential_default_is_a_violation(
     )
 
     finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
+    violations = _violations(finding)
 
     assert finding.status == CheckStatus.FAILED
-    violations = _violations(finding)
     assert violations[0]["pattern_name"] == "insecure_default_credential_literal"
+
+
+def test_password_validation_message_is_not_a_violation(tmp_path: Path) -> None:
+    source = tmp_path / "src" / "InfoConstant.java"
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        'public static final String PASSWORD_LEAST_CHAR_1 = '
+        '"Passwords must contain at least {0} characters."; //NOSONAR\n',
+        encoding="utf-8",
+    )
+
+    finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
+
+    assert finding.status == CheckStatus.PASSED
+    assert _violations(finding) == []
+
+
+def test_weak_password_constant_is_a_violation(tmp_path: Path) -> None:
+    source = tmp_path / "src" / "InfoConstant.java"
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        'public static final String PASSWORD = "password"; //NOSONAR\n',
+        encoding="utf-8",
+    )
+
+    finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
+    violations = _violations(finding)
+
+    assert finding.status == CheckStatus.FAILED
+    assert len(violations) == 1
+    assert violations[0]["pattern_name"] == "weak_hardcoded_credential_literal"
+    assert violations[0]["key"] == "PASSWORD"
+    assert violations[0]["source_kind"] == "direct_literal"
+    assert violations[0]["candidate_origin"] == "source_constant"
+
+
+def test_weak_password_assignment_is_a_violation(tmp_path: Path) -> None:
+    source = tmp_path / "src" / "LoginService.java"
+    source.parent.mkdir(parents=True)
+    source.write_text('String password = "password";\n', encoding="utf-8")
+
+    finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
+    violations = _violations(finding)
+
+    assert finding.status == CheckStatus.FAILED
+    assert len(violations) == 1
+    assert violations[0]["pattern_name"] == "weak_hardcoded_credential_literal"
+    assert violations[0]["candidate_origin"] == "source_assignment"
+
+
+def test_weak_password_in_structured_config_is_a_violation(tmp_path: Path) -> None:
+    config = tmp_path / "application.yml"
+    config.write_text("password: password\n", encoding="utf-8")
+
+    finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
+    violations = _violations(finding)
+
+    assert finding.status == CheckStatus.FAILED
+    assert len(violations) == 1
+    assert violations[0]["pattern_name"] == "weak_hardcoded_credential_literal"
+    assert violations[0]["candidate_origin"] == "structured_config"
+
+
+def test_password_policy_constant_is_not_a_violation(tmp_path: Path) -> None:
+    source = tmp_path / "src" / "InfoConstant.java"
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        'public static final String PASSWORD_POLICY_MESSAGE = '
+        '"Password must contain uppercase, lowercase and numeric characters.";\n',
+        encoding="utf-8",
+    )
+
+    finding = RepositorySecretPatternsCheck().evaluate(_rule(), _context(tmp_path))
+
+    assert finding.status == CheckStatus.PASSED
+    assert _violations(finding) == []
