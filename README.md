@@ -163,33 +163,33 @@ ed-cage scan \
 
 ---
 
-## Rule Filtering
+## Example Rule Filtering
 
-Run a single rule:
+Example: Run a single rule:
 
 ```bash
 ed-cage scan --config configs/ed-cage.yaml --rule-id SVC-001
 ```
 
-Run multiple rules:
+Example: Run multiple rules:
 
 ```bash
 ed-cage scan --config configs/ed-cage.yaml --rule-id REPO-001,SVC-001
 ```
 
-Run by category:
+Example: Run by category:
 
 ```bash
 ed-cage scan --config configs/ed-cage.yaml --category security
 ```
 
-Run by severity:
+Example: Run by severity:
 
 ```bash
 ed-cage scan --config configs/ed-cage.yaml --severity high,critical
 ```
 
-Run by check type:
+Example: Run by check type:
 
 ```bash
 ed-cage scan --config configs/ed-cage.yaml --check-type http_health_endpoint

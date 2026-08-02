@@ -1,7 +1,13 @@
 rules:
   - id: SEC-001
-    title: Repository must not contain obvious secrets
-    description: Governed repositories should not contain obvious committed secrets such as private keys, access keys or long-lived tokens.
+    title: First-party source and runtime configuration must not contain committed credential literals or insecure credential defaults
+    description: >-
+      Governed repositories should not contain high-confidence committed credential
+      literals or insecure credential fallback values in first-party source code or
+      runtime configuration. Pure environment and CI secret-store references are not
+      treated as committed credentials. Documentation,
+      scripts, build metadata, generated artifacts, tests, examples, and external
+      dependency directories are outside this rule's scope.
     category: security
     severity: critical
     target: repository
@@ -10,6 +16,9 @@ rules:
     params:
       include_paths:
         - .
+
+      # Root-level paths. Nested dependency/generated directories are handled by
+      # exclude_dir_names using path-segment ownership filtering.
       exclude_paths:
         - .git
         - .venv
@@ -20,22 +29,172 @@ rules:
         - .mypy_cache
         - .ruff_cache
         - outputs
-        - dist
-        - build
-        - node_modules
-        - tests
+
+      # Only first-party source and runtime configuration types are candidates.
       file_patterns:
-        - "*"
+        - "*.py"
+        - "*.java"
+        - "*.kt"
+        - "*.kts"
+        - "*.cs"
+        - "*.js"
+        - "*.jsx"
+        - "*.ts"
+        - "*.tsx"
+        - "*.go"
+        - "*.rb"
+        - "*.php"
+        - "*.scala"
+        - "*.rs"
+        - "*.swift"
+        - "*.c"
+        - "*.cc"
+        - "*.cpp"
+        - "*.h"
+        - "*.hpp"
+        - "*.yaml"
+        - "*.yml"
+        - "*.json"
+        - "*.toml"
+        - "*.xml"
+        - "*.properties"
+        - "*.ini"
+        - "*.conf"
+
+      # Exclude non-first-party, generated, documentation and test scopes at any
+      # nesting depth (for example service-a/node_modules/package/file.ts).
+      exclude_dir_names:
+        - .git
+        - .venv
+        - venv
+        - env
+        - node_modules
+        - vendor
+        - vendors
+        - third_party
+        - third-party
+        - external
+        - deps
+        - dependencies
+        - generated
+        - __generated__
+        - target
+        - build
+        - dist
+        - out
+        - coverage
+        - docs
+        - documentation
+        - examples
+        - samples
+        - demo
+        - tests
+        - test
+
+      exclude_file_names:
+        - README
+        - README.md
+        - README.adoc
+        - LICENSE
+        - LICENSE.md
+        - NOTICE
+        - CHANGELOG
+        - pom.xml
+        - build.gradle
+        - settings.gradle
+        - gradle.properties
+        - mvnw
+        - mvnw.cmd
+        - .env
+        - .env.example
+        - .env.sample
+
+      exclude_file_patterns:
+        - "*.md"
+        - "*.adoc"
+        - "*.rst"
+        - "*.txt"
+        - "*.sh"
+        - "*.bash"
+        - "*.zsh"
+        - "*.fish"
+        - "*.cmd"
+        - "*.bat"
+        - "*.ps1"
+        - "*.psm1"
+        - "*.gradle"
+        - "*.gradle.kts"
+        - "*.lock"
+        - "package-lock.json"
+        - "yarn.lock"
+        - "pnpm-lock.yaml"
+
       max_file_size_bytes: 1048576
+
+      # Conservative generic-literal thresholds. Provider-specific patterns below
+      # do not depend on these thresholds.
+      generic_min_length: 16
+      generic_min_entropy: 3.3
+      generic_min_character_classes: 2
+
+      sensitive_terms:
+        - password
+        - passwd
+        - pwd
+        - secret
+        - token
+        - api_key
+        - access_token
+        - auth_token
+        - client_secret
+        - private_key
+        - signing_key
+        - jwt_secret
+        - credential
+        - credentials
+        - connection_string
+
+      # A sensitive word used as a reference identifier is not a credential value.
+      # Examples: bearer_token_file, ALLOYDB_SECRET_NAME, secretKeyRef.
+      reference_key_suffixes:
+        - file
+        - path
+        - name
+        - ref
+        - reference
+        - id
+        - identifier
+        - mount
+        - location
+        - uri
+        - url
+        - hash
+        - digest
+        - salt
+        - algorithm
+        - enabled
+        - required
+        - field
+        - column
+
+      # High-confidence credential formats are detected independently of key names.
       secret_patterns:
         - name: private_key
-          regex: "-----BEGIN [A-Z ]*PRIVATE KEY-----"
+          regex: "-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----"
         - name: aws_access_key_id
-          regex: "AKIA[0-9A-Z]{16}"
+          regex: "\\b(?:AKIA|ASIA)[A-Z0-9]{16}\\b"
         - name: github_token
-          regex: "gh[pousr]_[A-Za-z0-9_]{20,}"
-        - name: generic_secret_assignment
-          regex: "(?i)(password|passwd|pwd|secret|token|api[_-]?key)\\s*[:=]\\s*['\\\"]?[A-Za-z0-9_\\-]{16,}"
+          regex: "\\bgh[pousr]_[A-Za-z0-9_]{30,255}\\b"
+        - name: google_api_key
+          regex: "\\bAIza[0-9A-Za-z_-]{35}\\b"
+        - name: stripe_secret_key
+          regex: "\\bsk_(?:live|test)_[0-9A-Za-z]{16,}\\b"
+        - name: slack_token
+          regex: "\\bxox[baprs]-[0-9A-Za-z-]{10,}\\b"
+        - name: jwt_token
+          regex: "\\beyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\b"
+        - name: credential_in_uri
+          regex: "\\b(?:mongodb(?:\\+srv)?|postgres(?:ql)?|mysql|redis)://[^\\s:/]+:[^\\s@/]+@"
 
   - id: SEC-002
     title: Kubernetes Ingress must use TLS

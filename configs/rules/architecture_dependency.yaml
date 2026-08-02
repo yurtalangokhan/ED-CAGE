@@ -1,29 +1,116 @@
 rules:
   - id: ARCH-001
-    title: ADR directory must exist
-    description: Architecture Decision Records should be maintained to capture significant architectural decisions.
+    title: Architecture decision evidence should be discoverable
     category: architecture
     severity: medium
     target: repository
-    check_type: repository_required_paths
-    enabled: true
+    check_type: repository_architecture_evidence_discovery
     params:
-      required_paths:
-        - path: docs/adr
-          type: directory
+      evidence_type: architecture_decision
+      required: false
+      include_paths:
+        - .
+      exclude_paths:
+        - .git
+        - node_modules
+        - target
+        - build
+        - dist
+        - .venv
+      file_patterns:
+        - "*.md"
+        - "*.adoc"
+        - "*.rst"
+        - "*.txt"
+        - "*.yaml"
+        - "*.yml"
+      candidate_paths:
+        - docs/adr
+        - docs/adrs
+        - adr
+        - adrs
+        - docs/architecture
+        - docs/architecture/decisions
+        - architecture/decisions
+        - docs/design
+        - docs/decisions
+        - decision-records
+        - design-decisions
+      filename_indicators:
+        - adr
+        - architecture-decision
+        - architecture-decision-record
+        - decision-record
+        - design-decision
+      content_markers:
+        - status
+        - context
+        - decision
+        - consequences
+        - rationale
+        - alternatives
+      min_marker_count: 3
 
   - id: ARCH-002
-    title: Quality attribute scenarios must be documented
-    description: Quality attribute scenarios should be documented to support architecture evaluation and governance.
+    title: Quality-attribute scenario evidence should be discoverable
     category: architecture
-    severity: high
+    severity: medium
     target: repository
-    check_type: repository_required_paths
-    enabled: true
+    check_type: repository_architecture_evidence_discovery
     params:
-      required_paths:
-        - path: docs/quality-attributes/scenarios.yaml
-          type: file
+      evidence_type: quality_scenario
+      required: false
+      include_paths:
+        - .
+      exclude_paths:
+        - .git
+        - node_modules
+        - target
+        - build
+        - dist
+        - .venv
+      file_patterns:
+        - "*.md"
+        - "*.adoc"
+        - "*.rst"
+        - "*.txt"
+        - "*.yaml"
+        - "*.yml"
+        - "*.json"
+      candidate_paths:
+        - docs/quality-attributes
+        - docs/quality
+        - docs/scenarios
+        - docs/architecture
+        - docs/requirements
+        - docs/nfr
+        - requirements
+        - architecture
+        - design
+      filename_indicators:
+        - scenario
+        - quality-attribute
+        - quality_attributes
+        - nfr
+        - non-functional
+        - nonfunctional
+      scenario_markers:
+        - stimulus
+        - source
+        - environment
+        - artifact
+        - response
+        - response measure
+        - quality attribute scenario
+      quality_attribute_markers:
+        - availability
+        - modifiability
+        - performance
+        - security
+        - reliability
+        - scalability
+        - maintainability
+      min_scenario_marker_count: 3
 
   - id: ARCH-003
     title: Critical services must be declared

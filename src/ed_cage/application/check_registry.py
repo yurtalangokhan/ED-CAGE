@@ -57,6 +57,10 @@ from ed_cage.checks.security.docker_compose_security_policy_check import (
     DockerComposeSecurityPolicyCheck,
 )
 
+from ed_cage.checks.architecture.repository_architecture_evidence_discovery_check import (
+    RepositoryArchitectureEvidenceDiscoveryCheck,
+)
+
 
 class CheckRegistry:
     def __init__(self, checks: list[GovernanceCheck]) -> None:
@@ -67,6 +71,7 @@ class CheckRegistry:
     def default(cls) -> "CheckRegistry":
         return cls(
             checks=[
+                RepositoryArchitectureEvidenceDiscoveryCheck(),
                 RequiredFilesCheck(),
                 HttpHealthEndpointCheck(),
                 OpenApiSpecCheck(),

@@ -1,7 +1,18 @@
+from __future__ import annotations
+
+from collections import Counter
 from dataclasses import dataclass
+import fnmatch
+import json
+from math import log2
 from pathlib import Path
 from re import Pattern
 import re
+import tomllib
+from typing import Any, Iterable
+from xml.etree import ElementTree
+
+import yaml
 
 from ed_cage.domain.enums import CheckStatus
 from ed_cage.domain.models import Evidence, GovernanceFinding, GovernanceRule, ProjectContext
@@ -9,12 +20,133 @@ from ed_cage.domain.models import Evidence, GovernanceFinding, GovernanceRule, P
 
 @dataclass(frozen=True)
 class SecretPattern:
+    """High-confidence provider or credential-format pattern."""
+
     name: str
     regex: str
     compiled: Pattern[str]
 
 
+@dataclass(frozen=True)
+class LiteralCandidate:
+    key: str
+    value: str
+    line_number: int | None
+
+
 class RepositorySecretPatternsCheck:
+    """Detect high-confidence committed credential literals.
+
+    Design principles:
+    1. Scan only first-party source and runtime-configuration artifacts.
+    2. Detect provider-specific credential formats independently of variable names.
+    3. For generic findings, require a sensitive key and a literal scalar value.
+    4. Distinguish runtime references from repository-defined credential defaults.
+    5. Ignore references, paths, placeholders, generated/dependency content and
+       runtime expressions. No framework- or method-name suppression list is used.
+    """
+
+    SOURCE_EXTENSIONS = {
+        ".py",
+        ".java",
+        ".kt",
+        ".kts",
+        ".cs",
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx",
+        ".go",
+        ".rb",
+        ".php",
+        ".scala",
+        ".rs",
+        ".swift",
+        ".c",
+        ".cc",
+        ".cpp",
+        ".h",
+        ".hpp",
+    }
+    STRUCTURED_EXTENSIONS = {".yaml", ".yml", ".json", ".toml", ".xml"}
+    FLAT_CONFIG_EXTENSIONS = {".properties", ".ini", ".conf"}
+
+    # Assignment pattern requires a quoted literal on the right-hand side.
+    # It intentionally does not match method calls, member access, request/DTO
+    # extraction, environment access, or any other runtime expression.
+    QUOTED_ASSIGNMENT_PATTERN = re.compile(
+        r"""
+        \b(?P<key>[A-Za-z_][A-Za-z0-9_.-]*)\b
+        \s*(?::|=)\s*
+        (?:
+            \"(?P<double_value>[^\"\r\n]+)\"
+            |
+            '(?P<single_value>[^'\r\n]+)'
+        )
+        """,
+        re.IGNORECASE | re.VERBOSE,
+    )
+
+    FLAT_CONFIG_ASSIGNMENT_PATTERN = re.compile(
+        r"""
+        ^\s*(?P<key>[A-Za-z_][A-Za-z0-9_.-]*)\s*(?::|=)\s*
+        (?P<value>[^#;\r\n]+?)\s*$
+        """,
+        re.IGNORECASE | re.VERBOSE,
+    )
+
+    # Pure references to external secret/config stores are not committed values.
+    # This pattern intentionally accepts only reference-only GitHub Actions-style
+    # expressions; expressions containing quoted literals are not suppressed here.
+    CI_CONTEXT_REFERENCE_PATTERN = re.compile(
+        r"""
+        ^\$\{\{\s*
+        (?:secrets|vars|env|github|inputs|needs|steps|runner|matrix|strategy|job)
+        \.[A-Za-z_][A-Za-z0-9_.-]*
+        \s*\}\}$
+        """,
+        re.IGNORECASE | re.VERBOSE,
+    )
+
+    # Supports reference-only and default-bearing environment placeholders:
+    #   ${PASSWORD}
+    #   ${PASSWORD:root}       (Spring-style default)
+    #   ${PASSWORD:-root}      (shell-style default)
+    ENVIRONMENT_PLACEHOLDER_PATTERN = re.compile(
+        r"""
+        ^\$\{
+        (?P<name>[A-Za-z_][A-Za-z0-9_.-]*)
+        (?:(?P<operator>:-|:)(?P<default>[^{}]*))?
+        \}$
+        """,
+        re.IGNORECASE | re.VERBOSE,
+    )
+
+    ENVIRONMENT_REFERENCE_PATTERN = re.compile(
+        r"""
+        ^
+        (?:
+            \$[A-Za-z_][A-Za-z0-9_]*
+            |%[A-Za-z_][A-Za-z0-9_]*%
+            |\{\{[^{}]+\}\}
+            |\$\([^()]+\)
+        )$
+        """,
+        re.IGNORECASE | re.VERBOSE,
+    )
+
+    PLACEHOLDER_PATTERNS = (
+        re.compile(r"(?i)^your(?:[_\s-].*)?(?:[_\s-]here)?$"),
+        re.compile(r"(?i)^(?:change|replace)[_\s-]?me(?:[_\s-].*)?$"),
+        re.compile(r"(?i)^(?:example|sample|dummy|placeholder|fake|mock)(?:[_\s-].*)?$"),
+        re.compile(r"(?i)^(?:test|testing|demo)(?:[_\s-].*)?$"),
+        re.compile(r"(?i)^(?:password|passwd|secret|token|api[_\s-]?key)$"),
+        re.compile(r"(?i)^not[_\s-]?(?:a[_\s-]?)?real(?:[_\s-].*)?$"),
+        re.compile(r"(?i)^<[^<>]+>$"),
+        re.compile(r"(?i)^x{6,}$"),
+        re.compile(r"(?i)^\*{6,}$"),
+    )
+
     @property
     def check_type(self) -> str:
         return "repository_secret_patterns"
@@ -23,18 +155,162 @@ class RepositorySecretPatternsCheck:
         include_paths = self._get_string_list_param(rule, "include_paths", ["."])
         exclude_paths = self._get_string_list_param(rule, "exclude_paths", [])
         file_patterns = self._get_string_list_param(rule, "file_patterns", ["*"])
+        exclude_dir_names = {
+            value.lower()
+            for value in self._get_string_list_param(
+                rule,
+                "exclude_dir_names",
+                [
+                    ".git",
+                    ".venv",
+                    "venv",
+                    "env",
+                    "node_modules",
+                    "vendor",
+                    "vendors",
+                    "third_party",
+                    "third-party",
+                    "external",
+                    "deps",
+                    "dependencies",
+                    "generated",
+                    "__generated__",
+                    "target",
+                    "build",
+                    "dist",
+                    "out",
+                    "coverage",
+                    "docs",
+                    "documentation",
+                    "examples",
+                    "samples",
+                    "demo",
+                    "tests",
+                    "test",
+                ],
+            )
+        }
+        exclude_file_names = {
+            value.lower()
+            for value in self._get_string_list_param(
+                rule,
+                "exclude_file_names",
+                [
+                    "readme",
+                    "readme.md",
+                    "readme.adoc",
+                    "license",
+                    "license.md",
+                    "notice",
+                    "changelog",
+                    "pom.xml",
+                    "build.gradle",
+                    "settings.gradle",
+                    "gradle.properties",
+                    "mvnw",
+                    "mvnw.cmd",
+                    ".env",
+                    ".env.example",
+                    ".env.sample",
+                ],
+            )
+        }
+        exclude_file_patterns = self._get_string_list_param(
+            rule,
+            "exclude_file_patterns",
+            [
+                "*.md",
+                "*.adoc",
+                "*.rst",
+                "*.txt",
+                "*.sh",
+                "*.bash",
+                "*.zsh",
+                "*.fish",
+                "*.cmd",
+                "*.bat",
+                "*.ps1",
+                "*.psm1",
+                "*.gradle",
+                "*.gradle.kts",
+                "*.lock",
+                "package-lock.json",
+                "yarn.lock",
+                "pnpm-lock.yaml",
+            ],
+        )
         max_file_size_bytes = int(rule.params.get("max_file_size_bytes", 1048576))
+        generic_min_length = int(rule.params.get("generic_min_length", 16))
+        generic_min_entropy = float(rule.params.get("generic_min_entropy", 3.3))
+        generic_min_character_classes = int(
+            rule.params.get("generic_min_character_classes", 2)
+        )
+        sensitive_terms = {
+            self._normalize_identifier(value)
+            for value in self._get_string_list_param(
+                rule,
+                "sensitive_terms",
+                [
+                    "password",
+                    "passwd",
+                    "pwd",
+                    "secret",
+                    "token",
+                    "api_key",
+                    "access_token",
+                    "auth_token",
+                    "client_secret",
+                    "private_key",
+                    "signing_key",
+                    "jwt_secret",
+                    "credential",
+                    "credentials",
+                    "connection_string",
+                ],
+            )
+        }
+        reference_suffixes = tuple(
+            self._normalize_identifier(value)
+            for value in self._get_string_list_param(
+                rule,
+                "reference_key_suffixes",
+                [
+                    "file",
+                    "path",
+                    "name",
+                    "ref",
+                    "reference",
+                    "id",
+                    "identifier",
+                    "mount",
+                    "location",
+                    "uri",
+                    "url",
+                    "hash",
+                    "digest",
+                    "salt",
+                    "algorithm",
+                    "enabled",
+                    "required",
+                    "field",
+                    "column",
+                ],
+            )
+        )
         secret_patterns = self._get_secret_patterns(rule)
 
-        files = self._collect_files(
+        files, scope_skips = self._collect_files(
             repository_path=context.repository_path,
             include_paths=include_paths,
             exclude_paths=exclude_paths,
             file_patterns=file_patterns,
+            exclude_dir_names=exclude_dir_names,
+            exclude_file_names=exclude_file_names,
+            exclude_file_patterns=exclude_file_patterns,
         )
 
         violations: list[dict[str, object]] = []
-        skipped_files: list[dict[str, object]] = []
+        skipped_files: list[dict[str, object]] = list(scope_skips)
         scanned_files = 0
 
         for file_path in files:
@@ -43,7 +319,7 @@ class RepositorySecretPatternsCheck:
             except OSError as exc:
                 skipped_files.append(
                     {
-                        "path": str(file_path),
+                        "path": self._relative_path(context.repository_path, file_path),
                         "reason": "stat_failed",
                         "message": str(exc),
                     }
@@ -53,7 +329,7 @@ class RepositorySecretPatternsCheck:
             if file_size > max_file_size_bytes:
                 skipped_files.append(
                     {
-                        "path": str(file_path),
+                        "path": self._relative_path(context.repository_path, file_path),
                         "reason": "file_too_large",
                         "file_size_bytes": file_size,
                     }
@@ -65,7 +341,7 @@ class RepositorySecretPatternsCheck:
             except OSError as exc:
                 skipped_files.append(
                     {
-                        "path": str(file_path),
+                        "path": self._relative_path(context.repository_path, file_path),
                         "reason": "read_failed",
                         "message": str(exc),
                     }
@@ -75,7 +351,7 @@ class RepositorySecretPatternsCheck:
             if self._looks_binary(content_bytes):
                 skipped_files.append(
                     {
-                        "path": str(file_path),
+                        "path": self._relative_path(context.repository_path, file_path),
                         "reason": "binary_file",
                     }
                 )
@@ -83,33 +359,43 @@ class RepositorySecretPatternsCheck:
 
             scanned_files += 1
             text = content_bytes.decode("utf-8", errors="ignore")
-
-            violations.extend(
-                self._scan_text(
-                    repository_path=context.repository_path,
-                    file_path=file_path,
-                    text=text,
-                    secret_patterns=secret_patterns,
-                )
+            file_violations = self._scan_file(
+                repository_path=context.repository_path,
+                file_path=file_path,
+                text=text,
+                secret_patterns=secret_patterns,
+                sensitive_terms=sensitive_terms,
+                reference_suffixes=reference_suffixes,
+                generic_min_length=generic_min_length,
+                generic_min_entropy=generic_min_entropy,
+                generic_min_character_classes=generic_min_character_classes,
             )
+            violations.extend(file_violations)
+
+        violations = self._deduplicate_violations(violations)
 
         evidence = [
             Evidence(
                 source="repository-secret-patterns",
-                message="Repository secret pattern scan completed.",
+                message="Repository committed-secret literal scan completed.",
                 data={
+                    "strategy": "first_party_high_confidence_literal_detection",
                     "include_paths": include_paths,
                     "exclude_paths": exclude_paths,
+                    "exclude_dir_names": sorted(exclude_dir_names),
+                    "exclude_file_names": sorted(exclude_file_names),
+                    "exclude_file_patterns": exclude_file_patterns,
                     "file_patterns": file_patterns,
                     "candidate_file_count": len(files),
                     "scanned_file_count": scanned_files,
                     "skipped_file_count": len(skipped_files),
                     "max_file_size_bytes": max_file_size_bytes,
-                    "secret_pattern_names": [
-                        secret_pattern.name for secret_pattern in secret_patterns
-                    ],
+                    "generic_min_length": generic_min_length,
+                    "generic_min_entropy": generic_min_entropy,
+                    "generic_min_character_classes": generic_min_character_classes,
+                    "secret_pattern_names": [pattern.name for pattern in secret_patterns],
                     "violations": violations,
-                    "skipped_files_sample": skipped_files[:20],
+                    "skipped_files_sample": skipped_files[:50],
                 },
             )
         ]
@@ -120,7 +406,13 @@ class RepositorySecretPatternsCheck:
                 title=rule.title,
                 severity=rule.severity,
                 status=CheckStatus.FAILED,
-                message=f"Potential committed secrets detected: {len(violations)}.",
+                message=(
+                    "High-confidence committed credential literals detected: "
+                    f"{len(violations)}."
+                ),
+                category=rule.category,
+                target=rule.target,
+                check_type=rule.check_type,
                 evidence=evidence,
             )
 
@@ -129,9 +421,200 @@ class RepositorySecretPatternsCheck:
             title=rule.title,
             severity=rule.severity,
             status=CheckStatus.PASSED,
-            message="No obvious committed secrets were detected.",
+            message="No high-confidence committed credential literals were detected.",
+            category=rule.category,
+            target=rule.target,
+            check_type=rule.check_type,
             evidence=evidence,
         )
+
+    def _scan_file(
+        self,
+        repository_path: Path,
+        file_path: Path,
+        text: str,
+        secret_patterns: list[SecretPattern],
+        sensitive_terms: set[str],
+        reference_suffixes: tuple[str, ...],
+        generic_min_length: int,
+        generic_min_entropy: float,
+        generic_min_character_classes: int,
+    ) -> list[dict[str, object]]:
+        violations = self._scan_high_confidence_patterns(
+            repository_path=repository_path,
+            file_path=file_path,
+            text=text,
+            secret_patterns=secret_patterns,
+        )
+
+        suffix = file_path.suffix.lower()
+        candidates: list[LiteralCandidate]
+
+        if suffix in self.STRUCTURED_EXTENSIONS:
+            candidates = self._extract_structured_candidates(file_path=file_path, text=text)
+        elif suffix in self.SOURCE_EXTENSIONS:
+            candidates = self._extract_source_literal_candidates(text)
+        elif suffix in self.FLAT_CONFIG_EXTENSIONS:
+            candidates = self._extract_flat_config_candidates(text)
+        else:
+            candidates = []
+
+        for candidate in candidates:
+            if not self._is_sensitive_identifier(candidate.key, sensitive_terms):
+                continue
+            if self._is_reference_identifier(candidate.key, reference_suffixes):
+                continue
+
+            classification = self._classify_sensitive_value(
+                candidate.value,
+                min_length=generic_min_length,
+                min_entropy=generic_min_entropy,
+                min_character_classes=generic_min_character_classes,
+            )
+            if classification is None:
+                continue
+
+            pattern_name, effective_value, source_kind = classification
+            violation: dict[str, object] = {
+                "path": self._relative_path(repository_path, file_path),
+                "line_number": candidate.line_number,
+                "pattern_name": pattern_name,
+                "key": candidate.key,
+                "match_preview": self._redact(effective_value),
+                "source_kind": source_kind,
+            }
+            if pattern_name == "generic_hardcoded_credential_literal":
+                violation["entropy"] = round(
+                    self._shannon_entropy(effective_value), 3
+                )
+
+            violations.append(violation)
+
+        return violations
+
+    def _scan_high_confidence_patterns(
+        self,
+        repository_path: Path,
+        file_path: Path,
+        text: str,
+        secret_patterns: list[SecretPattern],
+    ) -> list[dict[str, object]]:
+        violations: list[dict[str, object]] = []
+        for line_number, line in enumerate(text.splitlines(), start=1):
+            for secret_pattern in secret_patterns:
+                for match in secret_pattern.compiled.finditer(line):
+                    violations.append(
+                        {
+                            "path": self._relative_path(repository_path, file_path),
+                            "line_number": line_number,
+                            "pattern_name": secret_pattern.name,
+                            "match_preview": self._redact(match.group(0)),
+                        }
+                    )
+        return violations
+
+    def _extract_source_literal_candidates(self, text: str) -> list[LiteralCandidate]:
+        candidates: list[LiteralCandidate] = []
+        for line_number, line in enumerate(text.splitlines(), start=1):
+            for match in self.QUOTED_ASSIGNMENT_PATTERN.finditer(line):
+                value = match.group("double_value") or match.group("single_value") or ""
+                candidates.append(
+                    LiteralCandidate(
+                        key=match.group("key"),
+                        value=value,
+                        line_number=line_number,
+                    )
+                )
+        return candidates
+
+    def _extract_flat_config_candidates(self, text: str) -> list[LiteralCandidate]:
+        candidates: list[LiteralCandidate] = []
+        for line_number, line in enumerate(text.splitlines(), start=1):
+            stripped = line.strip()
+            if not stripped or stripped.startswith(("#", ";")):
+                continue
+            match = self.FLAT_CONFIG_ASSIGNMENT_PATTERN.match(line)
+            if match is None:
+                continue
+            value = self._strip_matching_quotes(match.group("value").strip())
+            candidates.append(
+                LiteralCandidate(
+                    key=match.group("key"),
+                    value=value,
+                    line_number=line_number,
+                )
+            )
+        return candidates
+
+    def _extract_structured_candidates(
+        self, file_path: Path, text: str
+    ) -> list[LiteralCandidate]:
+        suffix = file_path.suffix.lower()
+        try:
+            if suffix in {".yaml", ".yml"}:
+                documents = list(yaml.safe_load_all(text))
+                return self._walk_structured_documents(documents, text)
+            if suffix == ".json":
+                return self._walk_structured_documents([json.loads(text)], text)
+            if suffix == ".toml":
+                return self._walk_structured_documents([tomllib.loads(text)], text)
+            if suffix == ".xml":
+                root = ElementTree.fromstring(text)
+                return self._walk_xml(root, text)
+        except (yaml.YAMLError, json.JSONDecodeError, tomllib.TOMLDecodeError, ElementTree.ParseError):
+            # A malformed structured file is not interpreted heuristically here.
+            # High-confidence provider patterns were already scanned above.
+            return []
+        return []
+
+    def _walk_structured_documents(
+        self, documents: Iterable[Any], text: str
+    ) -> list[LiteralCandidate]:
+        candidates: list[LiteralCandidate] = []
+
+        def walk(value: Any) -> None:
+            if isinstance(value, dict):
+                for raw_key, child in value.items():
+                    key = str(raw_key)
+                    if isinstance(child, (str, int, float)) and not isinstance(child, bool):
+                        string_value = str(child)
+                        candidates.append(
+                            LiteralCandidate(
+                                key=key,
+                                value=string_value,
+                                line_number=self._find_line_number(text, key, string_value),
+                            )
+                        )
+                    walk(child)
+            elif isinstance(value, list):
+                for item in value:
+                    walk(item)
+
+        for document in documents:
+            walk(document)
+        return candidates
+
+    def _walk_xml(self, root: ElementTree.Element, text: str) -> list[LiteralCandidate]:
+        candidates: list[LiteralCandidate] = []
+        for element in root.iter():
+            if element.text and element.text.strip():
+                value = element.text.strip()
+                candidates.append(
+                    LiteralCandidate(
+                        key=element.tag,
+                        value=value,
+                        line_number=self._find_line_number(text, element.tag, value),
+                    )
+                )
+            for key, value in element.attrib.items():
+                candidates.append(
+                    LiteralCandidate(
+                        key=key,
+                        value=value,
+                        line_number=self._find_line_number(text, key, value),
+                    )
+                )
+        return candidates
 
     def _collect_files(
         self,
@@ -139,12 +622,16 @@ class RepositorySecretPatternsCheck:
         include_paths: list[str],
         exclude_paths: list[str],
         file_patterns: list[str],
-    ) -> list[Path]:
+        exclude_dir_names: set[str],
+        exclude_file_names: set[str],
+        exclude_file_patterns: list[str],
+    ) -> tuple[list[Path], list[dict[str, object]]]:
         resolved_exclude_paths = [
             self._resolve_path(repository_path, path) for path in exclude_paths
         ]
 
         files: list[Path] = []
+        skipped: list[dict[str, object]] = []
         seen: set[Path] = set()
 
         for include_path in include_paths:
@@ -153,136 +640,288 @@ class RepositorySecretPatternsCheck:
             if self._is_excluded(resolved_include_path, resolved_exclude_paths):
                 continue
 
+            candidates: Iterable[Path]
             if resolved_include_path.is_file():
-                resolved_file = resolved_include_path.resolve()
-
-                if resolved_file not in seen:
-                    files.append(resolved_file)
-                    seen.add(resolved_file)
-
+                candidates = [resolved_include_path]
+            elif resolved_include_path.is_dir():
+                candidates = (
+                    path
+                    for pattern in file_patterns
+                    for path in resolved_include_path.rglob(pattern)
+                )
+            else:
                 continue
 
-            if not resolved_include_path.is_dir():
-                continue
+            for candidate_file in candidates:
+                if not candidate_file.is_file():
+                    continue
+                resolved_file = candidate_file.resolve()
+                if resolved_file in seen:
+                    continue
+                seen.add(resolved_file)
 
-            for file_pattern in file_patterns:
-                for candidate_file in resolved_include_path.rglob(file_pattern):
-                    if not candidate_file.is_file():
-                        continue
+                reason = self._scope_exclusion_reason(
+                    repository_path=repository_path,
+                    file_path=resolved_file,
+                    resolved_exclude_paths=resolved_exclude_paths,
+                    exclude_dir_names=exclude_dir_names,
+                    exclude_file_names=exclude_file_names,
+                    exclude_file_patterns=exclude_file_patterns,
+                )
+                if reason is not None:
+                    skipped.append(
+                        {
+                            "path": self._relative_path(repository_path, resolved_file),
+                            "reason": reason,
+                        }
+                    )
+                    continue
 
-                    resolved_file = candidate_file.resolve()
+                files.append(resolved_file)
 
-                    if self._is_excluded(resolved_file, resolved_exclude_paths):
-                        continue
+        return sorted(files), skipped
 
-                    if resolved_file not in seen:
-                        files.append(resolved_file)
-                        seen.add(resolved_file)
-
-        return sorted(files)
-
-    def _scan_text(
+    def _scope_exclusion_reason(
         self,
         repository_path: Path,
         file_path: Path,
-        text: str,
-        secret_patterns: list[SecretPattern],
-    ) -> list[dict[str, object]]:
-        violations: list[dict[str, object]] = []
+        resolved_exclude_paths: list[Path],
+        exclude_dir_names: set[str],
+        exclude_file_names: set[str],
+        exclude_file_patterns: list[str],
+    ) -> str | None:
+        if self._is_excluded(file_path, resolved_exclude_paths):
+            return "excluded_path"
 
-        for line_number, line in enumerate(text.splitlines(), start=1):
-            for secret_pattern in secret_patterns:
-                match = secret_pattern.compiled.search(line)
+        try:
+            relative = file_path.relative_to(repository_path.resolve())
+        except ValueError:
+            relative = file_path
 
-                if match is None:
-                    continue
+        directory_parts = {part.lower() for part in relative.parts[:-1]}
+        if not directory_parts.isdisjoint(exclude_dir_names):
+            return "non_first_party_directory"
 
-                violations.append(
-                    {
-                        "path": self._relative_path(repository_path, file_path),
-                        "line_number": line_number,
-                        "pattern_name": secret_pattern.name,
-                        "match_preview": self._redact(match.group(0)),
-                    }
-                )
+        if file_path.name.lower() in exclude_file_names:
+            return "excluded_file_name"
 
-        return violations
+        relative_posix = relative.as_posix()
+        if any(
+            fnmatch.fnmatch(file_path.name.lower(), pattern.lower())
+            or fnmatch.fnmatch(relative_posix.lower(), pattern.lower())
+            for pattern in exclude_file_patterns
+        ):
+            return "excluded_file_pattern"
+
+        suffix = file_path.suffix.lower()
+        supported = (
+            suffix in self.SOURCE_EXTENSIONS
+            or suffix in self.STRUCTURED_EXTENSIONS
+            or suffix in self.FLAT_CONFIG_EXTENSIONS
+        )
+        if not supported:
+            return "unsupported_file_type"
+
+        return None
+
+    def _is_sensitive_identifier(self, key: str, sensitive_terms: set[str]) -> bool:
+        normalized = self._normalize_identifier(key)
+        padded = f"_{normalized}_"
+        return any(f"_{term}_" in padded or normalized.endswith(f"_{term}") for term in sensitive_terms)
+
+    def _is_reference_identifier(
+        self, key: str, reference_suffixes: tuple[str, ...]
+    ) -> bool:
+        normalized = self._normalize_identifier(key)
+        return any(
+            normalized == suffix or normalized.endswith(f"_{suffix}")
+            for suffix in reference_suffixes
+        )
+
+    def _classify_sensitive_value(
+        self,
+        value: str,
+        min_length: int,
+        min_entropy: float,
+        min_character_classes: int,
+    ) -> tuple[str, str, str] | None:
+        """Classify a sensitive-key scalar without framework-name heuristics.
+
+        Returns ``(pattern_name, effective_value, source_kind)`` when the value
+        represents either a committed credential literal or an insecure literal
+        fallback. Pure secret-store/environment references return ``None``.
+        """
+        candidate = value.strip()
+
+        # GitHub Actions and similar CI context references resolve at runtime.
+        # Example: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        if self.CI_CONTEXT_REFERENCE_PATTERN.fullmatch(candidate):
+            return None
+
+        # Environment placeholders without a default are references. A non-empty
+        # default is repository-committed behavior and is evaluated separately,
+        # even when it is short or low entropy (for example ``root``).
+        placeholder_match = self.ENVIRONMENT_PLACEHOLDER_PATTERN.fullmatch(candidate)
+        if placeholder_match is not None:
+            operator = placeholder_match.group("operator")
+            default_value = placeholder_match.group("default")
+            if operator is None:
+                return None
+
+            fallback = (default_value or "").strip()
+            if not fallback or self._is_non_credential_default(fallback):
+                return None
+            if self.CI_CONTEXT_REFERENCE_PATTERN.fullmatch(fallback):
+                return None
+            if self.ENVIRONMENT_REFERENCE_PATTERN.fullmatch(fallback):
+                return None
+
+            return (
+                "insecure_default_credential_literal",
+                fallback,
+                "environment_placeholder_default",
+            )
+
+        if self.ENVIRONMENT_REFERENCE_PATTERN.fullmatch(candidate):
+            return None
+
+        if not self._is_generic_secret_literal(
+            candidate,
+            min_length=min_length,
+            min_entropy=min_entropy,
+            min_character_classes=min_character_classes,
+        ):
+            return None
+
+        return (
+            "generic_hardcoded_credential_literal",
+            candidate,
+            "direct_literal",
+        )
+
+    def _is_generic_secret_literal(
+        self,
+        value: str,
+        min_length: int,
+        min_entropy: float,
+        min_character_classes: int,
+    ) -> bool:
+        candidate = value.strip()
+        if len(candidate) < min_length:
+            return False
+        if self._is_placeholder(candidate):
+            return False
+        if self._looks_like_path(candidate):
+            return False
+        if self._looks_like_non_secret_url(candidate):
+            return False
+        if self._character_class_count(candidate) < min_character_classes:
+            return False
+        return self._shannon_entropy(candidate) >= min_entropy
+
+    def _is_non_credential_default(self, value: str) -> bool:
+        normalized = value.strip().lower()
+        return normalized in {
+            "",
+            "null",
+            "none",
+            "nil",
+            "false",
+            "disabled",
+            "unset",
+        }
+
+    def _is_placeholder(self, value: str) -> bool:
+        return any(pattern.fullmatch(value.strip()) for pattern in self.PLACEHOLDER_PATTERNS)
+
+    def _looks_like_path(self, value: str) -> bool:
+        candidate = value.strip()
+        if candidate.startswith(("/", "./", "../", "~/", "\\")):
+            return True
+        if re.match(r"^[A-Za-z]:[\\/]", candidate):
+            return True
+        return "/run/secrets/" in candidate or "/var/run/secrets/" in candidate
+
+    def _looks_like_non_secret_url(self, value: str) -> bool:
+        candidate = value.strip().lower()
+        return candidate.startswith(("http://", "https://")) and "@" not in candidate
+
+    def _character_class_count(self, value: str) -> int:
+        return sum(
+            [
+                any(char.islower() for char in value),
+                any(char.isupper() for char in value),
+                any(char.isdigit() for char in value),
+                any(not char.isalnum() for char in value),
+            ]
+        )
+
+    def _shannon_entropy(self, value: str) -> float:
+        if not value:
+            return 0.0
+        counts = Counter(value)
+        length = len(value)
+        return -sum(
+            (count / length) * log2(count / length) for count in counts.values()
+        )
 
     def _get_secret_patterns(self, rule: GovernanceRule) -> list[SecretPattern]:
         raw_patterns = rule.params.get("secret_patterns", [])
-
         if not isinstance(raw_patterns, list):
             raw_patterns = []
 
         patterns: list[SecretPattern] = []
-
         for raw_pattern in raw_patterns:
             if not isinstance(raw_pattern, dict):
                 continue
-
             name = str(raw_pattern.get("name", "unnamed_pattern"))
             regex = str(raw_pattern.get("regex", ""))
-
             if not regex:
                 continue
-
             patterns.append(
-                SecretPattern(
-                    name=name,
-                    regex=regex,
-                    compiled=re.compile(regex),
-                )
+                SecretPattern(name=name, regex=regex, compiled=re.compile(regex))
             )
 
         if patterns:
             return patterns
 
+        defaults = {
+            "private_key": r"-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----",
+            "aws_access_key_id": r"\b(?:AKIA|ASIA)[A-Z0-9]{16}\b",
+            "github_token": r"\bgh[pousr]_[A-Za-z0-9_]{30,255}\b",
+            "google_api_key": r"\bAIza[0-9A-Za-z_-]{35}\b",
+            "stripe_secret_key": r"\bsk_(?:live|test)_[0-9A-Za-z]{16,}\b",
+            "slack_token": r"\bxox[baprs]-[0-9A-Za-z-]{10,}\b",
+            "jwt_token": r"\beyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\b",
+            "credential_in_uri": r"\b(?:mongodb(?:\+srv)?|postgres(?:ql)?|mysql|redis)://[^\s:/]+:[^\s@/]+@",
+        }
         return [
-            SecretPattern(
-                name="private_key",
-                regex=r"-----BEGIN [A-Z ]*PRIVATE KEY-----",
-                compiled=re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
-            ),
-            SecretPattern(
-                name="aws_access_key_id",
-                regex=r"AKIA[0-9A-Z]{16}",
-                compiled=re.compile(r"AKIA[0-9A-Z]{16}"),
-            ),
+            SecretPattern(name=name, regex=regex, compiled=re.compile(regex))
+            for name, regex in defaults.items()
         ]
 
     def _get_string_list_param(
-        self,
-        rule: GovernanceRule,
-        key: str,
-        default: list[str],
+        self, rule: GovernanceRule, key: str, default: list[str]
     ) -> list[str]:
         raw_value = rule.params.get(key, default)
-
         if not isinstance(raw_value, list):
             return default
-
         return [str(item) for item in raw_value]
 
     def _resolve_path(self, repository_path: Path, path: str) -> Path:
         raw_path = Path(path)
-
         if raw_path.is_absolute():
             return raw_path.resolve()
-
         return (repository_path / raw_path).resolve()
 
     def _is_excluded(self, path: Path, exclude_paths: list[Path]) -> bool:
         resolved_path = path.resolve()
-
         for exclude_path in exclude_paths:
             resolved_exclude_path = exclude_path.resolve()
-
             if resolved_path == resolved_exclude_path:
                 return True
-
             if resolved_exclude_path in resolved_path.parents:
                 return True
-
         return False
 
     def _relative_path(self, repository_path: Path, file_path: Path) -> str:
@@ -296,8 +935,43 @@ class RepositorySecretPatternsCheck:
 
     def _redact(self, value: str) -> str:
         stripped = value.strip()
-
         if len(stripped) <= 8:
             return "***"
-
         return f"{stripped[:4]}***{stripped[-2:]}"
+
+    def _normalize_identifier(self, value: str) -> str:
+        camel_split = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", value)
+        normalized = re.sub(r"[^A-Za-z0-9]+", "_", camel_split).strip("_").lower()
+        return re.sub(r"_+", "_", normalized)
+
+    def _strip_matching_quotes(self, value: str) -> str:
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
+            return value[1:-1]
+        return value
+
+    def _find_line_number(self, text: str, key: str, value: str) -> int | None:
+        key_lower = key.lower()
+        value_lower = value.lower()
+        for line_number, line in enumerate(text.splitlines(), start=1):
+            lowered = line.lower()
+            if key_lower in lowered and value_lower in lowered:
+                return line_number
+        return None
+
+    def _deduplicate_violations(
+        self, violations: list[dict[str, object]]
+    ) -> list[dict[str, object]]:
+        deduplicated: list[dict[str, object]] = []
+        seen: set[tuple[object, ...]] = set()
+        for violation in violations:
+            identity = (
+                violation.get("path"),
+                violation.get("line_number"),
+                violation.get("pattern_name"),
+                violation.get("match_preview"),
+            )
+            if identity in seen:
+                continue
+            seen.add(identity)
+            deduplicated.append(violation)
+        return deduplicated
