@@ -69,6 +69,43 @@ class UnavailableFakeToolAdapter:
         raise AssertionError("collect should not be called when tool is unavailable")
 
 
+class AvailabilityErrorFakeToolAdapter:
+    @property
+    def tool_name(self) -> str:
+        return "fake_tool"
+
+    def is_available(self) -> bool:
+        raise OSError(
+            216,
+            "This executable is not compatible with the current Windows version.",
+        )
+
+    def collect(
+        self,
+        rule: GovernanceRule,
+        context: ProjectContext,
+    ) -> ToolExecutionResult:
+        raise AssertionError(
+            "collect should not be called when availability verification fails"
+        )
+
+
+class CollectionErrorFakeToolAdapter:
+    @property
+    def tool_name(self) -> str:
+        return "fake_tool"
+
+    def is_available(self) -> bool:
+        return True
+
+    def collect(
+        self,
+        rule: GovernanceRule,
+        context: ProjectContext,
+    ) -> ToolExecutionResult:
+        raise RuntimeError("unexpected collection failure")
+
+
 def test_external_tool_check_passes_when_tool_has_no_findings(tmp_path: Path) -> None:
     check = ExternalToolCheck(
         tool_registry=ToolAdapterRegistry(
@@ -130,6 +167,45 @@ def test_external_tool_check_skips_when_tool_is_unavailable(tmp_path: Path) -> N
 
     assert finding.status == CheckStatus.SKIPPED
     assert "not available" in finding.message
+
+
+def test_external_tool_check_skips_when_availability_check_raises_os_error(
+    tmp_path: Path,
+) -> None:
+    check = ExternalToolCheck(
+        tool_registry=ToolAdapterRegistry(
+            adapters=[AvailabilityErrorFakeToolAdapter()]
+        )
+    )
+
+    finding = check.evaluate(
+        rule=_build_rule(),
+        context=_build_context(tmp_path),
+    )
+
+    assert finding.status == CheckStatus.SKIPPED
+    assert "skipped" in finding.message.lower()
+    assert finding.evidence[0].data["reason"] == "availability_check_error"
+    assert finding.evidence[0].data["error_type"] == "OSError"
+    assert "216" in finding.evidence[0].data["error"]
+
+
+def test_external_tool_check_keeps_collection_exceptions_as_errors(
+    tmp_path: Path,
+) -> None:
+    check = ExternalToolCheck(
+        tool_registry=ToolAdapterRegistry(
+            adapters=[CollectionErrorFakeToolAdapter()]
+        )
+    )
+
+    finding = check.evaluate(
+        rule=_build_rule(),
+        context=_build_context(tmp_path),
+    )
+
+    assert finding.status == CheckStatus.ERROR
+    assert "execution failed unexpectedly" in finding.message.lower()
 
 
 def _build_rule() -> GovernanceRule:

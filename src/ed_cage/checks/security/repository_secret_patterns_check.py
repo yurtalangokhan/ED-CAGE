@@ -842,8 +842,11 @@ class RepositorySecretPatternsCheck:
         except ValueError:
             relative = file_path
 
-        directory_parts = {part.lower() for part in relative.parts[:-1]}
-        if not directory_parts.isdisjoint(exclude_dir_names):
+        directory_parts = [part.lower() for part in relative.parts[:-1]]
+        if self._contains_excluded_directory(
+            directory_parts=directory_parts,
+            exclude_dir_names=exclude_dir_names,
+        ):
             return "non_first_party_directory"
 
         if file_path.name.lower() in exclude_file_names:
@@ -865,6 +868,123 @@ class RepositorySecretPatternsCheck:
         )
         if not supported:
             return "unsupported_file_type"
+        return None
+
+    @classmethod
+    def _contains_excluded_directory(
+        cls,
+        *,
+        directory_parts: list[str],
+        exclude_dir_names: set[str],
+    ) -> bool:
+        """Apply directory exclusions without treating package names as ownership roots.
+
+        Names such as ``samples``, ``external``, ``test`` and ``docs`` are
+        ambiguous: they may denote a repository-level non-production scope, but
+        they may also be legitimate package segments below a first-party source
+        root.  For example, Spring PetClinic stores production code below
+        ``src/main/java/org/springframework/samples/petclinic``.
+
+        Unambiguous dependency/build directories remain excluded wherever they
+        occur.  Ambiguous names are ignored only when they occur after a
+        recognized first-party source boundary.  Explicit test source sets such
+        as ``src/test`` remain excluded when ``test`` or ``tests`` is configured.
+        """
+        if not directory_parts or not exclude_dir_names:
+            return False
+
+        contextual_names = {
+            "external",
+            "docs",
+            "documentation",
+            "examples",
+            "samples",
+            "demo",
+            "tests",
+            "test",
+        }
+
+        if cls._is_explicit_test_source_set(directory_parts, exclude_dir_names):
+            return True
+
+        source_boundary = cls._first_party_source_boundary(directory_parts)
+
+        for index, part in enumerate(directory_parts):
+            if part not in exclude_dir_names:
+                continue
+
+            is_contextual = part in contextual_names
+            is_inside_owned_source = (
+                source_boundary is not None and index >= source_boundary
+            )
+            if is_contextual and is_inside_owned_source:
+                continue
+
+            return True
+
+        return False
+
+    @staticmethod
+    def _is_explicit_test_source_set(
+        directory_parts: list[str],
+        exclude_dir_names: set[str],
+    ) -> bool:
+        test_names = {"test", "tests"}.intersection(exclude_dir_names)
+        if not test_names:
+            return False
+
+        for index, part in enumerate(directory_parts[:-1]):
+            if part != "src":
+                continue
+            next_part = directory_parts[index + 1]
+            if next_part in test_names:
+                return True
+        return False
+
+    @staticmethod
+    def _first_party_source_boundary(directory_parts: list[str]) -> int | None:
+        """Return the first directory index considered owned source content.
+
+        Supported layouts include Maven/Gradle source sets such as
+        ``src/main/java`` and generic ``src/<package>`` layouts used by Python,
+        JavaScript and other ecosystems.  The returned index points to the first
+        package/content segment after the source-root declaration.
+        """
+        language_or_resource_roots = {
+            "java",
+            "kotlin",
+            "groovy",
+            "scala",
+            "clojure",
+            "resources",
+            "python",
+            "javascript",
+            "typescript",
+            "csharp",
+        }
+
+        for index, part in enumerate(directory_parts):
+            if part != "src":
+                continue
+
+            next_index = index + 1
+            if next_index >= len(directory_parts):
+                return next_index
+
+            next_part = directory_parts[next_index]
+            if next_part == "main":
+                content_root_index = next_index + 1
+                if content_root_index >= len(directory_parts):
+                    return content_root_index
+                if directory_parts[content_root_index] in language_or_resource_roots:
+                    return content_root_index + 1
+                return content_root_index
+
+            if next_part in {"test", "tests"}:
+                return None
+
+            return next_index
+
         return None
 
     def _is_sensitive_identifier(self, key: str, sensitive_terms: set[str]) -> bool:

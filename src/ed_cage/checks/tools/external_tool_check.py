@@ -16,7 +16,6 @@ class ExternalToolCheck:
 
     def evaluate(self, rule: GovernanceRule, context: ProjectContext) -> GovernanceFinding:
         tool_name = str(rule.params.get("tool", "")).strip()
-
         if not tool_name:
             return GovernanceFinding(
                 rule_id=rule.id,
@@ -37,7 +36,6 @@ class ExternalToolCheck:
             )
 
         adapter = self.tool_registry.get(tool_name)
-
         if adapter is None:
             return GovernanceFinding(
                 rule_id=rule.id,
@@ -60,18 +58,29 @@ class ExternalToolCheck:
         try:
             is_available = adapter.is_available()
         except Exception as exc:
+            # Tool availability is an environmental precondition. Failure to start,
+            # probe, or verify an optional external tool must not be interpreted as
+            # non-compliance of the evaluated system.
             return GovernanceFinding(
                 rule_id=rule.id,
                 title=rule.title,
                 severity=rule.severity,
-                status=CheckStatus.ERROR,
-                message=f"External tool availability check failed: {tool_name}.",
+                status=CheckStatus.SKIPPED,
+                message=(
+                    "External tool availability could not be verified; "
+                    f"the check was skipped: {tool_name}."
+                ),
                 evidence=[
                     Evidence(
                         source=f"external-tool:{tool_name}",
-                        message="External tool availability check raised an exception.",
+                        message=(
+                            "External tool availability check raised an exception; "
+                            "the governance check was skipped."
+                        ),
                         data={
                             "tool": tool_name,
+                            "reason": "availability_check_error",
+                            "error_type": type(exc).__name__,
                             "error": str(exc),
                         },
                     )

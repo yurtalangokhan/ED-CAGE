@@ -451,3 +451,181 @@ def test_password_policy_constant_is_not_a_violation(tmp_path: Path) -> None:
 
     assert finding.status == CheckStatus.PASSED
     assert _violations(finding) == []
+
+
+
+def test_spring_samples_package_under_main_java_is_scanned(tmp_path: Path) -> None:
+    source = (
+        tmp_path
+        / "src"
+        / "main"
+        / "java"
+        / "org"
+        / "springframework"
+        / "samples"
+        / "petclinic"
+        / "CredentialConfig.java"
+    )
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        'public static final String PASSWORD = "password";\n',
+        encoding="utf-8",
+    )
+
+    rule = _rule()
+    rule.params["exclude_dir_names"] = [
+        ".git",
+        "node_modules",
+        "vendor",
+        "third_party",
+        "external",
+        "generated",
+        "target",
+        "build",
+        "dist",
+        "docs",
+        "examples",
+        "samples",
+        "tests",
+        "test",
+    ]
+
+    finding = RepositorySecretPatternsCheck().evaluate(rule, _context(tmp_path))
+    violations = _violations(finding)
+
+    assert finding.status == CheckStatus.FAILED
+    assert len(violations) == 1
+    assert violations[0]["pattern_name"] == "weak_hardcoded_credential_literal"
+    assert violations[0]["candidate_origin"] == "source_constant"
+    assert "springframework" in str(violations[0]["path"]).lower()
+
+
+def test_top_level_samples_project_is_excluded(tmp_path: Path) -> None:
+    source = (
+        tmp_path
+        / "samples"
+        / "demo-service"
+        / "src"
+        / "main"
+        / "java"
+        / "CredentialConfig.java"
+    )
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        'public static final String PASSWORD = "password";\n',
+        encoding="utf-8",
+    )
+
+    rule = _rule()
+    rule.params["exclude_dir_names"] = [
+        ".git",
+        "node_modules",
+        "vendor",
+        "third_party",
+        "external",
+        "generated",
+        "target",
+        "build",
+        "dist",
+        "docs",
+        "examples",
+        "samples",
+        "tests",
+        "test",
+    ]
+
+    finding = RepositorySecretPatternsCheck().evaluate(rule, _context(tmp_path))
+
+    assert finding.status == CheckStatus.PASSED
+    assert _violations(finding) == []
+    skipped = finding.evidence[0].data["skipped_files_sample"]
+    assert any(
+        item["reason"] == "non_first_party_directory"
+        and str(item["path"]).lower().startswith("samples")
+        for item in skipped
+    )
+
+
+def test_explicit_test_source_set_is_excluded(tmp_path: Path) -> None:
+    source = (
+        tmp_path
+        / "service"
+        / "src"
+        / "test"
+        / "java"
+        / "CredentialConfig.java"
+    )
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        'public static final String PASSWORD = "password";\n',
+        encoding="utf-8",
+    )
+
+    rule = _rule()
+    rule.params["exclude_dir_names"] = [
+        ".git",
+        "node_modules",
+        "vendor",
+        "third_party",
+        "external",
+        "generated",
+        "target",
+        "build",
+        "dist",
+        "docs",
+        "examples",
+        "samples",
+        "tests",
+        "test",
+    ]
+
+    finding = RepositorySecretPatternsCheck().evaluate(rule, _context(tmp_path))
+
+    assert finding.status == CheckStatus.PASSED
+    assert _violations(finding) == []
+    skipped = finding.evidence[0].data["skipped_files_sample"]
+    assert any(item["reason"] == "non_first_party_directory" for item in skipped)
+
+
+def test_external_package_under_main_java_is_scanned(tmp_path: Path) -> None:
+    source = (
+        tmp_path
+        / "src"
+        / "main"
+        / "java"
+        / "com"
+        / "acme"
+        / "external"
+        / "CredentialConfig.java"
+    )
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        'String password = "D3v!Only-Real-Secret-9341";\n',
+        encoding="utf-8",
+    )
+
+    rule = _rule()
+    rule.params["exclude_dir_names"] = [
+        ".git",
+        "node_modules",
+        "vendor",
+        "third_party",
+        "external",
+        "generated",
+        "target",
+        "build",
+        "dist",
+        "docs",
+        "examples",
+        "samples",
+        "tests",
+        "test",
+    ]
+
+    finding = RepositorySecretPatternsCheck().evaluate(rule, _context(tmp_path))
+    violations = _violations(finding)
+
+    assert finding.status == CheckStatus.FAILED
+    assert len(violations) == 1
+    assert violations[0]["pattern_name"] == "generic_hardcoded_credential_literal"
+    assert violations[0]["candidate_origin"] == "source_assignment"
