@@ -1,6 +1,8 @@
 from pathlib import Path
 
-from ed_cage.checks.deployment.kubernetes_image_policy_check import KubernetesImagePolicyCheck
+from ed_cage.checks.deployment.kubernetes_image_policy_check import (
+    KubernetesImagePolicyCheck,
+)
 from ed_cage.checks.deployment.kubernetes_manifests_exist_check import (
     KubernetesManifestsExistCheck,
 )
@@ -15,7 +17,9 @@ from ed_cage.domain.enums import CheckStatus, Severity
 from ed_cage.domain.models import GovernanceRule, ProjectContext
 
 
-def test_kubernetes_manifests_exist_check_passes_when_manifest_exists(tmp_path: Path) -> None:
+def test_kubernetes_manifests_exist_check_passes_when_manifest_exists(
+    tmp_path: Path,
+) -> None:
     _write_manifest(tmp_path, _valid_deployment_manifest())
 
     finding = KubernetesManifestsExistCheck().evaluate(
@@ -31,10 +35,15 @@ def test_kubernetes_manifests_exist_check_passes_when_manifest_exists(tmp_path: 
     assert finding.evidence[0].data["manifest_count"] == 1
 
 
-def test_kubernetes_image_policy_check_fails_for_latest_tag(tmp_path: Path) -> None:
+def test_kubernetes_image_policy_check_fails_for_latest_tag(
+    tmp_path: Path,
+) -> None:
     _write_manifest(
         tmp_path,
-        _valid_deployment_manifest().replace("image: app:1.0.0", "image: app:latest"),
+        _valid_deployment_manifest().replace(
+            "image: app:1.0.0",
+            "image: app:latest",
+        ),
     )
 
     finding = KubernetesImagePolicyCheck().evaluate(
@@ -51,12 +60,13 @@ def test_kubernetes_image_policy_check_fails_for_latest_tag(tmp_path: Path) -> N
     )
 
     assert finding.status == CheckStatus.FAILED
-
     violations = finding.evidence[0].data["violations"]
     assert violations[0]["reason"] == "latest_tag_is_not_allowed"
 
 
-def test_kubernetes_resource_policy_check_fails_when_requests_missing(tmp_path: Path) -> None:
+def test_kubernetes_resource_policy_check_fails_when_requests_missing(
+    tmp_path: Path,
+) -> None:
     manifest = _valid_deployment_manifest().replace(
         """
           resources:
@@ -82,7 +92,7 @@ def test_kubernetes_resource_policy_check_fails_when_requests_missing(tmp_path: 
             check_type="kubernetes_resource_policy",
             params={
                 **_base_params(),
-                "required_resource_section": "requests",
+                "policy": "require_requests",
                 "required_resources": ["cpu", "memory"],
             },
         ),
@@ -90,12 +100,137 @@ def test_kubernetes_resource_policy_check_fails_when_requests_missing(tmp_path: 
     )
 
     assert finding.status == CheckStatus.FAILED
-
-    violations = finding.evidence[0].data["violations"]
+    evidence_data = finding.evidence[0].data
+    assert evidence_data["policy"] == "require_requests"
+    assert evidence_data["resource_section"] == "requests"
+    violations = evidence_data["violations"]
+    assert violations[0]["reason"] == "requests_section_missing"
     assert violations[0]["missing_resources"] == ["cpu", "memory"]
 
 
-def test_kubernetes_probe_check_fails_when_readiness_probe_missing(tmp_path: Path) -> None:
+def test_kubernetes_resource_policy_check_fails_when_limits_missing(
+    tmp_path: Path,
+) -> None:
+    _write_manifest(tmp_path, _deployment_manifest_without_limits())
+
+    finding = KubernetesResourcePolicyCheck().evaluate(
+        rule=_build_rule(
+            rule_id="DEP-004",
+            check_type="kubernetes_resource_policy",
+            params={
+                **_base_params(),
+                "policy": "require_limits",
+                "required_resources": ["cpu", "memory"],
+            },
+        ),
+        context=_build_context(tmp_path),
+    )
+
+    assert finding.status == CheckStatus.FAILED
+    evidence_data = finding.evidence[0].data
+    assert evidence_data["policy"] == "require_limits"
+    assert evidence_data["resource_section"] == "limits"
+    violations = evidence_data["violations"]
+    assert violations[0]["reason"] == "limits_section_missing"
+    assert violations[0]["missing_resources"] == ["cpu", "memory"]
+
+
+def test_dep004_passes_when_limits_exist_even_if_requests_are_missing(
+    tmp_path: Path,
+) -> None:
+    manifest = _valid_deployment_manifest().replace(
+        """
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+""",
+        """
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+""",
+    )
+    _write_manifest(tmp_path, manifest)
+
+    finding = KubernetesResourcePolicyCheck().evaluate(
+        rule=_build_rule(
+            rule_id="DEP-004",
+            check_type="kubernetes_resource_policy",
+            params={
+                **_base_params(),
+                "policy": "require_limits",
+                "required_resources": ["cpu", "memory"],
+            },
+        ),
+        context=_build_context(tmp_path),
+    )
+
+    assert finding.status == CheckStatus.PASSED
+    evidence_data = finding.evidence[0].data
+    assert evidence_data["policy"] == "require_limits"
+    assert evidence_data["resource_section"] == "limits"
+    assert evidence_data["violations"] == []
+
+
+def test_legacy_required_resource_section_limits_is_supported(
+    tmp_path: Path,
+) -> None:
+    _write_manifest(tmp_path, _deployment_manifest_without_limits())
+
+    finding = KubernetesResourcePolicyCheck().evaluate(
+        rule=_build_rule(
+            rule_id="DEP-004",
+            check_type="kubernetes_resource_policy",
+            params={
+                **_base_params(),
+                "required_resource_section": "limits",
+                "required_resources": ["cpu", "memory"],
+            },
+        ),
+        context=_build_context(tmp_path),
+    )
+
+    assert finding.status == CheckStatus.FAILED
+    evidence_data = finding.evidence[0].data
+    assert evidence_data["manifest_count"] == 1
+    assert evidence_data["evaluated_containers"] == 1
+    assert evidence_data["policy"] == "require_limits"
+    assert evidence_data["resource_section"] == "limits"
+    assert evidence_data["violations"][0]["reason"] == "limits_section_missing"
+
+
+def test_conflicting_resource_policy_parameters_return_error(
+    tmp_path: Path,
+) -> None:
+    _write_manifest(tmp_path, _valid_deployment_manifest())
+
+    finding = KubernetesResourcePolicyCheck().evaluate(
+        rule=_build_rule(
+            rule_id="DEP-004",
+            check_type="kubernetes_resource_policy",
+            params={
+                **_base_params(),
+                "policy": "require_limits",
+                "required_resource_section": "requests",
+                "required_resources": ["cpu", "memory"],
+            },
+        ),
+        context=_build_context(tmp_path),
+    )
+
+    assert finding.status == CheckStatus.ERROR
+    evidence_data = finding.evidence[0].data
+    assert evidence_data["reason"] == "conflicting_resource_policy_parameters"
+
+
+def test_kubernetes_probe_check_fails_when_readiness_probe_missing(
+    tmp_path: Path,
+) -> None:
     _write_manifest(tmp_path, _deployment_manifest_without_readiness_probe())
 
     finding = KubernetesProbeCheck().evaluate(
@@ -112,7 +247,6 @@ def test_kubernetes_probe_check_fails_when_readiness_probe_missing(tmp_path: Pat
     )
 
     assert finding.status == CheckStatus.FAILED
-
     violations = finding.evidence[0].data["violations"]
     assert len(violations) == 1
     assert violations[0]["missing_probe"] == "readinessProbe"
@@ -142,7 +276,6 @@ def test_kubernetes_security_context_check_fails_for_privileged_container(
     )
 
     assert finding.status == CheckStatus.FAILED
-
     violations = finding.evidence[0].data["violations"]
     assert violations[0]["reason"] == "privileged_container_is_not_allowed"
 
@@ -251,6 +384,48 @@ spec:
             runAsNonRoot: true
             runAsUser: 10001
 """
+
+
+def _deployment_manifest_without_limits() -> str:
+    return """
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+      containers:
+        - name: app
+          image: app:1.0.0
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+          securityContext:
+            privileged: false
+            runAsNonRoot: true
+            runAsUser: 10001
+"""
+
 
 def _deployment_manifest_without_readiness_probe() -> str:
     return """

@@ -30,7 +30,9 @@ rules:
         - compose.yaml
       ignored_services:
         - grafana
+        - grafana-server
         - prometheus
+        - prometheus-server
         - tracing-server
         - admin-server
 

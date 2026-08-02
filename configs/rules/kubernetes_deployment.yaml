@@ -61,7 +61,7 @@ rules:
       file_patterns:
         - "*.yaml"
         - "*.yml"
-      required_resource_section: requests
+      policy: require_requests
       required_resources:
         - cpu
         - memory
@@ -85,7 +85,7 @@ rules:
       file_patterns:
         - "*.yaml"
         - "*.yml"
-      required_resource_section: limits
+      policy: require_limits
       required_resources:
         - cpu
         - memory
