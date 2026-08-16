@@ -117,17 +117,23 @@ def operation_has_response_schema(operation: OpenApiOperation) -> bool:
     if not isinstance(responses, dict):
         return False
 
-    success_response_codes = [
-        str(status_code)
-        for status_code in responses
+    success_responses = [
+        (str(status_code), response)
+        for status_code, response in responses.items()
         if str(status_code).startswith("2")
     ]
 
-    if not success_response_codes:
+    if not success_responses:
         return False
 
-    for status_code in success_response_codes:
-        response = responses.get(status_code)
+    # HEAD responses do not include a response body, so a schema is not required.
+    if operation.method == "head":
+        return True
+
+    for status_code, response in success_responses:
+        # 204 No Content and 205 Reset Content must not contain a response body.
+        if status_code in {"204", "205"}:
+            continue
 
         if not _response_has_schema(response):
             return False

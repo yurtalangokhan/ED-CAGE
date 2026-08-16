@@ -1,0 +1,76 @@
+project_name: booking-microservices-static
+repository_path: case-studies/booking-microservices
+
+rules_path: configs/rules
+services_path: configs/cases/service-catalogs/booking-microservices-services.yaml
+actions_path: configs/actions.yaml
+scenarios_path: configs/scenarios/case-studies
+
+output_path: outputs/case-studies/booking-microservices/static
+evidence_registry_path: outputs/case-studies/booking-microservices/static/evidence/evidence-registry.jsonl
+architecture_catalog_path: configs/cases/architecture-catalogs/booking-microservices-service-architecture.yaml
+
+execution_mode: static
+
+governance_gate:
+  minimum_score: 70
+  fail_on_error: true
+  fail_on_critical: true
+  fail_on_high: false
+  fail_on_medium: false
+  fail_on_any_failure: false
+
+metadata:
+  case_study: booking-microservices
+  execution_mode: static
+  case_focus: static-architecture-dependency-compose-kubernetes-reliability-security
+  technology_profile: dotnet10-microservices
+  deployment_artifacts: repository-native-compose-and-kubernetes
+  architecture_catalog_origin: manually-curated-from-repository-evidence
+
+# Both files are repository-native artifacts. The main manifest contains the
+# application and infrastructure workloads; the cert-manager file contains the
+# TLS issuer configuration.
+kubernetes_manifest_paths:
+  - case-studies/booking-microservices/deployments/kubernetes/booking-microservices.yml
+  - case-studies/booking-microservices/deployments/kubernetes/booking-cert-manager.yml
+
+# REPO-002 is the Python dependency-manifest convention and is not applicable
+# to this .NET repository. All Compose, Kubernetes, deployment, reliability,
+# security and external-tool rules remain enabled.
+disabled_rule_ids:
+  - REPO-002
+
+scoring:
+  status_scores:
+    passed: 1.0
+    failed: 0.0
+    error: 0.0
+
+  category_weights:
+    architecture: 1.2
+    dependency: 1.1
+    deployment: 1.1
+    reliability: 1.3
+    security: 1.3
+    observability: 1.2
+    repository: 0.7
+    api: 1.0
+    uncategorized: 1.0
+
+  maturity_bands:
+    - name: Initial Governance
+      min_score: 0.0
+      max_score: 39.99
+    - name: Emerging Governance
+      min_score: 40.0
+      max_score: 59.99
+    - name: Managed Governance
+      min_score: 60.0
+      max_score: 74.99
+    - name: Governed Architecture
+      min_score: 75.0
+      max_score: 89.99
+    - name: Continuously Governed Architecture
+      min_score: 90.0
+      max_score: 100.0

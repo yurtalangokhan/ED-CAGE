@@ -10,7 +10,7 @@ services:
       - version
 
   kube-linter:
-    image: ${KUBE_LINTER_IMAGE:-stackrox/kube-linter:latest-alpine}
+    image: ${KUBE_LINTER_IMAGE:-stackrox/kube-linter:v0.8.3-alpine}
     working_dir: /workspace
     volumes:
       - .:/workspace

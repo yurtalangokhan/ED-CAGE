@@ -1,0 +1,64 @@
+services:
+  - name: flight-service
+    base_url: http://127.0.0.1:5004
+    health_endpoints:
+      - /health
+      - /alive
+    openapi_paths:
+      - /openapi/v1.json
+    metrics_paths:
+      - /metrics
+    tags:
+      - dotnet
+      - flight
+      - rest
+      - grpc
+      - openapi
+      - opentelemetry
+      - booking-microservices
+    metadata:
+      owner: flight-team
+      criticality: high
+
+  - name: passenger-service
+    base_url: http://127.0.0.1:6012
+    health_endpoints:
+      - /health
+      - /alive
+    openapi_paths:
+      - /openapi/v1.json
+    metrics_paths:
+      - /metrics
+    tags:
+      - dotnet
+      - passenger
+      - rest
+      - grpc
+      - openapi
+      - opentelemetry
+      - booking-microservices
+    metadata:
+      owner: passenger-team
+      criticality: high
+
+  - name: booking-service
+    base_url: http://127.0.0.1:6010
+    health_endpoints:
+      - /health
+      - /alive
+    openapi_paths:
+      - /openapi/v1.json
+    metrics_paths:
+      - /metrics
+    tags:
+      - dotnet
+      - booking
+      - rest
+      - grpc
+      - event-sourcing
+      - openapi
+      - opentelemetry
+      - booking-microservices
+    metadata:
+      owner: booking-team
+      criticality: high

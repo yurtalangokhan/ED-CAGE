@@ -1,0 +1,123 @@
+# This catalog is an experiment-owned, manually curated architectural artifact.
+# Owners, criticality, SLA and approved intent must be reviewed by the architects
+# responsible for developing or evaluating the system.
+
+critical_services:
+  - api-gateway
+  - flight-service
+  - booking-service
+
+services:
+  - name: api-gateway
+    owner: platform-team
+    criticality: critical
+    lifecycle: production
+    dependencies:
+      - name: flight-service
+        dependency_type: reverse-proxy-route
+        external: false
+        owner: flight-team
+        sla: internal
+      - name: passenger-service
+        dependency_type: reverse-proxy-route
+        external: false
+        owner: passenger-team
+        sla: internal
+      - name: booking-service
+        dependency_type: reverse-proxy-route
+        external: false
+        owner: booking-team
+        sla: internal
+
+  - name: flight-service
+    owner: flight-team
+    criticality: high
+    lifecycle: production
+    dependencies:
+      - name: flight-postgres
+        dependency_type: relational-database
+        external: false
+        owner: data-platform-team
+        sla: internal
+      - name: wolverine-postgres
+        dependency_type: durable-messaging-store
+        external: false
+        owner: data-platform-team
+        sla: internal
+      - name: mongodb
+        dependency_type: read-model-database
+        external: false
+        owner: data-platform-team
+        sla: internal
+      - name: rabbitmq
+        dependency_type: message-broker
+        external: false
+        owner: messaging-platform-team
+        sla: internal
+
+  - name: passenger-service
+    owner: passenger-team
+    criticality: medium
+    lifecycle: production
+    dependencies:
+      - name: passenger-postgres
+        dependency_type: relational-database
+        external: false
+        owner: data-platform-team
+        sla: internal
+      - name: wolverine-postgres
+        dependency_type: durable-messaging-store
+        external: false
+        owner: data-platform-team
+        sla: internal
+      - name: mongodb
+        dependency_type: read-model-database
+        external: false
+        owner: data-platform-team
+        sla: internal
+      - name: rabbitmq
+        dependency_type: message-broker
+        external: false
+        owner: messaging-platform-team
+        sla: internal
+
+  - name: booking-service
+    owner: booking-team
+    criticality: critical
+    lifecycle: production
+    dependencies:
+      - name: eventstore
+        dependency_type: event-store
+        external: false
+        owner: data-platform-team
+        sla: internal
+      - name: wolverine-postgres
+        dependency_type: durable-messaging-store
+        external: false
+        owner: data-platform-team
+        sla: internal
+      - name: mongodb
+        dependency_type: read-model-database
+        external: false
+        owner: data-platform-team
+        sla: internal
+      - name: rabbitmq
+        dependency_type: message-broker
+        external: false
+        owner: messaging-platform-team
+        sla: internal
+      - name: flight-service
+        dependency_type: grpc-api
+        external: false
+        owner: flight-team
+        sla: internal
+      - name: passenger-service
+        dependency_type: grpc-api
+        external: false
+        owner: passenger-team
+        sla: internal
+      - name: identity-service
+        dependency_type: authentication-and-authorization
+        external: false
+        owner: identity-team
+        sla: internal

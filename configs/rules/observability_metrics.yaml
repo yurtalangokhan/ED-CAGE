@@ -52,6 +52,7 @@ rules:
           description: Metric representing request count or throughput.
           patterns:
             - ^http_server_requests_seconds_count$
+            - "^http_server_request_duration_seconds(?:_count)?$"
             - ^http_requests_total$
             - ^http_request_total$
             - ^requests_total$
@@ -81,6 +82,7 @@ rules:
             - ^http_request_duration_seconds$
             - ^http_request_duration_seconds_sum$
             - ^request_duration_seconds$
+            - ^http_server_request_duration_seconds(?:_count|_sum|_bucket)?$
 
   - id: OBS-004
     title: Metrics must include error or failure metric
